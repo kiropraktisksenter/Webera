@@ -660,10 +660,11 @@ export default function Home() {
       {/* Modal for enlarged examples */}
       {selectedExample && (
         <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 overflow-y-auto"
+          className="fixed inset-0 bg-black/90 z-50 overflow-y-auto"
           onClick={() => setSelectedExample(null)}
         >
-          <div className="relative max-w-4xl w-full my-8">
+          <div className="min-h-full flex items-start justify-center p-4 pt-12 pb-20">
+            <div className="relative max-w-4xl w-full">
             <button
               onClick={() => setSelectedExample(null)}
               className="sticky top-0 float-right -mr-12 mb-4 text-white text-4xl hover:text-cyan-400 transition z-10 bg-black/50 w-12 h-12 rounded-full flex items-center justify-center"
@@ -1057,6 +1058,7 @@ export default function Home() {
                   </div>
                 </div>
               )}
+            </div>
             </div>
           </div>
         </div>
