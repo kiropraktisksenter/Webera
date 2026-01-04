@@ -129,11 +129,11 @@ export default function Home() {
             ></div>
 
             {/* Menu Content */}
-            <div className="relative h-full flex flex-col items-center justify-center">
+            <div className="relative h-full w-full max-w-7xl mx-auto px-8">
               {/* Close Button */}
               <button
                 onClick={() => setMenuOpen(false)}
-                className="absolute top-8 right-8 text-white/60 hover:text-white transition-colors p-2"
+                className="absolute top-8 right-8 text-white/60 hover:text-white transition-colors p-2 z-10"
                 aria-label="Lukk meny"
               >
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,51 +141,66 @@ export default function Home() {
                 </svg>
               </button>
 
-              {/* Menu Links */}
-              <nav className="flex flex-col items-center gap-8">
-                <a
-                  href="/tjenester"
-                  className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
-                  style={{ animationDelay: '0.1s' }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Tjenester
-                </a>
-                <a
-                  href="/hvordan-det-fungerer"
-                  className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
-                  style={{ animationDelay: '0.2s' }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Hvordan det fungerer
-                </a>
-                <a
-                  href="/priser"
-                  className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
-                  style={{ animationDelay: '0.3s' }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Priser
-                </a>
-                <a
-                  href="/om-oss"
-                  className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
-                  style={{ animationDelay: '0.4s' }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Om Webera
-                </a>
-              </nav>
+              {/* Two Column Layout */}
+              <div className="h-full grid md:grid-cols-2 gap-12 items-center">
+                {/* Left: Menu Links */}
+                <div>
+                  <nav className="flex flex-col gap-6">
+                    <a
+                      href="/tjenester"
+                      className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
+                      style={{ animationDelay: '0.1s' }}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Tjenester
+                    </a>
+                    <a
+                      href="/hvordan-det-fungerer"
+                      className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
+                      style={{ animationDelay: '0.2s' }}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Hvordan det fungerer
+                    </a>
+                    <a
+                      href="/priser"
+                      className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
+                      style={{ animationDelay: '0.3s' }}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Priser
+                    </a>
+                    <a
+                      href="/om-oss"
+                      className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
+                      style={{ animationDelay: '0.4s' }}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Om Webera
+                    </a>
+                  </nav>
 
-              {/* Bottom Contact Button */}
-              <div className="absolute bottom-12 animate-slideInUp" style={{ animationDelay: '0.5s' }}>
-                <a
-                  href="/#kontakt"
-                  className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-12 py-4 rounded-lg text-xl font-semibold hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Kontakt oss
-                </a>
+                  {/* Contact Button */}
+                  <div className="mt-12 animate-slideInUp" style={{ animationDelay: '0.5s' }}>
+                    <a
+                      href="/#kontakt"
+                      className="inline-block bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-12 py-4 rounded-lg text-xl font-semibold hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Kontakt oss
+                    </a>
+                  </div>
+                </div>
+
+                {/* Right: Image */}
+                <div className="hidden md:block animate-slideInUp" style={{ animationDelay: '0.3s' }}>
+                  <img
+                    src="/images/pexels-fauxels-3183150.jpg"
+                    alt="Modern webdesign"
+                    className="rounded-2xl shadow-2xl w-full h-auto object-cover"
+                    style={{ maxHeight: '70vh' }}
+                  />
+                </div>
               </div>
             </div>
           </div>
