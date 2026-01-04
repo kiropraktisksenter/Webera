@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <radialGradient id="bgDisc" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(256 256) rotate(90) scale(200)">
+      <stop offset="0" stop-color="#152238"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </radialGradient>
+
+    <linearGradient id="gCyanBlue" x1="140" y1="360" x2="310" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="0.55" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+
+    <linearGradient id="gBlueViolet" x1="240" y1="380" x2="420" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="0.55" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"/>
+      <feOffset dx="0" dy="10" result="off"/>
+      <feColorMatrix in="off" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0.35 0" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <circle cx="256" cy="256" r="200" fill="url(#bgDisc)"/>
+    <path d="M150 220
+             C185 160, 230 160, 255 220
+             C270 255, 290 295, 310 330"
+          stroke="url(#gCyanBlue)" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.95"/>
+    <path d="M255 220
+             C285 275, 315 275, 345 220
+             C370 175, 405 155, 435 175"
+          stroke="url(#gCyanBlue)" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55"/>
+    <path d="M320 330
+             C345 295, 370 255, 395 220
+             C420 185, 455 165, 485 175"
+          stroke="url(#gBlueViolet)" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.95"/>
+    <path d="M485 175
+             C460 205, 440 235, 425 260"
+          stroke="url(#gBlueViolet)" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55"/>
+  </g>
+</svg>

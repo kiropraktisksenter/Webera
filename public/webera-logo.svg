@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" fill="none">
+  <defs>
+    <radialGradient id="bgDisc" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(240 200) rotate(90) scale(150)">
+      <stop offset="0" stop-color="#152238"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </radialGradient>
+
+    <linearGradient id="gCyanBlue" x1="120" y1="260" x2="290" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="0.55" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+
+    <linearGradient id="gBlueViolet" x1="210" y1="280" x2="370" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="0.55" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
+      <feOffset dx="0" dy="8" result="off"/>
+      <feColorMatrix in="off" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0.35 0" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Icon -->
+  <g filter="url(#softShadow)">
+    <circle cx="240" cy="200" r="150" fill="url(#bgDisc)"/>
+    <!-- Left stroke -->
+    <path d="M150 165
+             C175 120, 205 120, 225 160
+             C240 190, 255 220, 272 250"
+          stroke="url(#gCyanBlue)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.95"/>
+    <!-- Middle stroke (overlap) -->
+    <path d="M225 160
+             C250 205, 275 205, 300 160
+             C318 130, 340 120, 360 140"
+          stroke="url(#gCyanBlue)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55"/>
+    <!-- Right stroke -->
+    <path d="M285 250
+             C305 220, 325 195, 345 165
+             C365 135, 395 110, 430 125"
+          stroke="url(#gBlueViolet)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.95"/>
+    <!-- Right up tick -->
+    <path d="M430 125
+             C410 145, 395 165, 382 185"
+          stroke="url(#gBlueViolet)" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g>
+    <text x="460" y="205"
+      font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+      font-size="108" font-weight="700" fill="#FFFFFF" letter-spacing="-1.5">Webera</text>
+
+    <text x="465" y="260"
+      font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+      font-size="30" font-weight="600" fill="#94A3B8" letter-spacing="4">WEBUTVIKLING &amp; HOSTING</text>
+  </g>
+</svg>
