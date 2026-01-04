@@ -62,6 +62,36 @@ export default function Home() {
           opacity: 1;
           transform: translateX(0);
         }
+
+        /* Menu Animations */
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+
+        .animate-slideInUp {
+          opacity: 0;
+          animation: slideInUp 0.5s ease-out forwards;
+        }
       `}</style>
       {/* Navigation */}
       <nav className="fixed top-0 w-full border-b z-50 shadow-lg" style={{ backgroundColor: '#0B1220', borderColor: '#1a2332' }}>
@@ -89,22 +119,74 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Dropdown Menu */}
+        {/* Full-screen Menu Overlay */}
         {menuOpen && (
-          <div className="absolute top-16 right-0 w-64 border-l border-b shadow-2xl" style={{ backgroundColor: '#0B1220', borderColor: '#1a2332' }}>
-            <div className="py-4">
-              <a href="/tjenester" className="block px-6 py-3 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 transition">
-                Tjenester
-              </a>
-              <a href="/hvordan-det-fungerer" className="block px-6 py-3 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 transition">
-                Hvordan det fungerer
-              </a>
-              <a href="/priser" className="block px-6 py-3 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 transition">
-                Priser
-              </a>
-              <a href="/om-oss" className="block px-6 py-3 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 transition">
-                Om Webera
-              </a>
+          <div className="fixed inset-0 z-50 animate-fadeIn">
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/95 backdrop-blur-sm"
+              onClick={() => setMenuOpen(false)}
+            ></div>
+
+            {/* Menu Content */}
+            <div className="relative h-full flex flex-col items-center justify-center">
+              {/* Close Button */}
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="absolute top-8 right-8 text-white/60 hover:text-white transition-colors p-2"
+                aria-label="Lukk meny"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Menu Links */}
+              <nav className="flex flex-col items-center gap-8">
+                <a
+                  href="/tjenester"
+                  className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
+                  style={{ animationDelay: '0.1s' }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Tjenester
+                </a>
+                <a
+                  href="/hvordan-det-fungerer"
+                  className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
+                  style={{ animationDelay: '0.2s' }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Hvordan det fungerer
+                </a>
+                <a
+                  href="/priser"
+                  className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
+                  style={{ animationDelay: '0.3s' }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Priser
+                </a>
+                <a
+                  href="/om-oss"
+                  className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300 animate-slideInUp"
+                  style={{ animationDelay: '0.4s' }}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Om Webera
+                </a>
+              </nav>
+
+              {/* Bottom Contact Button */}
+              <div className="absolute bottom-12 animate-slideInUp" style={{ animationDelay: '0.5s' }}>
+                <a
+                  href="/#kontakt"
+                  className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-12 py-4 rounded-lg text-xl font-semibold hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Kontakt oss
+                </a>
+              </div>
             </div>
           </div>
         )}
