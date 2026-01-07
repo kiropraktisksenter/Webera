@@ -7,6 +7,112 @@ export default function Home() {
   const [selectedExample, setSelectedExample] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Structured Data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://webera.no",
+    "name": "Webera",
+    "description": "Profesjonelt webbyrå i Tønsberg som leverer moderne nettsider til hele Norge. Fast pris, inkludert hosting og vedlikehold.",
+    "url": "https://webera.no",
+    "telephone": "+47-XXX-XX-XXX", // Legg til telefonnummer senere
+    "email": "holthekiropraktikk@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tønsberg",
+      "addressRegion": "Vestfold og Telemark",
+      "addressCountry": "NO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "59.2676",
+      "longitude": "10.4074"
+    },
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "Norge"
+      },
+      {
+        "@type": "City",
+        "name": "Tønsberg"
+      }
+    ],
+    "priceRange": "kr 15000-25000",
+    "image": "https://webera.no/images/Webera Logo.png",
+    "logo": "https://webera.no/images/Webera Logo.svg",
+    "sameAs": [
+      "https://www.facebook.com/webera", // Legg til når Facebook-side er opprettet
+      "https://www.linkedin.com/company/webera" // Legg til når LinkedIn er opprettet
+    ],
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Webutvikling tjenester",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Grunnpakke - Nettsider",
+            "description": "Opptil 5 sider, skreddersydd design, mobiltilpasning, kontaktløsning",
+            "provider": {
+              "@type": "LocalBusiness",
+              "name": "Webera"
+            }
+          },
+          "price": "15000",
+          "priceCurrency": "NOK"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Vekstpakke - Nettsider",
+            "description": "Opptil 10-12 sider, flere tjenestesider, strukturert for konvertering",
+            "provider": {
+              "@type": "LocalBusiness",
+              "name": "Webera"
+            }
+          },
+          "price": "25000",
+          "priceCurrency": "NOK"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Hosting & Vedlikehold",
+            "description": "Hosting, teknisk drift, sikkerhet, backup og overvåking",
+            "provider": {
+              "@type": "LocalBusiness",
+              "name": "Webera"
+            }
+          },
+          "price": "599",
+          "priceCurrency": "NOK",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "599",
+            "priceCurrency": "NOK",
+            "unitText": "per måned"
+          }
+        }
+      ]
+    }
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -26,7 +132,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0B1220' }}>
+    <>
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
+      <div className="min-h-screen" style={{ backgroundColor: '#0B1220' }}>
       {/* Google Fonts for portfolio examples */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto+Condensed:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
@@ -1372,6 +1485,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </div>
-  );
+      </div>
+    </>
+  )
 }
