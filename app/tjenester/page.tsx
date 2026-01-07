@@ -9,14 +9,14 @@ export default function Tjenester() {
     <div className="min-h-screen" style={{ backgroundColor: '#0B1220' }}>
       {/* Navigation */}
       <nav className="fixed top-0 w-full border-b z-50 shadow-lg" style={{ backgroundColor: '#0B1220', borderColor: '#1a2332' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+        <div className="w-full px-12 sm:px-16 lg:px-20">
+          <div className="flex justify-between items-center h-28">
             <div className="flex items-center">
               <a href="/">
-                <img src="/images/logo.png" alt="Webera - Webutvikling & Hosting" className="h-16 w-auto" />
+                <img src="/images/Webera Logo.svg" alt="Webera - Webutvikling & Hosting" className="h-36 w-auto" />
               </a>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
               <a href="/#kontakt" className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-4 py-2 rounded-lg hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50">
                 Kontakt
               </a>
@@ -35,7 +35,7 @@ export default function Tjenester() {
 
         {/* Dropdown Menu */}
         {menuOpen && (
-          <div className="absolute top-16 right-0 w-64 border-l border-b shadow-2xl" style={{ backgroundColor: '#0B1220', borderColor: '#1a2332' }}>
+          <div className="absolute top-28 right-0 w-64 border-l border-b shadow-2xl" style={{ backgroundColor: '#0B1220', borderColor: '#1a2332' }}>
             <div className="py-4">
               <a href="/tjenester" className="block px-6 py-3 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10 transition">
                 Tjenester
@@ -182,7 +182,7 @@ export default function Tjenester() {
       <footer className="text-gray-400 py-12 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0B1220' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
-            <img src="/images/logo.png" alt="Webera - Webutvikling & Hosting" className="h-20 w-auto mx-auto mb-4" />
+            <img src="/images/Webera Logo.svg" alt="Webera - Webutvikling & Hosting" className="h-40 w-auto mx-auto mb-4" />
             <p className="text-sm text-gray-500">WEBUTVIKLING & HOSTING</p>
           </div>
           <div className="text-center border-t border-gray-800 pt-8">

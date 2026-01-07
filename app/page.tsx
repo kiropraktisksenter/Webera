@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ContactForm from '@/components/ContactForm';
 
 export default function Home() {
   const [selectedExample, setSelectedExample] = useState<number | null>(null);
@@ -95,14 +96,14 @@ export default function Home() {
       `}</style>
       {/* Navigation */}
       <nav className="fixed top-0 w-full border-b z-50 shadow-lg" style={{ backgroundColor: '#0B1220', borderColor: '#1a2332' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+        <div className="w-full px-12 sm:px-16 lg:px-20">
+          <div className="flex justify-between items-center h-28">
             <div className="flex items-center">
               <a href="/">
-                <img src="/images/logo.png" alt="Webera - Webutvikling & Hosting" className="h-16 w-auto" />
+                <img src="/images/Webera Logo.svg" alt="Webera - Webutvikling & Hosting" className="h-36 w-auto" />
               </a>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
               <a href="#kontakt" className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-4 py-2 rounded-lg hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50">
                 Kontakt
               </a>
@@ -208,7 +209,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424)' }}>
+      <section className="pt-48 pb-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424)' }}>
         {/* Background image with overlay */}
         <div className="absolute inset-0 opacity-5">
           <img
@@ -1313,46 +1314,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="kontakt" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-cyan-500 to-purple-600 text-white fade-in-section">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">Klar for en bedre nettside?</h2>
-          <p className="text-xl mb-10 opacity-90">
-            Send en kort melding, så tar vi en uforpliktende samtale.
-          </p>
+      {/* Contact Section */}
+      <section id="kontakt" className="py-32 px-4 sm:px-6 lg:px-8 relative fade-in-section" style={{ background: 'linear-gradient(to bottom, #0D1424, #0B1220)' }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-white mb-6">Ta kontakt</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Klar for en moderne nettside? Send oss en melding, så tar vi kontakt for en uforpliktende samtale.
+            </p>
+          </div>
 
-          <div className="bg-white text-gray-900 p-8 rounded-2xl">
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <input
-                  type="text"
-                  placeholder="Navn"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-                <input
-                  type="email"
-                  placeholder="E-post"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
+          <ContactForm />
+
+          {/* Contact Info */}
+          <div className="mt-16 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
               </div>
-              <input
-                type="tel"
-                placeholder="Telefon"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <textarea
-                placeholder="Fortell oss kort om ditt prosjekt..."
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              ></textarea>
-              <button
-                type="submit"
-                className="w-full bg-white text-cyan-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition shadow-lg"
-              >
-                Send melding
-              </button>
-            </form>
+              <h3 className="text-white font-semibold mb-2">Epost</h3>
+              <p className="text-gray-400">holthekiropraktikk@gmail.com</p>
+            </div>
 
+            <div className="text-center">
+              <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-white font-semibold mb-2">Responstid</h3>
+              <p className="text-gray-400">Innen 24 timer</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-white font-semibold mb-2">Gratis konsultasjon</h3>
+              <p className="text-gray-400">Ingen forpliktelser</p>
+            </div>
           </div>
         </div>
       </section>
@@ -1361,15 +1365,10 @@ export default function Home() {
       <footer className="text-gray-400 py-12 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0B1220' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
-            <img src="/images/logo.png" alt="Webera - Webutvikling & Hosting" className="h-20 w-auto mx-auto mb-4" />
-            <p className="text-sm text-gray-500">WEBUTVIKLING & HOSTING</p>
+            <img src="/images/Webera Logo.svg" alt="Webera - Webutvikling & Hosting" className="h-40 w-auto mx-auto mb-4" />
           </div>
           <div className="text-center border-t border-gray-800 pt-8">
             <p className="mb-4">© 2025 Webera. Alle rettigheter reservert.</p>
-            <p className="text-sm">
-              Hosting og vedlikehold faktureres løpende.
-              Endringer i innhold, tekst eller struktur faktureres separat.
-            </p>
           </div>
         </div>
       </footer>
