@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import ContactForm from '@/components/ContactForm';
 
 export default function Home() {
@@ -574,7 +575,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-10">
             {/* Example 1 - Klinikk */}
-            <div className="group cursor-pointer" onClick={() => setSelectedExample(1)}>
+            <Link href="/eksempler/klinikk" className="group cursor-pointer">
               <div className="bg-white rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300">
                 {/* Mini mockup - Klinikk */}
                 <div className="relative" style={{ height: '400px', fontFamily: '"DM Sans", sans-serif' }}>
@@ -625,141 +626,148 @@ export default function Home() {
               </div>
               <div className="mt-4 text-center">
                 <h3 className="text-xl font-bold text-white mb-2">Helseklinikk</h3>
-                <p className="text-gray-400 text-sm">Profesjonell, tillitsvekkende design</p>
+                <p className="text-gray-400 text-sm mb-3">Profesjonell, tillitsvekkende design</p>
+                <span className="inline-block bg-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold group-hover:bg-teal-700 transition">
+                  Se demo-nettside →
+                </span>
               </div>
-            </div>
+            </Link>
 
             {/* Example 2 - Håndtverker */}
-            <div className="group cursor-pointer" onClick={() => setSelectedExample(2)}>
+            <Link href="/eksempler/handtverker" className="group cursor-pointer">
               <div className="bg-white rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300">
                 {/* Mini mockup - Håndtverker */}
                 <div className="relative" style={{ height: '400px', fontFamily: '"Roboto Condensed", sans-serif' }}>
                   {/* Header */}
-                  <div className="bg-gradient-to-r from-orange-600 to-orange-700 text-white p-4 flex justify-between items-center">
-                    <div className="font-bold text-sm">Bygg & Tømrer AS</div>
+                  <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-4 flex justify-between items-center">
+                    <div className="font-black text-sm"><span className="text-orange-500">BYGG</span>MESTER</div>
                     <div className="flex gap-2 text-xs">
                       <span>Tjenester</span>
                       <span>Prosjekter</span>
-                      <span>Ring oss</span>
+                      <span>Kontakt</span>
                     </div>
                   </div>
 
                   {/* Hero */}
-                  <div className="relative h-32 bg-gradient-to-r from-orange-900 to-orange-800 flex items-center justify-center text-white">
+                  <div className="relative h-32 bg-gradient-to-r from-slate-900 to-slate-800 flex items-center justify-center text-white">
                     <div className="text-center z-10">
-                      <h1 className="text-xl font-bold mb-1">Kvalitetsarbeid siden 1995</h1>
-                      <p className="text-xs opacity-90">Erfarne håndverkere i ditt område</p>
+                      <h1 className="text-xl font-black mb-1">KVALITET SOM <span className="text-orange-500">VARER</span></h1>
+                      <p className="text-xs opacity-90 font-semibold">30 års erfaring med totalentreprise</p>
                     </div>
                   </div>
 
                   {/* Services */}
                   <div className="p-6">
-                    <h2 className="text-lg font-bold text-gray-900 mb-3">Våre tjenester</h2>
+                    <h2 className="text-lg font-black text-gray-900 mb-3 uppercase">Våre tjenester</h2>
                     <div className="space-y-2">
                       <div className="flex items-center gap-2 text-sm">
-                        <span className="text-orange-600">🔨</span>
-                        <span className="text-gray-700">Tømrerarbeid</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm">
                         <span className="text-orange-600">🏗️</span>
-                        <span className="text-gray-700">Rehabilitering</span>
+                        <span className="text-gray-700 font-semibold">Totalentreprise</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <span className="text-orange-600">🪟</span>
-                        <span className="text-gray-700">Vinduer & dører</span>
+                        <span className="text-orange-600">🔨</span>
+                        <span className="text-gray-700 font-semibold">Rehabilitering</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
                         <span className="text-orange-600">🏠</span>
-                        <span className="text-gray-700">Tilbygg</span>
+                        <span className="text-gray-700 font-semibold">Nybygg</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <span className="text-orange-600">⚡</span>
+                        <span className="text-gray-700 font-semibold">Akutt service 24/7</span>
                       </div>
                     </div>
                   </div>
 
                   {/* CTA */}
                   <div className="absolute bottom-3 left-6 right-6">
-                    <div className="bg-orange-600 text-white text-center py-3 rounded-lg font-bold text-sm">
-                      📞 Ring for gratis befaring
+                    <div className="bg-orange-600 text-white text-center py-3 font-bold text-sm">
+                      FÅ GRATIS TILBUD
                     </div>
                   </div>
                 </div>
               </div>
               <div className="mt-4 text-center">
                 <h3 className="text-xl font-bold text-white mb-2">Håndtverksbedrift</h3>
-                <p className="text-gray-400 text-sm">Solid, pålitelig og handlingsorientert</p>
+                <p className="text-gray-400 text-sm mb-3">Solid, kraftig og handlingsorientert</p>
+                <span className="inline-block bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-semibold group-hover:bg-orange-700 transition">
+                  Se demo-nettside →
+                </span>
               </div>
-            </div>
+            </Link>
 
-            {/* Example 3 - Konsulent */}
-            <div className="group cursor-pointer" onClick={() => setSelectedExample(3)}>
-              <div className="bg-white rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-cyan-500">
-                {/* Mini mockup - Konsulent */}
-                <div className="relative" style={{ height: '400px', fontFamily: '"Inter", sans-serif' }}>
+            {/* Example 3 - Restaurant */}
+            <Link href="/eksempler/restaurant" className="group cursor-pointer">
+              <div className="bg-white rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300">
+                {/* Mini mockup - Restaurant */}
+                <div className="relative" style={{ height: '400px', fontFamily: 'Georgia, serif' }}>
                   {/* Header */}
-                  <div className="bg-slate-900 text-white p-4 flex justify-between items-center">
-                    <div className="font-bold text-sm">Strategy Consulting</div>
-                    <div className="flex gap-2 text-xs">
-                      <span className="opacity-70">Tjenester</span>
-                      <span className="opacity-70">Resultater</span>
-                      <span className="opacity-70">Kontakt</span>
+                  <div className="bg-gradient-to-r from-amber-900 via-red-900 to-amber-900 text-amber-50 p-4 flex justify-between items-center">
+                    <div className="text-sm italic">La Bella Vista</div>
+                    <div className="flex gap-2 text-xs font-light">
+                      <span>Meny</span>
+                      <span>Om oss</span>
+                      <span>Kontakt</span>
                     </div>
                   </div>
 
                   {/* Hero */}
-                  <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-6">
-                    <h1 className="text-2xl font-bold text-slate-900 mb-2">Transformerer bedrifter til markedsledere</h1>
-                    <p className="text-sm text-gray-600 mb-4">Strategisk rådgivning som skaper resultater</p>
-                    <div className="flex gap-2">
-                      <div className="bg-slate-900 text-white text-xs px-3 py-2 rounded font-semibold">
-                        Book møte
-                      </div>
-                      <div className="border-2 border-slate-900 text-slate-900 text-xs px-3 py-2 rounded font-semibold">
-                        Les mer
-                      </div>
+                  <div className="bg-amber-50 p-6">
+                    <h1 className="text-xl font-serif text-amber-900 mb-2 italic">En kulinarisk opplevelse</h1>
+                    <p className="text-xs text-gray-600 mb-3 font-light">Autentisk italiensk kjøkken i hjertet av Oslo</p>
+                    <div className="inline-block bg-amber-600 text-white text-xs px-4 py-2 rounded font-medium">
+                      Bestill bord
                     </div>
                   </div>
 
-                  {/* Stats */}
-                  <div className="px-6 py-4 grid grid-cols-3 gap-3 bg-white">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-600">150+</div>
-                      <div className="text-xs text-gray-600">Klienter</div>
+                  {/* Features */}
+                  <div className="p-6 grid grid-cols-3 gap-2 bg-white">
+                    <div className="text-center bg-amber-50 p-2 rounded">
+                      <div className="text-xl mb-1">🍝</div>
+                      <div className="text-xs text-amber-900 font-light">Hjemmelaget</div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-600">95%</div>
-                      <div className="text-xs text-gray-600">Fornøyde</div>
+                    <div className="text-center bg-amber-50 p-2 rounded">
+                      <div className="text-xl mb-1">🍷</div>
+                      <div className="text-xs text-amber-900 font-light">Italienske viner</div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-600">20+</div>
-                      <div className="text-xs text-gray-600">År erfaring</div>
+                    <div className="text-center bg-amber-50 p-2 rounded">
+                      <div className="text-xl mb-1">👨‍🍳</div>
+                      <div className="text-xs text-amber-900 font-light">Erfarne kokker</div>
                     </div>
                   </div>
 
-                  {/* Services preview */}
-                  <div className="p-6">
+                  {/* Menu preview */}
+                  <div className="p-6 bg-gradient-to-b from-white to-amber-50">
                     <div className="space-y-2">
-                      <div className="bg-slate-50 p-2 rounded text-xs text-gray-700">
-                        📊 Strategisk planlegging
+                      <div className="flex justify-between text-xs border-b border-amber-200 pb-2">
+                        <span className="text-amber-900 font-medium">Bruschetta Classica</span>
+                        <span className="text-amber-700">kr 145</span>
                       </div>
-                      <div className="bg-slate-50 p-2 rounded text-xs text-gray-700">
-                        💼 Organisasjonsutvikling
+                      <div className="flex justify-between text-xs border-b border-amber-200 pb-2">
+                        <span className="text-amber-900 font-medium">Tagliatelle al Tartufo</span>
+                        <span className="text-amber-700">kr 285</span>
                       </div>
-                      <div className="bg-slate-50 p-2 rounded text-xs text-gray-700">
-                        📈 Vekststrategier
+                      <div className="flex justify-between text-xs">
+                        <span className="text-amber-900 font-medium">Osso Buco Milanese</span>
+                        <span className="text-amber-700">kr 395</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Badge */}
-                  <div className="absolute top-4 right-4 bg-cyan-600 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                    ⭐ Featured
+                  {/* Rating */}
+                  <div className="absolute bottom-3 left-6 right-6 bg-white rounded-lg p-2 text-center shadow-lg">
+                    <div className="text-xs text-amber-600 font-medium">⭐⭐⭐⭐⭐ "Best i Oslo" - Aftenposten</div>
                   </div>
                 </div>
               </div>
               <div className="mt-4 text-center">
-                <h3 className="text-xl font-bold text-white mb-2">Konsulentbedrift</h3>
-                <p className="text-gray-400 text-sm">Modern, sofistikert og resultatorientert</p>
+                <h3 className="text-xl font-bold text-white mb-2">Restaurant</h3>
+                <p className="text-gray-400 text-sm mb-3">Elegant, appetittvekkende og innbydende</p>
+                <span className="inline-block bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-semibold group-hover:bg-amber-700 transition">
+                  Se demo-nettside →
+                </span>
               </div>
-            </div>
+            </Link>
           </div>
 
           <div className="text-center mt-16">
