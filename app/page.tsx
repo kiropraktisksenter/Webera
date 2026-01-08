@@ -580,7 +580,7 @@ export default function Home() {
                 {/* Mini mockup - Klinikk */}
                 <div className="relative" style={{ height: '400px', fontFamily: '"DM Sans", sans-serif' }}>
                   {/* Header */}
-                  <div className="bg-gradient-to-r from-teal-600 to-teal-700 text-white p-4 flex justify-between items-center">
+                  <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-4 flex justify-between items-center">
                     <div className="font-bold text-sm">Helse Klinikk</div>
                     <div className="flex gap-2 text-xs">
                       <span>Tjenester</span>
@@ -590,44 +590,44 @@ export default function Home() {
                   </div>
 
                   {/* Hero */}
-                  <div className="bg-gradient-to-b from-teal-50 to-white p-6 text-center">
-                    <h1 className="text-2xl font-bold text-teal-900 mb-2">Din helse er vår prioritet</h1>
+                  <div className="bg-gradient-to-b from-stone-100 to-white p-6 text-center">
+                    <h1 className="text-2xl font-bold text-slate-900 mb-2">Din helse er vår prioritet</h1>
                     <p className="text-sm text-gray-600 mb-3">Profesjonell behandling i trygge hender</p>
-                    <div className="inline-block bg-teal-600 text-white text-xs px-4 py-2 rounded-full">
+                    <div className="inline-block bg-slate-900 text-white text-xs px-4 py-2 rounded-full">
                       Bestill time
                     </div>
                   </div>
 
                   {/* Services */}
                   <div className="p-6 grid grid-cols-2 gap-3">
-                    <div className="bg-teal-50 p-3 rounded-lg">
+                    <div className="bg-stone-100 p-3 rounded-lg border border-stone-200">
                       <div className="text-2xl mb-1">🩺</div>
-                      <div className="text-xs font-semibold text-teal-900">Konsultasjon</div>
+                      <div className="text-xs font-semibold text-slate-900">Konsultasjon</div>
                     </div>
-                    <div className="bg-teal-50 p-3 rounded-lg">
+                    <div className="bg-stone-100 p-3 rounded-lg border border-stone-200">
                       <div className="text-2xl mb-1">💆</div>
-                      <div className="text-xs font-semibold text-teal-900">Behandling</div>
+                      <div className="text-xs font-semibold text-slate-900">Behandling</div>
                     </div>
-                    <div className="bg-teal-50 p-3 rounded-lg">
+                    <div className="bg-stone-100 p-3 rounded-lg border border-stone-200">
                       <div className="text-2xl mb-1">📋</div>
-                      <div className="text-xs font-semibold text-teal-900">Oppfølging</div>
+                      <div className="text-xs font-semibold text-slate-900">Oppfølging</div>
                     </div>
-                    <div className="bg-teal-50 p-3 rounded-lg">
+                    <div className="bg-stone-100 p-3 rounded-lg border border-stone-200">
                       <div className="text-2xl mb-1">⏰</div>
-                      <div className="text-xs font-semibold text-teal-900">Timebestilling</div>
+                      <div className="text-xs font-semibold text-slate-900">Timebestilling</div>
                     </div>
                   </div>
 
                   {/* Trust badge */}
-                  <div className="absolute bottom-3 left-6 right-6 bg-white border-2 border-teal-200 rounded-lg p-2 text-center">
-                    <div className="text-xs text-teal-700 font-semibold">✓ Godkjent av Helsedirektoratet</div>
+                  <div className="absolute bottom-3 left-6 right-6 bg-white border-2 border-amber-200 rounded-lg p-2 text-center shadow-lg">
+                    <div className="text-xs text-amber-700 font-semibold">✓ Godkjent av Helsedirektoratet</div>
                   </div>
                 </div>
               </div>
               <div className="mt-4 text-center">
                 <h3 className="text-xl font-bold text-white mb-2">Helseklinikk</h3>
-                <p className="text-gray-400 text-sm mb-3">Profesjonell, tillitsvekkende design</p>
-                <span className="inline-block bg-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold group-hover:bg-teal-700 transition">
+                <p className="text-gray-400 text-sm mb-3">Elegant beige & navy design med animasjoner</p>
+                <span className="inline-block bg-slate-900 text-white px-4 py-2 rounded-full text-sm font-semibold group-hover:bg-slate-800 transition">
                   Se demo-nettside →
                 </span>
               </div>

@@ -1,13 +1,47 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function RestaurantDemo() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   return (
     <div className="min-h-screen bg-amber-50">
+      <style jsx global>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.6s ease-out forwards;
+        }
+      `}</style>
       {/* Navigation */}
       <nav className="bg-gradient-to-r from-amber-900 via-red-900 to-amber-900 text-amber-50 shadow-xl sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6">
@@ -64,7 +98,7 @@ export default function RestaurantDemo() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-white">
-          <div className="max-w-2xl">
+          <div className={`max-w-2xl ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <h1 className="text-6xl font-serif mb-6 leading-tight italic">
               En kulinarisk opplevelse
             </h1>
@@ -72,10 +106,10 @@ export default function RestaurantDemo() {
               Autentisk italiensk kjøkken i hjertet av Oslo. Hjemmelaget pasta, ferske råvarer, og en atmosfære som tar deg til Toscana.
             </p>
             <div className="flex gap-4">
-              <Link href="/eksempler/restaurant/kontakt" className="bg-amber-600 text-white px-8 py-4 rounded font-medium hover:bg-amber-700 transition shadow-xl">
+              <Link href="/eksempler/restaurant/kontakt" className="bg-amber-600 text-white px-8 py-4 rounded font-medium hover:bg-amber-700 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
                 Bestill bord
               </Link>
-              <Link href="/eksempler/restaurant/meny" className="bg-white/10 backdrop-blur text-white px-8 py-4 rounded font-medium hover:bg-white/20 transition border border-white/30">
+              <Link href="/eksempler/restaurant/meny" className="bg-white/10 backdrop-blur text-white px-8 py-4 rounded font-medium hover:bg-white/20 hover:scale-105 transition-all duration-300 border border-white/30">
                 Se menyen
               </Link>
             </div>
@@ -87,27 +121,23 @@ export default function RestaurantDemo() {
       <section className="py-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12 text-center">
-            <div>
-              <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-4xl">🍝</span>
+            {[
+              { icon: '🍝', title: 'Hjemmelaget pasta', desc: 'Fersk pasta laget daglig av våre italienske kokker' },
+              { icon: '🍷', title: 'Italienske viner', desc: 'Nøye utvalgte viner fra de beste vindistriktene' },
+              { icon: '👨‍🍳', title: 'Erfarne kokker', desc: 'Tradisjonelle oppskrifter fra generasjoner' }
+            ].map((feature, i) => (
+              <div
+                key={i}
+                className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'} hover:scale-105 transition-transform duration-300`}
+                style={{ animationDelay: `${0.2 + i * 0.1}s` }}
+              >
+                <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <span className="text-4xl">{feature.icon}</span>
+                </div>
+                <h3 className="text-xl font-serif mb-3 text-amber-900">{feature.title}</h3>
+                <p className="text-gray-600 font-light">{feature.desc}</p>
               </div>
-              <h3 className="text-xl font-serif mb-3 text-amber-900">Hjemmelaget pasta</h3>
-              <p className="text-gray-600 font-light">Fersk pasta laget daglig av våre italienske kokker</p>
-            </div>
-            <div>
-              <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-4xl">🍷</span>
-              </div>
-              <h3 className="text-xl font-serif mb-3 text-amber-900">Italienske viner</h3>
-              <p className="text-gray-600 font-light">Nøye utvalgte viner fra de beste vindistriktene</p>
-            </div>
-            <div>
-              <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-4xl">👨‍🍳</span>
-              </div>
-              <h3 className="text-xl font-serif mb-3 text-amber-900">Erfarne kokker</h3>
-              <p className="text-gray-600 font-light">Tradisjonelle oppskrifter fra generasjoner</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -151,7 +181,7 @@ export default function RestaurantDemo() {
                 price: 'kr 125'
               },
             ].map((item, i) => (
-              <div key={i} className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition group">
+              <div key={i} className={`bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: `${0.5 + i * 0.1}s` }}>
                 <img src={item.img} alt={item.title} className="w-full h-56 object-cover group-hover:scale-105 transition duration-500" />
                 <div className="p-6">
                   <div className="text-amber-600 text-sm font-medium uppercase tracking-wider mb-2">{item.category}</div>

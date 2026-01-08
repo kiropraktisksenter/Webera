@@ -52,9 +52,9 @@ export default function KlinikkTjenester() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-stone-100 to-white">
       {/* Navigation */}
-      <nav className="bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-lg sticky top-0 z-50">
+      <nav className="bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-lg sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex justify-between items-center h-20">
             <Link href="/eksempler/klinikk" className="text-2xl font-bold">
@@ -63,19 +63,19 @@ export default function KlinikkTjenester() {
 
             {/* Desktop menu */}
             <div className="hidden md:flex items-center gap-8">
-              <Link href="/eksempler/klinikk" className="hover:text-teal-200 transition">
+              <Link href="/eksempler/klinikk" className="hover:text-stone-300 transition">
                 Hjem
               </Link>
-              <Link href="/eksempler/klinikk/tjenester" className="text-teal-200 font-semibold">
+              <Link href="/eksempler/klinikk/tjenester" className="text-stone-300 font-semibold">
                 Tjenester
               </Link>
-              <Link href="/eksempler/klinikk/priser" className="hover:text-teal-200 transition">
+              <Link href="/eksempler/klinikk/priser" className="hover:text-stone-300 transition">
                 Priser
               </Link>
-              <Link href="/eksempler/klinikk/om-oss" className="hover:text-teal-200 transition">
+              <Link href="/eksempler/klinikk/om-oss" className="hover:text-stone-300 transition">
                 Om oss
               </Link>
-              <Link href="/eksempler/klinikk/kontakt" className="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-teal-50 transition">
+              <Link href="/eksempler/klinikk/kontakt" className="bg-white text-slate-900 px-6 py-2 rounded-full font-semibold hover:bg-stone-100 transition">
                 Kontakt
               </Link>
             </div>
@@ -91,21 +91,21 @@ export default function KlinikkTjenester() {
           {/* Mobile menu */}
           {menuOpen && (
             <div className="md:hidden pb-4 space-y-2">
-              <Link href="/eksempler/klinikk" className="block py-2 hover:text-teal-200">Hjem</Link>
-              <Link href="/eksempler/klinikk/tjenester" className="block py-2 text-teal-200 font-semibold">Tjenester</Link>
-              <Link href="/eksempler/klinikk/priser" className="block py-2 hover:text-teal-200">Priser</Link>
-              <Link href="/eksempler/klinikk/om-oss" className="block py-2 hover:text-teal-200">Om oss</Link>
-              <Link href="/eksempler/klinikk/kontakt" className="block py-2 hover:text-teal-200">Kontakt</Link>
+              <Link href="/eksempler/klinikk" className="block py-2 hover:text-stone-300">Hjem</Link>
+              <Link href="/eksempler/klinikk/tjenester" className="block py-2 text-stone-300 font-semibold">Tjenester</Link>
+              <Link href="/eksempler/klinikk/priser" className="block py-2 hover:text-stone-300">Priser</Link>
+              <Link href="/eksempler/klinikk/om-oss" className="block py-2 hover:text-stone-300">Om oss</Link>
+              <Link href="/eksempler/klinikk/kontakt" className="block py-2 hover:text-stone-300">Kontakt</Link>
             </div>
           )}
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="py-20 px-6 bg-gradient-to-br from-teal-600 to-teal-700 text-white">
+      <section className="py-20 px-6 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl font-bold mb-6">Våre tjenester</h1>
-          <p className="text-xl text-teal-100 max-w-2xl mx-auto">
+          <p className="text-xl text-stone-200 max-w-2xl mx-auto">
             Vi tilbyr et bredt spekter av helsetjenester tilpasset dine behov
           </p>
         </div>
@@ -121,20 +121,20 @@ export default function KlinikkTjenester() {
                 <div className="p-8">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="text-5xl">{service.icon}</div>
-                    <h3 className="text-3xl font-bold text-teal-900">{service.title}</h3>
+                    <h3 className="text-3xl font-bold text-slate-900">{service.title}</h3>
                   </div>
                   <p className="text-gray-600 text-lg mb-6">{service.description}</p>
                   <div className="space-y-3">
                     {service.features.map((feature, j) => (
                       <div key={j} className="flex items-center gap-3">
-                        <svg className="w-5 h-5 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-5 h-5 text-slate-900" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                         <span className="text-gray-700">{feature}</span>
                       </div>
                     ))}
                   </div>
-                  <Link href="/eksempler/klinikk/kontakt" className="mt-6 inline-block bg-teal-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-teal-700 transition">
+                  <Link href="/eksempler/klinikk/kontakt" className="mt-6 inline-block bg-slate-900 text-white px-6 py-3 rounded-full font-semibold hover:bg-slate-800 transition">
                     Bestill time →
                   </Link>
                 </div>
@@ -145,29 +145,29 @@ export default function KlinikkTjenester() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 bg-gradient-to-br from-teal-50 to-white">
+      <section className="py-20 px-6 bg-gradient-to-br from-stone-100 to-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-teal-900 mb-6">Trenger du hjelp?</h2>
+          <h2 className="text-4xl font-bold text-slate-900 mb-6">Trenger du hjelp?</h2>
           <p className="text-xl text-gray-700 mb-8">
             Ta kontakt i dag for en uforpliktende samtale om dine behov
           </p>
-          <Link href="/eksempler/klinikk/kontakt" className="inline-block bg-teal-600 text-white px-10 py-4 rounded-full font-semibold hover:bg-teal-700 transition text-lg shadow-lg">
+          <Link href="/eksempler/klinikk/kontakt" className="inline-block bg-slate-900 text-white px-10 py-4 rounded-full font-semibold hover:bg-slate-800 transition text-lg shadow-lg">
             Kontakt oss
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-teal-900 text-white py-12 px-6">
+      <footer className="bg-slate-900 text-white py-12 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <h3 className="text-2xl font-bold mb-4">Helse Klinikk</h3>
-              <p className="text-teal-200">Din helse er vår prioritet</p>
+              <p className="text-stone-300">Din helse er vår prioritet</p>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Tjenester</h4>
-              <div className="space-y-2 text-teal-200">
+              <div className="space-y-2 text-stone-300">
                 <div>Konsultasjon</div>
                 <div>Behandling</div>
                 <div>Oppfølging</div>
@@ -175,7 +175,7 @@ export default function KlinikkTjenester() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Kontakt</h4>
-              <div className="space-y-2 text-teal-200">
+              <div className="space-y-2 text-stone-300">
                 <div>post@helseklinikk.no</div>
                 <div>+47 123 45 678</div>
                 <div>Eksempelgata 1, Oslo</div>
@@ -183,7 +183,7 @@ export default function KlinikkTjenester() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Åpningstider</h4>
-              <div className="space-y-2 text-teal-200">
+              <div className="space-y-2 text-stone-300">
                 <div>Man-Fre: 08:00-16:00</div>
                 <div>Lørdag: 10:00-14:00</div>
                 <div>Søndag: Stengt</div>
@@ -191,11 +191,11 @@ export default function KlinikkTjenester() {
             </div>
           </div>
 
-          <div className="border-t border-teal-800 pt-8 text-center">
-            <p className="text-teal-300 mb-4">© 2025 Helse Klinikk. Dette er en demo-nettside.</p>
+          <div className="border-t border-slate-700 pt-8 text-center">
+            <p className="text-stone-400 mb-4">© 2025 Helse Klinikk. Dette er en demo-nettside.</p>
             <Link href="/" className="inline-flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full hover:bg-white/20 transition">
               <span>Laget av</span>
-              <span className="font-bold text-cyan-400">Webera</span>
+              <span className="font-bold text-amber-400">Webera</span>
             </Link>
           </div>
         </div>

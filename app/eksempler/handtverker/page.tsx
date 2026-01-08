@@ -1,13 +1,49 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function HandtverkerDemo() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-50">
+      <style jsx global>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-slide-in-left {
+          animation: slideInLeft 0.8s ease-out forwards;
+        }
+      `}</style>
       {/* Navigation */}
       <nav className="bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-2xl sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -64,7 +100,7 @@ export default function HandtverkerDemo() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-white">
-          <div className="max-w-3xl">
+          <div className={`max-w-3xl ${isVisible ? 'animate-slide-in-left' : 'opacity-0'}`}>
             <h1 className="text-6xl md:text-7xl font-black mb-6 leading-tight">
               KVALITET SOM <span className="text-orange-500">VARER</span>
             </h1>
@@ -72,10 +108,10 @@ export default function HandtverkerDemo() {
               30 års erfaring med totalentreprise, rehabilitering og nybygg. Vi leverer på tid og budsjett.
             </p>
             <div className="flex gap-4">
-              <Link href="/eksempler/handtverker/kontakt" className="bg-orange-600 text-white px-10 py-4 font-bold hover:bg-orange-700 transition text-lg shadow-2xl">
+              <Link href="/eksempler/handtverker/kontakt" className="bg-orange-600 text-white px-10 py-4 font-bold hover:bg-orange-700 hover:scale-105 transition-all duration-300 text-lg shadow-2xl hover:shadow-3xl">
                 FÅ TILBUD
               </Link>
-              <Link href="/eksempler/handtverker/prosjekter" className="bg-white/10 backdrop-blur text-white px-10 py-4 font-bold hover:bg-white/20 transition text-lg border-2 border-white/30">
+              <Link href="/eksempler/handtverker/prosjekter" className="bg-white/10 backdrop-blur text-white px-10 py-4 font-bold hover:bg-white/20 hover:scale-105 transition-all duration-300 text-lg border-2 border-white/30">
                 SE PROSJEKTER
               </Link>
             </div>
@@ -87,22 +123,21 @@ export default function HandtverkerDemo() {
       <section className="py-16 bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-5xl font-black text-orange-500 mb-2">30+</div>
-              <div className="text-slate-300 text-lg font-semibold">År erfaring</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-orange-500 mb-2">500+</div>
-              <div className="text-slate-300 text-lg font-semibold">Fullførte prosjekter</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-orange-500 mb-2">100%</div>
-              <div className="text-slate-300 text-lg font-semibold">Fornøyde kunder</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-orange-500 mb-2">24/7</div>
-              <div className="text-slate-300 text-lg font-semibold">Akuttservice</div>
-            </div>
+            {[
+              { number: '30+', text: 'År erfaring' },
+              { number: '500+', text: 'Fullførte prosjekter' },
+              { number: '100%', text: 'Fornøyde kunder' },
+              { number: '24/7', text: 'Akuttservice' }
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className={`${isVisible ? 'animate-fade-in-up' : 'opacity-0'} hover:scale-110 transition-transform duration-300`}
+                style={{ animationDelay: `${0.2 + i * 0.1}s` }}
+              >
+                <div className="text-5xl font-black text-orange-500 mb-2">{stat.number}</div>
+                <div className="text-slate-300 text-lg font-semibold">{stat.text}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -124,7 +159,7 @@ export default function HandtverkerDemo() {
               { icon: '🎨', title: 'Design & planlegging', desc: 'Profesjonell prosjektering og designløsninger' },
               { icon: '🛡️', title: 'Garantiarbeid', desc: '10 års garanti på alt håndverk' },
             ].map((service, i) => (
-              <div key={i} className="bg-white p-8 border-4 border-slate-900 hover:border-orange-600 transition group">
+              <div key={i} className={`bg-white p-8 border-4 border-slate-900 hover:border-orange-600 hover:scale-105 hover:shadow-2xl transition-all duration-300 group ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: `${0.6 + i * 0.1}s` }}>
                 <div className="text-6xl mb-4 group-hover:scale-110 transition">{service.icon}</div>
                 <h3 className="text-2xl font-black text-slate-900 mb-3 uppercase">{service.title}</h3>
                 <p className="text-slate-600 font-medium">{service.desc}</p>
