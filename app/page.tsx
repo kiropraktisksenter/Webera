@@ -35,7 +35,7 @@ export default function Home() {
     "description": "Profesjonelt webbyrå i Tønsberg som leverer moderne nettsider til hele Norge. Fast pris, inkludert hosting og vedlikehold.",
     "url": "https://webera.no",
     "telephone": "+47-XXX-XX-XXX",
-    "email": "holthekiropraktikk@gmail.com",
+    "email": "post@webera.no",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Tønsberg",
@@ -204,7 +204,10 @@ export default function Home() {
                 href="#kontakt"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-4 py-2 rounded-lg hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50"
+                className="text-white px-4 py-2 rounded-lg transition shadow-lg shadow-cyan-500/50"
+                style={{
+                  background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
+                }}
               >
                 Kontakt
               </motion.a>
@@ -237,7 +240,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 bg-black/95 backdrop-blur-sm"
+                className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-950"
                 onClick={() => setMenuOpen(false)}
               />
 
@@ -265,10 +268,10 @@ export default function Home() {
                   >
                     <nav className="flex flex-col gap-6">
                       {[
-                        { href: '/tjenester', text: 'Tjenester' },
-                        { href: '/hvordan-det-fungerer', text: 'Hvordan det fungerer' },
-                        { href: '/priser', text: 'Priser' },
-                        { href: '/om-oss', text: 'Om Webera' }
+                        { href: '#tjenester', text: 'Tjenester' },
+                        { href: '#hvordan', text: 'Hvordan det fungerer' },
+                        { href: '#priser', text: 'Priser' },
+                        { href: '#om', text: 'Om Webera' }
                       ].map((item, i) => (
                         <motion.a
                           key={item.href}
@@ -291,7 +294,10 @@ export default function Home() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         href="/#kontakt"
-                        className="inline-block bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-12 py-4 rounded-lg text-xl font-semibold hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50"
+                        className="inline-block text-white px-12 py-4 rounded-lg text-xl font-semibold transition shadow-lg shadow-cyan-500/50"
+                        style={{
+                          background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
+                        }}
                         onClick={() => setMenuOpen(false)}
                       >
                         Kontakt oss
@@ -321,7 +327,7 @@ export default function Home() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="pt-48 pb-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424)' }}>
+      <section className="pt-48 pb-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0B1220 0%, #0C1525 33%, #0D1829 66%, #0E1A2D 100%)' }}>
         <div className="absolute inset-0 opacity-5">
           <img
             src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&q=80"
@@ -369,7 +375,10 @@ export default function Home() {
                   whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(6, 182, 212, 0.4)' }}
                   whileTap={{ scale: 0.95 }}
                   href="#kontakt"
-                  className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50"
+                  className="text-white px-8 py-4 rounded-lg text-lg font-semibold transition shadow-lg shadow-cyan-500/50"
+                  style={{
+                    background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
+                  }}
                 >
                   Kontakt oss
                 </motion.a>
@@ -899,7 +908,10 @@ export default function Home() {
               whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(6, 182, 212, 0.4)' }}
               whileTap={{ scale: 0.95 }}
               href="#kontakt"
-              className="inline-block bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg"
+              className="inline-block text-white px-8 py-4 rounded-lg text-lg font-semibold transition shadow-lg"
+              style={{
+                background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
+              }}
             >
               Se hva vi kan gjøre for deg
             </motion.a>
@@ -941,7 +953,10 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.15 }}
                   transition={{ type: 'spring', stiffness: 400 }}
-                  className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-cyan-500/50"
+                  className="w-16 h-16 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-cyan-500/50"
+                  style={{
+                    background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
+                  }}
                 >
                   {item.step}
                 </motion.div>
@@ -964,10 +979,10 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
           >
             {[
-              { emoji: '🚀', title: 'Lynrask', desc: '0.5s lastetid', color: 'bg-green-100' },
-              { emoji: '🔒', title: 'Sikker', desc: 'SSL inkludert', color: 'bg-cyan-100' },
-              { emoji: '📱', title: 'Mobil-first', desc: '100% responsiv', color: 'bg-purple-100' },
-              { emoji: '⚡', title: 'SEO-optimert', desc: 'Klar for Google', color: 'bg-yellow-100' }
+              { emoji: '🚀', title: 'Lynrask', desc: '0.5s lastetid', color: 'from-green-400 to-emerald-600' },
+              { emoji: '🔒', title: 'Sikker', desc: 'SSL inkludert', color: 'from-cyan-400 to-blue-600' },
+              { emoji: '📱', title: 'Mobil-first', desc: '100% responsiv', color: 'from-purple-400 to-pink-600' },
+              { emoji: '⚡', title: 'SEO-optimert', desc: 'Klar for Google', color: 'from-yellow-400 to-orange-600' }
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -977,7 +992,8 @@ export default function Home() {
               >
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 10 }}
-                  className={`w-16 h-16 ${item.color} rounded-full flex items-center justify-center mx-auto mb-3`}
+                  transition={{ type: 'spring', stiffness: 400 }}
+                  className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg`}
                 >
                   <span className="text-3xl">{item.emoji}</span>
                 </motion.div>
@@ -1064,7 +1080,9 @@ export default function Home() {
               className="border-2 p-10 rounded-3xl shadow-2xl relative overflow-hidden transition-all duration-300"
               style={{ backgroundColor: '#0D1424', borderColor: '#06B6D4' }}
             >
-              <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4">
+              <div className="text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4" style={{
+                background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
+              }}>
                 ANBEFALT
               </div>
               <h3 className="text-3xl font-bold text-white mb-2">Vekst</h3>
@@ -1256,7 +1274,7 @@ export default function Home() {
               {
                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />,
                 title: 'Epost',
-                text: 'holthekiropraktikk@gmail.com'
+                text: 'post@webera.no'
               },
               {
                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />,

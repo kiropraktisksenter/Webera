@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
     // Send epost
     await sgMail.send({
-      to: process.env.CONTACT_EMAIL || 'holthekiropraktikk@gmail.com',
+      to: process.env.CONTACT_EMAIL || 'post@webera.no',
       from: 'noreply@webera.no', // Dette må være verifisert i SendGrid
       replyTo: email,
       subject: `Ny henvendelse fra ${name} via Webera`,
