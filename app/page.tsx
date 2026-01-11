@@ -266,21 +266,23 @@ export default function Home() {
                     animate="open"
                     exit="closed"
                   >
-                    <nav className="flex flex-col gap-6">
+                    <nav className="flex flex-col gap-4">
                       {[
                         { href: '#tjenester', text: 'Tjenester' },
                         { href: '#hvordan', text: 'Hvordan det fungerer' },
                         { href: '#priser', text: 'Priser' },
+                        { href: '/guider', text: 'Guider' },
                         { href: '#om', text: 'Om Webera' }
                       ].map((item, i) => (
                         <motion.a
                           key={item.href}
                           variants={menuItemVariants}
                           href={item.href}
-                          className="text-5xl md:text-6xl font-bold text-white hover:text-cyan-400 transition-all duration-300"
+                          className="text-2xl font-semibold text-white hover:text-cyan-400 transition-all duration-300 flex items-center gap-3"
                           onClick={() => setMenuOpen(false)}
                           whileHover={{ x: 10 }}
                         >
+                          <span className="text-cyan-400 text-lg">•</span>
                           {item.text}
                         </motion.a>
                       ))}
