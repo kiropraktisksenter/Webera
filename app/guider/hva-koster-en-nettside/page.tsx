@@ -93,7 +93,7 @@ export default function GuideHvaKoster() {
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
 
             <section className="mb-12">
               <p className="text-gray-300 leading-relaxed mb-6">

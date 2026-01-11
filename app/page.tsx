@@ -312,13 +312,15 @@ export default function Home() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.4, delay: 0.2 }}
-                    className="hidden md:block"
+                    className="hidden md:flex items-center justify-center"
                   >
-                    <img
-                      src="/images/pexels-fauxels-3183150.jpg"
-                      alt="Modern webdesign"
-                      className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                      style={{ maxHeight: '70vh' }}
+                    <motion.img
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 0.15, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                      src="/images/Webera Logo.svg"
+                      alt="Webera"
+                      className="w-[800px] h-auto select-none pointer-events-none"
                     />
                   </motion.div>
                 </div>
