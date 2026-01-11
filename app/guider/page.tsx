@@ -58,7 +58,7 @@ export default function GuiderPage() {
             className="text-center mb-16"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Guider om nettsider
+              TEST - Guider om nettsider
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Praktiske guider som hjelper deg å ta bedre valg når det gjelder nettside for din bedrift
