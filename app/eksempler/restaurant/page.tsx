@@ -163,7 +163,7 @@ export default function RestaurantDemo() {
                 key={i}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={{ type: 'spring' as const, stiffness: 300 }}
               >
                 <motion.div
                   whileHover={{ rotate: [0, -10, 10, -10, 0] }}
@@ -235,7 +235,7 @@ export default function RestaurantDemo() {
                 key={i}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={{ type: 'spring' as const, stiffness: 300 }}
                 className="bg-white rounded-lg overflow-hidden shadow-lg group"
               >
                 <div className="relative overflow-hidden">
@@ -282,7 +282,7 @@ export default function RestaurantDemo() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, type: 'spring', stiffness: 200 }}
+            transition={{ duration: 0.6, type: 'spring' as const, stiffness: 200 }}
           >
             <motion.div
               initial={{ opacity: 0 }}

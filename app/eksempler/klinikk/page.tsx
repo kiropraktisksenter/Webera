@@ -23,7 +23,7 @@ export default function KlinikkDemo() {
 
   const scaleOnHover = {
     scale: 1.05,
-    transition: { type: 'spring', stiffness: 300 }
+    transition: { type: 'spring' as const, stiffness: 300 }
   };
 
   return (
@@ -138,7 +138,7 @@ export default function KlinikkDemo() {
             >
               <motion.img
                 whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={{ type: 'spring' as const, stiffness: 300 }}
                 src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&q=80"
                 alt="Helseklinikk"
                 className="rounded-3xl shadow-2xl"
@@ -146,7 +146,7 @@ export default function KlinikkDemo() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6, type: 'spring', stiffness: 200 }}
+                transition={{ delay: 0.6, type: 'spring' as const, stiffness: 200 }}
                 whileHover={{ scale: 1.05 }}
                 className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl"
               >
@@ -196,12 +196,12 @@ export default function KlinikkDemo() {
                 key={i}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={{ type: 'spring' as const, stiffness: 300 }}
                 className="bg-gradient-to-br from-stone-100 to-white p-8 rounded-2xl group cursor-pointer border border-stone-200"
               >
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 5 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
+                  transition={{ type: 'spring' as const, stiffness: 400 }}
                   className="text-5xl mb-4"
                 >
                   {service.icon}
@@ -248,7 +248,7 @@ export default function KlinikkDemo() {
                 key={i}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.1, y: -10 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={{ type: 'spring' as const, stiffness: 300 }}
               >
                 <div className="text-5xl font-bold mb-2 text-amber-400">{stat.number}</div>
                 <div className="text-stone-300">{stat.text}</div>

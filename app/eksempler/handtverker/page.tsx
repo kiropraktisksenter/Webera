@@ -160,7 +160,7 @@ export default function HandtverkerDemo() {
                 key={i}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.1, y: -10 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={{ type: 'spring' as const, stiffness: 300 }}
               >
                 <div className="text-5xl font-black text-orange-500 mb-2">{stat.number}</div>
                 <div className="text-slate-300 text-lg font-semibold">{stat.text}</div>
@@ -203,12 +203,12 @@ export default function HandtverkerDemo() {
                 key={i}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05, borderColor: '#ea580c' }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={{ type: 'spring' as const, stiffness: 300 }}
                 className="bg-white p-8 border-4 border-slate-900 group"
               >
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 10 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
+                  transition={{ type: 'spring' as const, stiffness: 400 }}
                   className="text-6xl mb-4"
                 >
                   {service.icon}
@@ -265,7 +265,7 @@ export default function HandtverkerDemo() {
                 key={i}
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={{ type: 'spring' as const, stiffness: 300 }}
                 className="group cursor-pointer overflow-hidden border-4 border-slate-900"
               >
                 <div className="relative overflow-hidden">
