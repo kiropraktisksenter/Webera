@@ -25,10 +25,16 @@ export async function POST(request: Request) {
     }
 
     // Send epost
-    await sgMail.send({
-      to: process.env.CONTACT_EMAIL || 'post@webera.no',
-      from: 'noreply@webera.no', // Dette må være verifisert i SendGrid
-      replyTo: email,
+    const msg = {
+      to: 'post@webera.no',
+      from: {
+        email: 'post@webera.no',
+        name: 'Webera Kontaktskjema'
+      },
+      replyTo: {
+        email: email,
+        name: name
+      },
       subject: `Ny henvendelse fra ${name} via Webera`,
       text: `
 Navn: ${name}
@@ -54,7 +60,11 @@ ${message}
           <p style="color: #666; font-size: 12px;">Denne meldingen ble sendt via kontaktskjema på webera-eta.vercel.app</p>
         </div>
       `
-    });
+    };
+
+    console.log('Sender e-post til:', msg.to);
+    const response = await sgMail.send(msg);
+    console.log('SendGrid response:', response);
 
     return NextResponse.json({
       success: true,
@@ -63,12 +73,14 @@ ${message}
 
   } catch (error: any) {
     console.error('SendGrid error:', error);
+    console.error('SendGrid response:', error?.response?.body);
 
     // Mer detaljert feilmelding for debugging
     return NextResponse.json(
       {
         error: 'Kunne ikke sende melding',
-        details: error?.response?.body?.errors?.[0]?.message || error.message
+        details: error?.response?.body?.errors?.[0]?.message || error.message,
+        debugInfo: process.env.NODE_ENV === 'development' ? error?.response?.body : undefined
       },
       { status: 500 }
     );
