@@ -402,15 +402,23 @@ export default function Home() {
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-              className="relative"
+              className="relative h-[400px] md:h-[480px]"
             >
-              <motion.img
-                whileHover={{ scale: 1.05 }}
+              <motion.video
+                whileHover={{ scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 300 }}
-                src="/images/pexels-fauxels-3183150.jpg"
-                alt="Team som samarbeider"
-                className="rounded-2xl shadow-2xl"
+                src="/videos/hero-video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                className="rounded-2xl shadow-2xl w-full h-full object-cover"
+                style={{
+                  boxShadow: '0 25px 50px -12px rgba(6, 182, 212, 0.25)'
+                }}
               />
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none"></div>
             </motion.div>
           </div>
         </div>
