@@ -17,7 +17,7 @@ const guides = [
     title: 'Nettside – hva koster det egentlig, og hvorfor prisen ofte misforstås',
     excerpt: 'Det riktige spørsmålet er ikke bare hva nettsiden koster å lage, men hva koster det å ha en nettside som faktisk fungerer over tid? Denne guiden forklarer prisnivåer og skjulte kostnader.',
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80',
-    date: '2025-01-11',
+    date: '2025-01-10',
     readTime: '4 min'
   },
   {
@@ -25,7 +25,7 @@ const guides = [
     title: '«Jeg trenger ny nettside» – hva bør du gjøre, og hva bør du unngå?',
     excerpt: 'De fleste som sier "jeg trenger ny nettside" har allerede forsøkt å forbedre den gamle. Denne guiden viser hva du bør gjøre – og hva du bør styre unna.',
     image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80',
-    date: '2025-01-11',
+    date: '2025-01-09',
     readTime: '4 min'
   },
   {
@@ -33,7 +33,31 @@ const guides = [
     title: 'Nettsidedesign for bedrifter – hvorfor "pent" ikke er nok',
     excerpt: 'Problemet er at mange nettsider ser bra ut, men fungerer dårlig. Denne guiden forklarer hva godt nettsidedesign faktisk er for en bedrift, og hvorfor design må sees som et verktøy – ikke pynt.',
     image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
-    date: '2025-01-11',
+    date: '2025-01-08',
+    readTime: '6 min'
+  },
+  {
+    slug: 'nettsidetrender-2025',
+    title: 'Nettsidetrender i 2025 – hva er verdt å følge, og hva bør du styre unna?',
+    excerpt: 'Hvert år dukker det opp nye nettsidetrender. Noen lover bedre brukeropplevelse, andre lover høyere konvertering. Denne guiden hjelper deg å skille mellom trender som gir verdi, og trender som fort blir et problem.',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80',
+    date: '2025-01-07',
+    readTime: '5 min'
+  },
+  {
+    slug: 'nettside-komponenter',
+    title: 'Alle komponentene i en nettside – hva de betyr, og hvorfor helheten er avgjørende',
+    excerpt: 'En nettside består av mange små komponenter som må spille sammen. Denne guiden forklarer de viktigste delene, hva de betyr, og hvorfor det er viktig at noen har ansvar for helheten.',
+    image: 'https://images.unsplash.com/photo-1587440871875-191322ee64b0?w=800&q=80',
+    date: '2025-01-06',
+    readTime: '7 min'
+  },
+  {
+    slug: 'seo-guide',
+    title: 'SEO – hva det betyr, hvordan det fungerer, og hvorfor det er viktig for bedrifter',
+    excerpt: 'SEO er et begrep mange har hørt om, men få virkelig forstår. Denne guiden forklarer hva SEO faktisk er, hvordan det fungerer i praksis, og hvorfor det bør være en del av nettsiden fra starten av.',
+    image: 'https://images.unsplash.com/photo-1562577309-2592ab84b1bc?w=800&q=80',
+    date: '2025-01-05',
     readTime: '6 min'
   }
 ];
