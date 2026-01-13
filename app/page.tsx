@@ -32,7 +32,7 @@ export default function Home() {
     "@type": "LocalBusiness",
     "@id": "https://webera.no",
     "name": "Webera",
-    "description": "Et lite, spesialisert webbyrå i Tønsberg som leverer moderne nettsider til hele Norge. Fast pris, inkludert hosting og vedlikehold.",
+    "description": "Et lite, spesialisert webbyrå i Tønsberg som leverer moderne nettsider til hele Norge. Etablering fra kr 15.000,-, hosting fra kr 599,- per måned.",
     "url": "https://webera.no",
     "telephone": "+47-XXX-XX-XXX",
     "email": "post@webera.no",

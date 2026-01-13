@@ -9,7 +9,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Webera - Profesjonelle nettsider til fast pris | For små og mellomstore bedrifter",
-  description: "Et lite, spesialisert webbyrå i Tønsberg. Vi leverer moderne nettsider med fokus på struktur, design og langsiktig kvalitet. Fast pris, inkludert hosting. Fra kr 15.000,-",
+  description: "Et lite, spesialisert webbyrå i Tønsberg. Vi leverer moderne nettsider med fokus på struktur, design og langsiktig kvalitet. Etablering fra kr 15.000,-, hosting fra kr 599,- per måned.",
   keywords: "nettsider fast pris, webbyrå små bedrifter, nettside til fast pris, webbyrå Tønsberg, profesjonelle nettsider, webutvikling, webdesign, hosting inkludert, nettsider for små bedrifter",
   authors: [{ name: "Webera" }],
   creator: "Webera",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Webera - Profesjonelle nettsider til fast pris | For små og mellomstore bedrifter",
-    description: "Et lite, spesialisert webbyrå i Tønsberg. Vi leverer moderne nettsider med fokus på struktur, design og langsiktig kvalitet.",
+    description: "Et lite, spesialisert webbyrå i Tønsberg. Etablering fra kr 15.000,-, hosting fra kr 599,- per måned.",
     url: 'https://webera.no',
     siteName: 'Webera',
     locale: 'nb_NO',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Webera - Profesjonelle nettsider til fast pris",
-    description: "For små og mellomstore bedrifter. Fast pris, inkludert hosting og vedlikehold. Fra kr 15.000,-",
+    description: "For små og mellomstore bedrifter. Etablering fra kr 15.000,-, hosting fra kr 599,- per måned.",
     images: ['/images/Webera Logo.png'],
   },
   robots: {
