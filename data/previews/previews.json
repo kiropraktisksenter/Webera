@@ -1,0 +1,29 @@
+{
+  "eksempel-bedrift": {
+    "businessName": "Eksempel Bedrift AS",
+    "industry": "Konsulentvirksomhet",
+    "tagline": "Moderne løsninger for din bedrift",
+    "description": "Vi hjelper bedrifter med å optimalisere sine prosesser og øke effektiviteten.",
+    "colors": {
+      "primary": "#0891b2",
+      "secondary": "#06b6d4",
+      "accent": "#6366f1"
+    },
+    "logo": "/images/Webera Logo.svg",
+    "heroImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
+    "sections": [
+      {
+        "title": "Våre tjenester",
+        "items": [
+          { "icon": "💼", "title": "Konsulentbistand", "description": "Erfarne konsulenter som hjelper deg" },
+          { "icon": "📊", "title": "Prosessoptimalisering", "description": "Effektivisering av arbeidsflyt" },
+          { "icon": "🎯", "title": "Strategisk rådgivning", "description": "Langsiktig strategiutvikling" }
+        ]
+      }
+    ],
+    "cta": {
+      "text": "Kontakt oss",
+      "subtext": "Ta kontakt for en uforpliktende samtale"
+    }
+  }
+}
