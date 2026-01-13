@@ -32,7 +32,7 @@ export default function Home() {
     "@type": "LocalBusiness",
     "@id": "https://webera.no",
     "name": "Webera",
-    "description": "Profesjonelt webbyrå i Tønsberg som leverer moderne nettsider til hele Norge. Fast pris, inkludert hosting og vedlikehold.",
+    "description": "Et lite, spesialisert webbyrå i Tønsberg som leverer moderne nettsider til hele Norge. Fast pris, inkludert hosting og vedlikehold.",
     "url": "https://webera.no",
     "telephone": "+47-XXX-XX-XXX",
     "email": "post@webera.no",
@@ -1225,9 +1225,9 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-white mb-6">Enkelt, ærlig og moderne</h2>
+              <h2 className="text-4xl font-bold text-white mb-6">Om Webera</h2>
               <p className="text-xl text-gray-300 mb-8">
-                Vi hjelper små og mellomstore bedrifter med å få nettsider som ser profesjonelle ut, gir tillit og fungerer teknisk – uten problemer.
+                Webera er et lite, spesialisert webbyrå som jobber tett med kundene våre. Vi fokuserer på struktur, design og langsiktig kvalitet – ikke volum.
               </p>
 
               <div className="p-8 rounded-2xl border" style={{ backgroundColor: 'rgba(13, 20, 36, 0.5)', borderColor: '#1a2332' }}>

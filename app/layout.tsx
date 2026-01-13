@@ -8,9 +8,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Webera - Webbyrå i Tønsberg | Moderne nettsider for hele Norge",
-  description: "Profesjonelt webbyrå i Tønsberg som leverer moderne nettsider til hele Norge. Fast pris, inkludert hosting og vedlikehold. Fra kr 15.000,-",
-  keywords: "webbyrå Tønsberg, nettside Tønsberg, webutvikling, webdesign, hosting, nettsider, moderne nettsider",
+  title: "Webera - Profesjonelle nettsider til fast pris | For små og mellomstore bedrifter",
+  description: "Et lite, spesialisert webbyrå i Tønsberg. Vi leverer moderne nettsider med fokus på struktur, design og langsiktig kvalitet. Fast pris, inkludert hosting. Fra kr 15.000,-",
+  keywords: "nettsider fast pris, webbyrå små bedrifter, nettside til fast pris, webbyrå Tønsberg, profesjonelle nettsider, webutvikling, webdesign, hosting inkludert, nettsider for små bedrifter",
   authors: [{ name: "Webera" }],
   creator: "Webera",
   publisher: "Webera",
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Webera - Webbyrå i Tønsberg | Moderne nettsider",
-    description: "Profesjonelt webbyrå i Tønsberg som leverer moderne nettsider til hele Norge. Fast pris, inkludert hosting og vedlikehold.",
+    title: "Webera - Profesjonelle nettsider til fast pris | For små og mellomstore bedrifter",
+    description: "Et lite, spesialisert webbyrå i Tønsberg. Vi leverer moderne nettsider med fokus på struktur, design og langsiktig kvalitet.",
     url: 'https://webera.no',
     siteName: 'Webera',
     locale: 'nb_NO',
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Webera - Webbyrå i Tønsberg",
-    description: "Profesjonelt webbyrå som leverer moderne nettsider til hele Norge",
+    title: "Webera - Profesjonelle nettsider til fast pris",
+    description: "For små og mellomstore bedrifter. Fast pris, inkludert hosting og vedlikehold. Fra kr 15.000,-",
     images: ['/images/Webera Logo.png'],
   },
   robots: {
