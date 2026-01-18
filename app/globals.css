@@ -24,3 +24,22 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Custom scrollbar for code animation preview */
+.scrollbar-preview::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-preview::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.scrollbar-preview::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.scrollbar-preview::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
