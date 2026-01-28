@@ -5,6 +5,22 @@ import Link from 'next/link';
 
 const guides = [
   {
+    slug: 'wix-squarespace-webbyra',
+    title: 'Wix vs Squarespace vs Webbyrå – Hva passer for din bedrift?',
+    excerpt: 'Skal du lage nettsiden selv med Wix eller Squarespace, eller bør du bruke et webbyrå? Denne guiden hjelper deg å ta riktig valg basert på dine behov og ressurser.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+    date: '2025-01-28',
+    readTime: '6 min'
+  },
+  {
+    slug: 'webbyra-tonsberg',
+    title: 'Webbyrå i Tønsberg og Vestfold – Hvordan velge riktig partner',
+    excerpt: 'For mange bedrifter i Vestfold gir et lokalt webbyrå flere fordeler enn de fleste tror. Denne guiden forklarer hva du bør se etter når du velger webbyrå.',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
+    date: '2025-01-28',
+    readTime: '5 min'
+  },
+  {
     slug: 'ny-nettside-for-bedrift',
     title: 'Ny nettside for bedrift – hva som faktisk fungerer (og hvorfor mange bommer)',
     excerpt: 'Mange bedrifter kontakter oss etter å ha hatt samme nettside i flere år. Den fungerer teknisk sett, men gir få henvendelser. Denne guiden forklarer hva som kjennetegner en nettside som gir resultater.',
