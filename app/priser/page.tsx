@@ -79,7 +79,7 @@ export default function Priser() {
               <p className="text-gray-400 mb-8">Passer for mindre bedrifter med enkelt behov.</p>
 
               <div className="text-5xl font-bold text-cyan-400 mb-2">
-                kr 15.000,-
+                kr 20.000,-
               </div>
               <p className="text-sm text-gray-400 mb-2">eks. mva</p>
               <p className="text-gray-400 mb-10">Engangspris</p>
@@ -119,7 +119,7 @@ export default function Priser() {
               <p className="text-gray-400 mb-8">Passer for bedrifter med flere tjenester og behov for tydelig struktur.</p>
 
               <div className="text-5xl font-bold text-cyan-400 mb-2">
-                kr 25.000,-
+                kr 35.000,-
               </div>
               <p className="text-sm text-gray-400 mb-2">eks. mva</p>
               <p className="text-gray-400 mb-10">Engangspris</p>

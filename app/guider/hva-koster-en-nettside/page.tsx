@@ -71,7 +71,7 @@ export default function GuideHvaKoster() {
                   </div>
                   <div>
                     <div className="text-white font-semibold">Enkel nettside</div>
-                    <div className="text-cyan-400 text-lg">15 000–25 000 kr</div>
+                    <div className="text-cyan-400 text-lg">20 000–35 000 kr</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -80,7 +80,7 @@ export default function GuideHvaKoster() {
                   </div>
                   <div>
                     <div className="text-white font-semibold">Mer gjennomarbeidet løsning</div>
-                    <div className="text-cyan-400 text-lg">25 000–45 000 kr</div>
+                    <div className="text-cyan-400 text-lg">35 000–50 000 kr</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
