@@ -82,5 +82,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/guider/webbyra-tonsberg`,
+      lastModified: new Date('2025-01-28'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/guider/wix-squarespace-webbyra`,
+      lastModified: new Date('2025-01-28'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ]
 }
