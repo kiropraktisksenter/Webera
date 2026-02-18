@@ -201,6 +201,14 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-4">
               <motion.a
+                href="/nettside-sjekk"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-white px-4 py-2 rounded-lg border border-cyan-500 hover:bg-cyan-500/10 transition"
+              >
+                Ta nettsidesjekken
+              </motion.a>
+              <motion.a
                 href="#kontakt"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -271,6 +279,7 @@ export default function Home() {
                         { href: '#tjenester', text: 'Tjenester' },
                         { href: '#hvordan', text: 'Hvordan det fungerer' },
                         { href: '#priser', text: 'Priser' },
+                        { href: '/nettside-sjekk', text: 'Ta nettsidesjekken' },
                         { href: '/guider', text: 'Guider' },
                         { href: '#om', text: 'Om Webera' }
                       ].map((item, i) => (
