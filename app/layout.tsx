@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
+import MessengerChat from '@/components/MessengerChat';
 import "./globals.css";
 
 const inter = Inter({
@@ -65,6 +66,7 @@ export default function RootLayout({
     <html lang="no">
       <body className={`${inter.className} antialiased`}>
         {children}
+        <MessengerChat />
       </body>
     </html>
   );
