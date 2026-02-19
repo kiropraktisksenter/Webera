@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
+import { Analytics } from "@vercel/analytics/next";
 import MessengerChat from '@/components/MessengerChat';
 import "./globals.css";
 
@@ -66,6 +67,7 @@ export default function RootLayout({
     <html lang="no">
       <body className={`${inter.className} antialiased`}>
         {children}
+        <Analytics />
         <MessengerChat />
       </body>
     </html>

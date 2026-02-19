@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6",
+    "@vercel/analytics": "^1.6.1",
     "framer-motion": "^12.24.12",
     "lottie-react": "^2.4.1",
     "next": "^15.1.0",
