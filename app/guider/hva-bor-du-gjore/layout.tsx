@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description: 'De fleste som sier "jeg trenger ny nettside" har allerede forsøkt å forbedre den gamle. Denne guiden viser hva du bør gjøre – og hva du bør styre unna.',
   keywords: ['ny nettside', 'nettside leverandør', 'velge webbyrå', 'nettside sjekkliste', 'webdesign valg'],
   authors: [{ name: 'Webera' }],
+  alternates: {
+    canonical: 'https://webera.no/guider/hva-bor-du-gjore',
+  },
   openGraph: {
     title: '«Jeg trenger ny nettside» – hva bør du gjøre, og hva bør du unngå?',
     description: 'Praktisk guide til hva du bør gjøre når du trenger ny nettside, og fallgruver du bør unngå.',

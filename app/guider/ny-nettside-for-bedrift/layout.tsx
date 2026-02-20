@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description: 'Når man vurderer ny nettside for bedrift, handler det sjelden bare om design. Les om struktur, vedlikehold og hva som kjennetegner en nettside som gir resultater.',
   keywords: ['ny nettside', 'bedriftsnettside', 'nettside for bedrift', 'webdesign', 'vedlikehold nettside'],
   authors: [{ name: 'Webera' }],
+  alternates: {
+    canonical: 'https://webera.no/guider/ny-nettside-for-bedrift',
+  },
   openGraph: {
     title: 'Ny nettside for bedrift – hva som faktisk fungerer',
     description: 'Når man vurderer ny nettside for bedrift, handler det sjelden bare om design. Les om struktur, vedlikehold og hva som kjennetegner en nettside som gir resultater.',

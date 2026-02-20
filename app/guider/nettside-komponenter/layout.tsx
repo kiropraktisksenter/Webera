@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description: 'En nettside består av mange små komponenter som må spille sammen. Denne guiden forklarer de viktigste delene, og hvorfor helhet er avgjørende.',
   keywords: ['nettside komponenter', 'webdesign elementer', 'nettside struktur', 'hero section', 'CTA', 'navigasjon'],
   authors: [{ name: 'Webera' }],
+  alternates: {
+    canonical: 'https://webera.no/guider/nettside-komponenter',
+  },
   openGraph: {
     title: 'Alle komponentene i en nettside – hva de betyr, og hvorfor helheten er avgjørende',
     description: 'Lær om de viktigste komponentene i en nettside og hvorfor ansvar for helheten er avgjørende.',

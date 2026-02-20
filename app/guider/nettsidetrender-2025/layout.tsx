@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description: 'Hvert år dukker det opp nye nettsidetrender. Denne guiden hjelper deg å skille mellom trender som gir verdi, og trender som fort blir et problem.',
   keywords: ['nettsidetrender', 'webdesign trender', 'moderne nettsider', 'design trender 2025', 'nettside utvikling'],
   authors: [{ name: 'Webera' }],
+  alternates: {
+    canonical: 'https://webera.no/guider/nettsidetrender-2025',
+  },
   openGraph: {
     title: 'Nettsidetrender i 2025 – hva er verdt å følge, og hva bør du styre unna?',
     description: 'Skille mellom trender som gir verdi og trender som fort blir et problem for din bedrift.',

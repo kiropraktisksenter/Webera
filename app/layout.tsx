@@ -53,9 +53,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'google-site-verification-code', // Du må legge til denne senere fra Google Search Console
-  },
+  // verification: {
+  //   google: 'LEGG_TIL_DIN_KODE_FRA_GOOGLE_SEARCH_CONSOLE',
+  // },
 };
 
 export default function RootLayout({

@@ -345,6 +345,7 @@ export default function Home() {
           <img
             src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&q=80"
             alt=""
+            aria-hidden="true"
             className="w-full h-full object-cover"
           />
         </div>
@@ -515,6 +516,7 @@ export default function Home() {
               <img
                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80"
                 alt=""
+                aria-hidden="true"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -536,6 +538,7 @@ export default function Home() {
           <img
             src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80"
             alt=""
+            aria-hidden="true"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent"></div>
@@ -575,7 +578,7 @@ export default function Home() {
                   transition={{ type: 'spring', stiffness: 400 }}
                   className={`w-20 h-20 ${item.color} rounded-full flex items-center justify-center mx-auto mb-4`}
                 >
-                  <img src={item.img} alt="" className="w-12 h-12 rounded-full object-cover" />
+                  <img src={item.img} alt={item.title} className="w-12 h-12 rounded-full object-cover" />
                 </motion.div>
                 <h3 className="font-semibold text-white">{item.title}</h3>
               </motion.div>
@@ -1190,6 +1193,7 @@ export default function Home() {
           <img
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80"
             alt=""
+            aria-hidden="true"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-purple-500/30 to-transparent"></div>

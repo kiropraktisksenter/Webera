@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description: 'Mange nettsider ser bra ut, men fungerer dårlig. Lær hva godt nettsidedesign faktisk er for en bedrift, og hvorfor design må sees som et verktøy – ikke pynt.',
   keywords: ['nettsidedesign', 'webdesign bedrift', 'god nettside', 'effektiv design', 'brukeropplevelse'],
   authors: [{ name: 'Webera' }],
+  alternates: {
+    canonical: 'https://webera.no/guider/nettsidedesign-for-bedrifter',
+  },
   openGraph: {
     title: 'Nettsidedesign for bedrifter – hvorfor "pent" ikke er nok',
     description: 'Hva godt nettsidedesign faktisk er for en bedrift, og hvorfor design må sees som et verktøy – ikke pynt.',
