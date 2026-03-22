@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 export default function WebsiteAnalysisForm() {
@@ -10,29 +10,68 @@ export default function WebsiteAnalysisForm() {
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [submittedEmail, setSubmittedEmail] = useState('');
+  const [progress, setProgress] = useState(0);
+  const progressInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startProgress = () => {
+    setProgress(0);
+    progressInterval.current = setInterval(() => {
+      setProgress(prev => {
+        if (prev < 30) return prev + 2;
+        if (prev < 60) return prev + 1;
+        if (prev < 85) return prev + 0.4;
+        return prev;
+      });
+    }, 300);
+  };
+
+  const stopProgress = (final: number) => {
+    if (progressInterval.current) clearInterval(progressInterval.current);
+    setProgress(final);
+  };
+
+  const progressLabel = (p: number) => {
+    if (p < 25) return 'Henter nettsiden...';
+    if (p < 55) return 'Analyserer design og innhold...';
+    if (p < 80) return 'Genererer rapporten...';
+    return 'Ferdigstiller...';
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
     setErrorMessage('');
+    startProgress();
+
+    let url = formData.websiteUrl.trim();
+    if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+      url = 'https://' + url;
+    }
 
     try {
       const response = await fetch('/api/website-analysis', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ ...formData, websiteUrl: url })
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setStatus('success');
-        setFormData({ email: '', websiteUrl: '' });
+        stopProgress(100);
+        setSubmittedEmail(formData.email);
+        setTimeout(() => {
+          setStatus('success');
+          setFormData({ email: '', websiteUrl: '' });
+        }, 400);
       } else {
+        stopProgress(0);
         setStatus('error');
         setErrorMessage(data.error || 'Noe gikk galt');
       }
     } catch (error) {
+      stopProgress(0);
       setStatus('error');
       setErrorMessage('Kunne ikke sende forespørsel. Sjekk internettforbindelsen din.');
     }
@@ -78,13 +117,13 @@ export default function WebsiteAnalysisForm() {
           </svg>
         </div>
         <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-          Takk for din forespørsel!
+          Rapporten er sendt!
         </h3>
         <p className="text-gray-300 text-lg mb-2">
-          Vi har mottatt forespørselen din og starter analysen snart.
+          Rapporten er sendt til {submittedEmail}! Sjekk innboksen din.
         </p>
         <p className="text-gray-400">
-          Du vil motta en detaljert rapport på e-post innen 24-48 timer.
+          Husk å sjekke spam-mappen hvis du ikke ser den innen et par minutter.
         </p>
       </motion.div>
     );
@@ -157,12 +196,12 @@ export default function WebsiteAnalysisForm() {
                 Nettside-URL <span className="text-cyan-400">*</span>
               </label>
               <input
-                type="url"
+                type="text"
                 required
                 value={formData.websiteUrl}
                 onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/50 focus:outline-none transition"
-                placeholder="https://din-nettside.no"
+                placeholder="kiropraktisksenter.no"
                 disabled={status === 'loading'}
               />
               <p className="text-gray-500 text-xs mt-1">Nettsiden vi skal analysere</p>
@@ -179,23 +218,34 @@ export default function WebsiteAnalysisForm() {
               </div>
             )}
 
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              className="w-full bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-6 py-4 rounded-lg text-lg font-semibold hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {status === 'loading' ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Sender forespørsel...
-                </span>
-              ) : (
-                'Be om gratis analyse'
-              )}
-            </button>
+            {status === 'loading' ? (
+              <div className="rounded-lg overflow-hidden border border-cyan-500/30 bg-white/5">
+                <div className="px-6 py-4 flex items-center justify-between">
+                  <span className="flex items-center gap-2 text-white font-medium">
+                    <svg className="animate-spin h-5 w-5 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {progressLabel(progress)}
+                  </span>
+                  <span className="text-cyan-400 font-semibold text-sm">{Math.round(progress)}%</span>
+                </div>
+                <div className="h-1.5 bg-white/10">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-cyan-500 to-cyan-400"
+                    animate={{ width: `${progress}%` }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                  />
+                </div>
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-6 py-4 rounded-lg text-lg font-semibold hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50"
+              >
+                Be om gratis analyse
+              </button>
+            )}
           </div>
         </form>
       </motion.div>
