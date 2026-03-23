@@ -243,7 +243,7 @@ export default function WebsiteAnalysisForm() {
                 type="submit"
                 className="w-full bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-6 py-4 rounded-lg text-lg font-semibold hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50"
               >
-                Be om gratis analyse
+                Analyser nettsiden min
               </button>
             )}
           </div>
