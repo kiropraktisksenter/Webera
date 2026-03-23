@@ -201,7 +201,7 @@ export default function WebsiteAnalysisForm() {
                 value={formData.websiteUrl}
                 onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/50 focus:outline-none transition"
-                placeholder="kiropraktisksenter.no"
+                placeholder="din-nettside.no"
                 disabled={status === 'loading'}
               />
               <p className="text-gray-500 text-xs mt-1">Nettsiden vi skal analysere</p>
