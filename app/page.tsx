@@ -943,6 +943,68 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Case Study */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 relative" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424)' }}>
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block text-cyan-400 text-sm font-semibold tracking-wider uppercase mb-3">Ekte kunde</span>
+            <h2 className="text-4xl font-bold text-white">Kiropraktisk Senter</h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="grid md:grid-cols-2 gap-10 items-center"
+          >
+            {/* Logo */}
+            <div className="flex items-center justify-center rounded-2xl border border-gray-700/50 p-16 bg-white">
+              <img
+                src="/images/kiropraktisksenter-logo.png"
+                alt="Kiropraktisk Senter"
+                className="max-w-[260px] w-full h-auto"
+              />
+            </div>
+
+            {/* Info */}
+            <div>
+              <div className="space-y-5">
+                {[
+                  { label: 'Hva vi bygget', text: 'Skreddersydd nettside med timebestilling, tjenesteoversikt, om-oss-side og kontaktside. Mobiltilpasset og SEO-optimalisert.' },
+                  { label: 'Resultat', text: 'Profesjonell nettilstedeværelse som speiler kvaliteten på tjenestene — og som konverterer besøkende til pasienter.' },
+                  { label: 'Teknologi', text: 'Next.js, Tailwind CSS, tilpasset design, hosting og drift inkludert.' },
+                ].map((item) => (
+                  <div key={item.label} className="flex gap-4">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+                    <div>
+                      <div className="text-white font-semibold text-sm mb-1">{item.label}</div>
+                      <div className="text-gray-400 text-sm leading-relaxed">{item.text}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <motion.a
+                href="https://kiropraktisksenter.no"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-block mt-8 text-cyan-400 border border-cyan-400/40 hover:bg-cyan-400/10 transition px-6 py-3 rounded-lg text-sm font-semibold"
+              >
+                Besøk nettsiden →
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* How It Works */}
       <section id="hvordan" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ background: 'linear-gradient(to bottom, #0D1424, #0B1220)' }}>
         <div className="max-w-7xl mx-auto">
