@@ -964,25 +964,13 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="grid md:grid-cols-2 gap-10 items-center"
           >
-            {/* Skjermbilde-mock */}
-            <div className="rounded-2xl overflow-hidden border border-gray-700/50 shadow-2xl">
-              <div className="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500/60" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/60" />
-                </div>
-                <div className="flex-1 bg-slate-700 rounded px-3 py-1 text-xs text-gray-400">kiropraktisksenter.no</div>
-              </div>
-              <div className="bg-gradient-to-b from-slate-900 to-slate-800 p-8 text-white min-h-48">
-                <div className="text-xs text-cyan-400 font-semibold mb-2 tracking-wider uppercase">Kiropraktisk Senter</div>
-                <h3 className="text-2xl font-bold mb-3">Din vei til et liv uten smerter</h3>
-                <p className="text-gray-300 text-sm mb-5">Profesjonell kiropraktisk behandling i moderne lokaler.</p>
-                <div className="flex gap-3">
-                  <span className="bg-cyan-500 text-white text-xs px-4 py-2 rounded-full font-semibold">Bestill time</span>
-                  <span className="border border-gray-600 text-gray-300 text-xs px-4 py-2 rounded-full">Les mer</span>
-                </div>
-              </div>
+            {/* Logo */}
+            <div className="flex items-center justify-center rounded-2xl border border-gray-700/50 p-16" style={{ background: 'linear-gradient(135deg, #0D1424, #111827)' }}>
+              <img
+                src="/images/kiropraktisksenter-logo.png"
+                alt="Kiropraktisk Senter"
+                className="max-w-[260px] w-full h-auto"
+              />
             </div>
 
             {/* Info */}
