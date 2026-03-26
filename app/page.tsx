@@ -134,9 +134,9 @@ export default function Home() {
 
   // Animation variants
   const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
+    initial: { opacity: 0, y: 24 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: 'easeOut' }
+    transition: { duration: 0.5, ease: 'easeOut' }
   };
 
   const staggerContainer = {
@@ -353,7 +353,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-20">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -60 }}
+              initial={{ opacity: 0, x: -24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="text-center md:text-left relative z-10"
@@ -409,7 +409,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
+              initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
               className="relative h-[400px] md:h-[480px]"
@@ -439,9 +439,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-20">
             <motion.div
-              initial={{ opacity: 0, x: -60 }}
+              initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-white mb-8">
@@ -458,7 +458,7 @@ export default function Home() {
                     key={i}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-80px" }}
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                     className="flex items-start"
                   >
@@ -470,9 +470,9 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
+              initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-white mb-8">
@@ -493,7 +493,7 @@ export default function Home() {
                     key={i}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-80px" }}
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                     className="flex items-start"
                   >
@@ -508,7 +508,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mt-16 bg-gradient-to-r from-cyan-500 to-purple-600 text-white p-8 rounded-2xl relative overflow-hidden shadow-lg"
           >
@@ -547,9 +547,9 @@ export default function Home() {
         <div className="relative z-10">
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
             className="text-5xl font-bold text-center text-white mb-20"
           >
@@ -560,7 +560,7 @@ export default function Home() {
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             className="grid md:grid-cols-3 gap-6 mb-12"
           >
             {[
@@ -589,7 +589,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
               whileHover={{ scale: 1.02, boxShadow: '0 20px 60px rgba(6, 182, 212, 0.2)' }}
               className="border p-10 rounded-3xl shadow-2xl hover:shadow-cyan-500/10 transition-shadow duration-300"
@@ -639,7 +639,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
               whileHover={{ scale: 1.02, boxShadow: '0 20px 60px rgba(6, 182, 212, 0.2)' }}
               className="border p-10 rounded-3xl shadow-2xl hover:shadow-cyan-500/10 transition-shadow duration-300"
@@ -678,7 +678,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
             className="border-2 border-amber-500/30 p-10 rounded-3xl shadow-xl"
             style={{ backgroundColor: '#0D1424' }}
@@ -701,9 +701,9 @@ export default function Home() {
       <section className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0D1424, #0B1220)' }}>
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
@@ -715,7 +715,7 @@ export default function Home() {
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             className="grid md:grid-cols-3 gap-10"
           >
             {/* Example 1 - Klinikk */}
@@ -923,7 +923,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-center mt-16"
           >
@@ -943,13 +943,87 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Case Study */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 relative" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424)' }}>
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block text-cyan-400 text-sm font-semibold tracking-wider uppercase mb-3">Ekte kunde</span>
+            <h2 className="text-4xl font-bold text-white">Kiropraktisk Senter</h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="grid md:grid-cols-2 gap-10 items-center"
+          >
+            {/* Skjermbilde-mock */}
+            <div className="rounded-2xl overflow-hidden border border-gray-700/50 shadow-2xl">
+              <div className="bg-slate-800 px-4 py-2.5 flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                </div>
+                <div className="flex-1 bg-slate-700 rounded px-3 py-1 text-xs text-gray-400">kiropraktisksenter.no</div>
+              </div>
+              <div className="bg-gradient-to-b from-slate-900 to-slate-800 p-8 text-white min-h-48">
+                <div className="text-xs text-cyan-400 font-semibold mb-2 tracking-wider uppercase">Kiropraktisk Senter</div>
+                <h3 className="text-2xl font-bold mb-3">Din vei til et liv uten smerter</h3>
+                <p className="text-gray-300 text-sm mb-5">Profesjonell kiropraktisk behandling i moderne lokaler.</p>
+                <div className="flex gap-3">
+                  <span className="bg-cyan-500 text-white text-xs px-4 py-2 rounded-full font-semibold">Bestill time</span>
+                  <span className="border border-gray-600 text-gray-300 text-xs px-4 py-2 rounded-full">Les mer</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Info */}
+            <div>
+              <div className="space-y-5">
+                {[
+                  { label: 'Hva vi bygget', text: 'Skreddersydd nettside med timebestilling, tjenesteoversikt, om-oss-side og kontaktside. Mobiltilpasset og SEO-optimalisert.' },
+                  { label: 'Resultat', text: 'Profesjonell nettilstedeværelse som speiler kvaliteten på tjenestene — og som konverterer besøkende til pasienter.' },
+                  { label: 'Teknologi', text: 'Next.js, Tailwind CSS, tilpasset design, hosting og drift inkludert.' },
+                ].map((item) => (
+                  <div key={item.label} className="flex gap-4">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+                    <div>
+                      <div className="text-white font-semibold text-sm mb-1">{item.label}</div>
+                      <div className="text-gray-400 text-sm leading-relaxed">{item.text}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <motion.a
+                href="https://kiropraktisksenter.no"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-block mt-8 text-cyan-400 border border-cyan-400/40 hover:bg-cyan-400/10 transition px-6 py-3 rounded-lg text-sm font-semibold"
+              >
+                Besøk nettsiden →
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* How It Works */}
       <section id="hvordan" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ background: 'linear-gradient(to bottom, #0D1424, #0B1220)' }}>
         <div className="max-w-7xl mx-auto">
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
             className="text-5xl font-bold text-center text-white mb-20"
           >
@@ -960,7 +1034,7 @@ export default function Home() {
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             className="grid md:grid-cols-4 gap-8"
           >
             {[
@@ -992,6 +1066,79 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Anmeldelser */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424)' }}>
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-white mb-4">Hva kundene sier</h2>
+            <div className="flex justify-center gap-1 mb-2">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <p className="text-gray-500 text-sm">100% av kundene er fornøyde</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Legg til ekte navn',
+                role: 'Yrke / bedrift',
+                text: 'Bytt ut denne teksten med en ekte anmeldelse fra en fornøyd kunde. Jo mer konkret og spesifikk, desto mer troverdig.',
+                initials: '?'
+              },
+              {
+                name: 'Legg til ekte navn',
+                role: 'Yrke / bedrift',
+                text: 'Bytt ut denne teksten med en ekte anmeldelse fra en fornøyd kunde. Be kunden om å nevne noe konkret de var fornøyde med.',
+                initials: '?'
+              },
+              {
+                name: 'Legg til ekte navn',
+                role: 'Yrke / bedrift',
+                text: 'Bytt ut denne teksten med en ekte anmeldelse fra en fornøyd kunde. Google-anmeldelser kan kopieres direkte.',
+                initials: '?'
+              },
+            ].map((review, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-white/5 border border-gray-700/50 rounded-2xl p-6"
+              >
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, j) => (
+                    <svg key={j} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed mb-5 italic">"{review.text}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-bold text-sm">
+                    {review.initials}
+                  </div>
+                  <div>
+                    <div className="text-white font-medium text-sm">{review.name}</div>
+                    <div className="text-gray-500 text-xs">{review.role}</div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Trust Indicators */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 border-y relative" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424, #0B1220)', borderColor: '#1a2332' }}>
         <div className="max-w-6xl mx-auto">
@@ -999,7 +1146,7 @@ export default function Home() {
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
           >
             {[
@@ -1033,9 +1180,9 @@ export default function Home() {
       <section id="priser" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424)' }}>
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
             className="text-5xl font-bold text-center text-white mb-20"
           >
@@ -1046,7 +1193,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
               whileHover={{
                 y: -10,
@@ -1094,7 +1241,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
               whileHover={{
                 y: -10,
@@ -1146,7 +1293,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
               whileHover={{ scale: 1.02 }}
               className="border-2 p-8 rounded-3xl shadow-xl"
@@ -1168,7 +1315,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
               whileHover={{ scale: 1.02 }}
               className="border-2 p-8 rounded-3xl shadow-xl"
@@ -1202,9 +1349,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -60 }}
+              initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
               className="relative"
             >
@@ -1218,7 +1365,7 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-80px" }}
                 transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
                 className="absolute -bottom-6 -right-6 border p-6 rounded-xl shadow-lg"
                 style={{ backgroundColor: '#0D1424', borderColor: '#1a2332' }}
@@ -1233,9 +1380,9 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
+              initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-white mb-6">Om Webera</h2>
@@ -1255,7 +1402,7 @@ export default function Home() {
                       key={i}
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, margin: "-80px" }}
                       transition={{ delay: i * 0.1, duration: 0.5 }}
                       className="flex items-center"
                     >
@@ -1274,9 +1421,9 @@ export default function Home() {
       <section id="kontakt" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ background: 'linear-gradient(to bottom, #0D1424, #0B1220)' }}>
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
@@ -1292,7 +1439,7 @@ export default function Home() {
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             className="mt-16 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
           >
             {[
@@ -1340,7 +1487,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
@@ -1352,7 +1499,7 @@ export default function Home() {
             />
           </motion.div>
           <div className="text-center border-t border-gray-800 pt-8">
-            <p className="mb-4">© 2025 Webera. Alle rettigheter reservert.</p>
+            <p className="mb-4">© 2026 Webera. Alle rettigheter reservert.</p>
           </div>
         </div>
       </footer>
