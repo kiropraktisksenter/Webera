@@ -470,19 +470,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Hero → lys overgang */}
+      <div style={{ background: 'linear-gradient(to bottom, #0E1A2D 0%, #EEF2F7 100%)', height: '80px' }} />
+
       {/* Founder Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#EEF2F7' }}>
+      <section className="pb-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#EEF2F7' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="grid md:grid-cols-2 gap-12 items-center border rounded-3xl p-10"
-            style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
+            className="grid md:grid-cols-2 gap-12 items-center"
           >
             <div className="flex justify-center">
-              <div className="relative w-full max-w-sm aspect-[4/3] rounded-2xl overflow-hidden">
+              <div className="relative w-full max-w-sm aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
                 <img
                   src="/images/om-klinikk.jpg"
                   alt="Behandlingsrom"
@@ -496,7 +498,7 @@ export default function Home() {
                 Jeg startet Webera fordi jeg ikke fant et webbyrå som faktisk
                 forsto hva en helseklinikk trenger digitalt – så jeg bygget det selv.
               </p>
-              <p className="text-cyan-600 font-semibold">– Daglig leder, Webera & klinikkdriver</p>
+              <p className="font-semibold" style={{ color: '#0891B2' }}>– Daglig leder, Webera & klinikkdriver</p>
             </div>
           </motion.div>
         </div>
