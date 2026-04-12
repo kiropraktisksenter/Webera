@@ -7,6 +7,7 @@ export default function ContactForm() {
     name: '',
     email: '',
     phone: '',
+    clinicType: '',
     message: ''
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -28,7 +29,7 @@ export default function ContactForm() {
 
       if (response.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', phone: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', clinicType: '', message: '' });
 
         // Reset success message etter 5 sekunder
         setTimeout(() => setStatus('idle'), 5000);
@@ -45,59 +46,79 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
       <div>
-        <label className="block text-white mb-2 font-medium">
-          Navn <span className="text-cyan-400">*</span>
+        <label className="block mb-2 font-medium" style={{ color: '#0D1B2A' }}>
+          Navn <span className="text-cyan-600">*</span>
         </label>
         <input
           type="text"
           required
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/50 focus:outline-none transition"
+          className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none transition"
           placeholder="Ditt navn"
           disabled={status === 'loading'}
         />
       </div>
 
       <div>
-        <label className="block text-white mb-2 font-medium">
-          Epost <span className="text-cyan-400">*</span>
+        <label className="block mb-2 font-medium" style={{ color: '#0D1B2A' }}>
+          Epost <span className="text-cyan-600">*</span>
         </label>
         <input
           type="email"
           required
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/50 focus:outline-none transition"
+          className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none transition"
           placeholder="din@epost.no"
           disabled={status === 'loading'}
         />
       </div>
 
       <div>
-        <label className="block text-white mb-2 font-medium">
+        <label className="block mb-2 font-medium" style={{ color: '#0D1B2A' }}>
           Telefon
         </label>
         <input
           type="tel"
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/50 focus:outline-none transition"
+          className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none transition"
           placeholder="412 34 567"
           disabled={status === 'loading'}
         />
       </div>
 
       <div>
-        <label className="block text-white mb-2 font-medium">
-          Melding <span className="text-cyan-400">*</span>
+        <label className="block mb-2 font-medium" style={{ color: '#0D1B2A' }}>
+          Hva slags klinikk driver du?
+        </label>
+        <select
+          value={formData.clinicType}
+          onChange={(e) => setFormData({ ...formData, clinicType: e.target.value })}
+          className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none transition"
+          disabled={status === 'loading'}
+        >
+          <option value="">Velg type klinikk (valgfritt)</option>
+          <option value="Kiropraktor">Kiropraktor</option>
+          <option value="Fysioterapeut">Fysioterapeut</option>
+          <option value="Naprapat">Naprapat</option>
+          <option value="Osteopat">Osteopat</option>
+          <option value="Psykolog">Psykolog</option>
+          <option value="Annet">Annet</option>
+        </select>
+      </div>
+
+      <div>
+        <label className="block mb-2 font-medium" style={{ color: '#0D1B2A' }}>
+          Melding <span className="text-cyan-600">*</span>
         </label>
         <textarea
           required
           rows={6}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-white/10 border border-gray-600 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/50 focus:outline-none resize-none transition"
+          className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none resize-none transition"
           placeholder="Fortell oss om ditt prosjekt..."
           disabled={status === 'loading'}
         />
@@ -145,7 +166,7 @@ export default function ContactForm() {
         )}
       </button>
 
-      <p className="text-center text-gray-400 text-sm">
+      <p className="text-center text-sm" style={{ color: '#4A5568' }}>
         Vi svarer vanligvis innen 24 timer
       </p>
     </form>

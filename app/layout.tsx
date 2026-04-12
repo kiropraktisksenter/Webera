@@ -10,9 +10,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Webera - Profesjonelle nettsider til fast pris | For små og mellomstore bedrifter",
-  description: "Et lite, spesialisert webbyrå i Tønsberg. Vi leverer moderne nettsider med fokus på struktur, design og langsiktig kvalitet. Etablering fra kr 20.000,-, hosting fra kr 599,- per måned.",
-  keywords: "nettsider fast pris, webbyrå små bedrifter, nettside til fast pris, webbyrå Tønsberg, profesjonelle nettsider, webutvikling, webdesign, hosting inkludert, nettsider for små bedrifter",
+  title: "Nettsider for helseklinikker | Webera",
+  description: "Webera lager profesjonelle nettsider og digitale løsninger for helseklinikker. Vi driver selv klinikk – vi forstår bransjen innenfra.",
+  keywords: "nettside kiropraktor, nettside fysioterapeut, webbyrå helsebedrift, nettside helseklinikk, lokal SEO klinikk, nettside naprapat, webbyrå Tønsberg, nettsider for helsebedrifter",
   authors: [{ name: "Webera" }],
   creator: "Webera",
   publisher: "Webera",
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Webera - Profesjonelle nettsider til fast pris | For små og mellomstore bedrifter",
-    description: "Et lite, spesialisert webbyrå i Tønsberg. Etablering fra kr 20.000,-, hosting fra kr 599,- per måned.",
+    title: "Nettsider for helseklinikker | Webera",
+    description: "Webera lager profesjonelle nettsider og digitale løsninger for helseklinikker. Vi driver selv klinikk – vi forstår bransjen innenfra.",
     url: 'https://webera.no',
     siteName: 'Webera',
     locale: 'nb_NO',
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Webera - Profesjonelle nettsider til fast pris",
-    description: "For små og mellomstore bedrifter. Etablering fra kr 20.000,-, hosting fra kr 599,- per måned.",
+    title: "Nettsider for helseklinikker | Webera",
+    description: "Webera lager profesjonelle nettsider eksklusivt for helsebedrifter. Vi driver selv klinikk – vi forstår bransjen innenfra.",
     images: ['/images/Webera Logo.png'],
   },
   robots: {

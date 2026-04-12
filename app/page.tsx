@@ -1,26 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence, useSpring, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Stethoscope, Calendar, Activity, Brain } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
-
-// Animated Number Component
-function AnimatedNumber({ value, suffix = '' }: { value: number; suffix?: string }) {
-  const spring = useSpring(0, { duration: 2000, bounce: 0 });
-  const display = useTransform(spring, (latest) => Math.round(latest));
-
-  useEffect(() => {
-    spring.set(value);
-  }, [value, spring]);
-
-  return (
-    <>
-      <motion.span>{display}</motion.span>
-      {suffix}
-    </>
-  );
-}
 
 export default function Home() {
   const [selectedExample, setSelectedExample] = useState<number | null>(null);
@@ -172,11 +156,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <div className="min-h-screen" style={{ backgroundColor: '#0B1220' }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto+Condensed:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
-      `}</style>
-
+      <div className="min-h-screen" style={{ backgroundColor: '#F7F9FC' }}>
       {/* Navigation */}
       <motion.nav
         initial={{ y: -100 }}
@@ -199,26 +179,35 @@ export default function Home() {
                 />
               </a>
             </div>
-            <div className="flex items-center gap-4">
-              <motion.a
-                href="/nettside-sjekk"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-white px-4 py-2 rounded-lg border border-cyan-500 hover:bg-cyan-500/10 transition"
-              >
-                Ta nettsidesjekken
-              </motion.a>
+            <div className="hidden md:flex items-center gap-6">
+              {[
+                { href: '#tjenester', text: 'Tjenester' },
+                { href: '#eksempler', text: 'Eksempler' },
+                { href: '#priser', text: 'Priser' },
+                { href: '#om', text: 'Om oss' },
+              ].map((item) => (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-gray-300 hover:text-white transition text-sm font-medium"
+                >
+                  {item.text}
+                </motion.a>
+              ))}
               <motion.a
                 href="#kontakt"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: '0 8px 30px rgba(6, 182, 212, 0.4)' }}
                 whileTap={{ scale: 0.95 }}
-                className="text-white px-4 py-2 rounded-lg transition shadow-lg shadow-cyan-500/50"
+                className="text-white px-5 py-2.5 rounded-lg transition shadow-lg shadow-cyan-500/50 text-sm font-semibold"
                 style={{
                   background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
                 }}
               >
                 Kontakt
               </motion.a>
+            </div>
+            <div className="flex md:hidden items-center gap-4">
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -340,16 +329,7 @@ export default function Home() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="pt-48 pb-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0B1220 0%, #0C1525 33%, #0D1829 66%, #0E1A2D 100%)' }}>
-        <div className="absolute inset-0 opacity-5">
-          <img
-            src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&q=80"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
+      <section className="pt-36 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0B1220 0%, #0C1525 33%, #0D1829 66%, #0E1A2D 100%)' }}>
         <div className="max-w-7xl mx-auto relative z-20">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -358,31 +338,35 @@ export default function Home() {
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="text-center md:text-left relative z-10"
             >
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-                {['Moderne', 'nettsider', 'som', 'faktisk', 'fungerer'].map((word, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1, duration: 0.5 }}
-                    className="inline-block mr-4"
-                  >
-                    {word}
-                  </motion.span>
-                ))}
-              </h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight"
+              >
+                Nettsider for helseklinikker
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="text-lg md:text-xl text-cyan-400 font-medium mb-6"
+              >
+                – laget av noen som kjenner bransjen
+              </motion.p>
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed"
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="text-lg text-gray-300 mb-8 leading-relaxed"
               >
-                Vi designer og leverer raske, profesjonelle nettsider – og tar oss av drift, hosting og vedlikehold, slik at du slipper.
+                Vi driver selv helseklinikk og vet hva som fungerer digitalt.
+                Webera lager nettsider eksklusivt for helsebedrifter.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
               >
                 <motion.a
@@ -394,7 +378,7 @@ export default function Home() {
                     background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
                   }}
                 >
-                  Kontakt oss
+                  Få gratis konsultasjon
                 </motion.a>
                 <motion.a
                   whileHover={{ scale: 1.05, backgroundColor: '#0D1424', borderColor: '#06b6d4' }}
@@ -403,39 +387,123 @@ export default function Home() {
                   className="text-cyan-400 px-8 py-4 rounded-lg text-lg font-semibold border-2 border-cyan-500 hover:brightness-125 transition"
                   style={{ backgroundColor: '#0D1424' }}
                 >
-                  Se løsninger
+                  Se klinikkløsninger
                 </motion.a>
               </motion.div>
             </motion.div>
 
+            {/* Collage – organisk layout */}
             <motion.div
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-              className="relative h-[400px] md:h-[480px]"
+              className="relative h-[440px] md:h-[520px]"
             >
-              <motion.video
+              {/* Venstre bilde – høyt, vertikalt sentrert. Bredde: 48% minus halv gap (8px) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.7 }}
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-                src="/videos/hero-video.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                className="rounded-2xl shadow-2xl w-full h-full object-cover"
+                className="absolute left-0 overflow-hidden shadow-2xl"
                 style={{
-                  boxShadow: '0 25px 50px -12px rgba(6, 182, 212, 0.25)'
+                  top: '10%', bottom: '10%',
+                  width: 'calc(48% - 8px)',
+                  borderRadius: '28px',
+                  boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
                 }}
-              />
-              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none"></div>
+              >
+                <img
+                  src="/images/hero-klinikk-3.jpg"
+                  alt="Behandler og pasient, varm stemning"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+
+              {/* Øvre høyre bilde – 16px fra venstre bilde, 24px fra høyre kant */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45, duration: 0.7 }}
+                whileHover={{ scale: 1.02 }}
+                className="absolute overflow-hidden shadow-2xl"
+                style={{
+                  top: '30px',
+                  left: 'calc(48% + 8px)',
+                  right: '24px',
+                  height: '44%',
+                  borderRadius: '28px',
+                  boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
+                }}
+              >
+                <img
+                  src="/images/hero-klinikk-2.jpg"
+                  alt="Fysioterapeut i aktiv behandling"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+
+              {/* Nedre høyre bilde – 16px under øvre, samme venstre/høyre kant */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.7 }}
+                whileHover={{ scale: 1.02 }}
+                className="absolute overflow-hidden shadow-2xl"
+                style={{
+                  top: 'calc(44% + 46px)',
+                  left: 'calc(48% + 8px)',
+                  right: '24px',
+                  bottom: '-20px',
+                  borderRadius: '28px',
+                  boxShadow: '0 20px 50px rgba(6,182,212,0.2)'
+                }}
+              >
+                <img
+                  src="/images/hero-klinikk-1.jpg"
+                  alt="Kiropraktor behandler pasient"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
+      {/* Founder Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#EEF2F7' }}>
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="grid md:grid-cols-2 gap-12 items-center border rounded-3xl p-10"
+            style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
+          >
+            <div className="flex justify-center">
+              <div className="relative w-full max-w-sm aspect-[4/3] rounded-2xl overflow-hidden">
+                <img
+                  src="/images/om-klinikk.jpg"
+                  alt="Behandlingsrom"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <div>
+              <p className="text-lg leading-relaxed mb-6" style={{ color: '#1A1A2E' }}>
+                Jeg driver selv helseklinikk til daglig.
+                Jeg startet Webera fordi jeg ikke fant et webbyrå som faktisk
+                forsto hva en helseklinikk trenger digitalt – så jeg bygget det selv.
+              </p>
+              <p className="text-cyan-600 font-semibold">– Daglig leder, Webera & klinikkdriver</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Problem/Solution Section */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0D1424, #0B1220, #0D1424)' }}>
+      <section className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#F7F9FC' }}>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-20">
             <motion.div
@@ -444,15 +512,16 @@ export default function Home() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-white mb-8">
-                Små bedrifter sliter ofte med:
+              <h2 className="text-4xl font-bold mb-8" style={{ color: '#0D1B2A' }}>
+                Mange helseklinikker sliter med:
               </h2>
               <ul className="space-y-4">
                 {[
-                  "Utdatert design som ikke bygger tillit",
-                  "Trege WordPress-løsninger",
-                  "Hosting, oppdateringer og teknisk rot",
-                  "Uklar prisstruktur"
+                  "Nettsider som ikke konverterer besøkende til pasienter",
+                  "Manglende eller dårlig timebestillingsløsning",
+                  "Ingen synlighet på Google lokalt",
+                  "Leverandører som ikke forstår helsebransjen",
+                  "Uklar prisstruktur og uforutsigbare kostnader"
                 ].map((item, i) => (
                   <motion.li
                     key={i}
@@ -462,8 +531,8 @@ export default function Home() {
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                     className="flex items-start"
                   >
-                    <span className="text-red-400 mr-3 text-xl">✗</span>
-                    <span className="text-gray-300 text-lg">{item}</span>
+                    <span className="text-red-500 mr-3 text-xl">✗</span>
+                    <span className="text-lg" style={{ color: '#1A1A2E' }}>{item}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -475,19 +544,19 @@ export default function Home() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-white mb-8">
-                Løsningen:
+              <h2 className="text-4xl font-bold mb-8" style={{ color: '#0D1B2A' }}>
+                Webera leverer:
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
-                Én fast leveranse. Én fast månedspris. Full kontroll.
+              <p className="text-xl mb-8" style={{ color: '#1A1A2E' }}>
+                Skreddersydd for helsebransjen. Fast pris. Full kontroll.
               </p>
               <ul className="space-y-4">
                 {[
-                  "Skreddersydd design (ingen maler)",
-                  "Lynrask nettside",
-                  "Sikker hosting",
-                  "Teknisk vedlikehold",
-                  "Forutsigbare kostnader"
+                  "Skreddersydd design som bygger faglig tillit",
+                  "Timebestilling og smidig pasientreise",
+                  "Lokal SEO – pasienter finner deg på Google",
+                  "AI-chatbot som svarer på pasientspørsmål",
+                  "Fast månedspris – ingen overraskelser"
                 ].map((item, i) => (
                   <motion.li
                     key={i}
@@ -497,8 +566,8 @@ export default function Home() {
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                     className="flex items-start"
                   >
-                    <span className="text-green-400 mr-3 text-xl">✓</span>
-                    <span className="text-gray-300 text-lg">{item}</span>
+                    <span className="text-green-600 mr-3 text-xl">✓</span>
+                    <span className="text-lg" style={{ color: '#1A1A2E' }}>{item}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -522,28 +591,67 @@ export default function Home() {
             </div>
             <div className="relative z-10 text-center">
               <p className="text-2xl font-semibold mb-2">
-                Ingen WordPress. Ingen plugins. Ingen teknisk gjeld.
+                Vi driver selv klinikk – vi forstår bransjen fra innsiden.
               </p>
               <p className="text-xl opacity-90">
-                Bare rene, moderne nettsider – bygget for å vare.
+                Ingen maler. Ingen unødvendige kompromisser. Bare det klinikken faktisk trenger.
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="tjenester" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0B1220 0%, #0B1220 100%)' }}>
-        <div className="absolute inset-0 opacity-5">
-          <img
-            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/20 to-transparent"></div>
+      {/* Why Webera Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#EEF2F7' }}>
+        <div className="max-w-7xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-center mb-16"
+            style={{ color: '#0D1B2A' }}
+          >
+            Hvorfor helseklinikker velger Webera
+          </motion.h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: '🩺',
+                title: 'Faglig forankring',
+                desc: 'Vi driver selv klinikk. Vi forstår pasientreisen og hva som bygger tillit – ikke bare webdesign.'
+              },
+              {
+                icon: '📍',
+                title: 'Lokal synlighet',
+                desc: 'Vi optimaliserer for lokale Google-søk slik at pasienter i ditt område finner deg først.'
+              },
+              {
+                icon: '🤝',
+                title: 'Langsiktig partner',
+                desc: 'Vi er ikke ferdige ved lansering. Månedlig abonnement inkluderer drift, sikkerhet og prioritert support.'
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="border p-8 rounded-2xl text-center"
+                style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
+              >
+                <div className="text-5xl mb-4">{item.icon}</div>
+                <h3 className="text-xl font-bold mb-3" style={{ color: '#0D1B2A' }}>{item.title}</h3>
+                <p style={{ color: '#1A1A2E' }}>{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
+      </section>
 
+      {/* Services Section */}
+      <section id="tjenester" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#F7F9FC' }}>
         <div className="relative z-10">
         <div className="max-w-7xl mx-auto">
           <motion.h2
@@ -551,7 +659,8 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl font-bold text-center text-white mb-20"
+            className="text-5xl font-bold text-center mb-20"
+            style={{ color: '#0D1B2A' }}
           >
             Tjenester
           </motion.h2>
@@ -561,144 +670,68 @@ export default function Home() {
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, margin: "-80px" }}
-            className="grid md:grid-cols-3 gap-6 mb-12"
+            className="grid md:grid-cols-2 gap-8"
           >
             {[
-              { img: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=100&q=80', title: 'Profesjonelt design', color: 'bg-cyan-100' },
-              { img: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=100&q=80', title: 'Lynrask ytelse', color: 'bg-green-100' },
-              { img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=100&q=80', title: 'Mobilvennlig', color: 'bg-purple-100' }
+              {
+                icon: '🌐',
+                tag: 'NETTSIDE',
+                title: 'Klinikknettside',
+                desc: 'Profesjonell nettside skreddersydd din klinikk.',
+                items: ['Design og tjenestesider', 'Om oss og faglig profil', 'SEO-struktur fra grunnen', 'Kontaktskjema og timebestillingsintegrasjon']
+              },
+              {
+                icon: '📍',
+                tag: 'SEO',
+                title: 'Lokal SEO',
+                desc: 'Vi sørger for at pasienter finner deg på Google når de søker etter behandling i ditt område.',
+                items: ['Google Business-profil', 'Teknisk SEO', 'Lokal søkeordsoptimalisering', 'Strukturert data']
+              },
+              {
+                icon: '🤖',
+                tag: 'AI',
+                title: 'AI-chatbot',
+                desc: 'En smart assistent på nettsiden som svarer på vanlige pasientspørsmål og hjelper med timebestilling.',
+                items: ['Tilgjengelig døgnet rundt', 'Tilpasset klinikkens tjenester', 'Ingen ekstra bemanning nødvendig', 'Integrert i nettsiden']
+              },
+              {
+                icon: '⚙️',
+                tag: 'DRIFT',
+                title: 'Drift og vedlikehold',
+                desc: 'Hosting, sikkerhet, oppdateringer og backup. Nettsiden din er alltid online og rask.',
+                items: ['Hosting og overvåking', 'Sikkerhetsoppdateringer', 'Backup', 'Prioritert support for helsebedrifter']
+              }
             ].map((item, i) => (
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                className="text-center"
+                whileHover={{ scale: 1.02, boxShadow: '0 20px 60px rgba(6, 182, 212, 0.12)' }}
+                className="border p-8 rounded-3xl shadow-md transition-all duration-300"
+                style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
               >
-                <motion.div
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
-                  className={`w-20 h-20 ${item.color} rounded-full flex items-center justify-center mx-auto mb-4`}
-                >
-                  <img src={item.img} alt={item.title} className="w-12 h-12 rounded-full object-cover" />
-                </motion.div>
-                <h3 className="font-semibold text-white">{item.title}</h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">{item.icon}</span>
+                  <span className="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-semibold">{item.tag}</span>
+                </div>
+                <h3 className="text-2xl font-bold mb-3" style={{ color: '#0D1B2A' }}>{item.title}</h3>
+                <p className="mb-5" style={{ color: '#4A5568' }}>{item.desc}</p>
+                <ul className="space-y-2">
+                  {item.items.map((point, j) => (
+                    <li key={j} className="flex items-center text-sm" style={{ color: '#1A1A2E' }}>
+                      <span className="text-green-600 mr-2">✓</span>
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6 }}
-              whileHover={{ scale: 1.02, boxShadow: '0 20px 60px rgba(6, 182, 212, 0.2)' }}
-              className="border p-10 rounded-3xl shadow-2xl hover:shadow-cyan-500/10 transition-shadow duration-300"
-              style={{ backgroundColor: '#0D1424', borderColor: '#1a2332' }}
-            >
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Nettside designet for å gi deg kunder
-              </h3>
-              <p className="text-gray-300 mb-6">
-                Vi designer og bygger nettsider som:
-              </p>
-              <ul className="space-y-3 mb-6">
-                {[
-                  "ser profesjonelle ut",
-                  "laster ekstremt raskt",
-                  "fungerer perfekt på mobil",
-                  "er enkle å videreutvikle"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center text-gray-300">
-                    <span className="text-cyan-600 mr-2">•</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <h4 className="font-semibold text-white mb-3">Inkludert i leveransen:</h4>
-              <ul className="space-y-2 mb-6">
-                {[
-                  "Design og struktur",
-                  "Ferdig publisert nettside",
-                  "Mobiltilpasset",
-                  "Grunnleggende SEO-struktur",
-                  "Kontaktløsning"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center text-gray-300">
-                    <span className="text-green-500 mr-2">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <p className="text-sm text-gray-300 bg-slate-700/50 p-4 rounded-lg">
-                <strong>Leveranse:</strong> Nettsiden leveres ferdig og klar til bruk.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ scale: 1.02, boxShadow: '0 20px 60px rgba(6, 182, 212, 0.2)' }}
-              className="border p-10 rounded-3xl shadow-2xl hover:shadow-cyan-500/10 transition-shadow duration-300"
-              style={{ backgroundColor: '#0D1424', borderColor: '#1a2332' }}
-            >
-              <div className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4">
-                ABONNEMENT
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Drift og vedlikehold – helt uten stress
-              </h3>
-
-              <h4 className="font-semibold text-white mb-3">Dette inkluderer:</h4>
-              <ul className="space-y-2 mb-6">
-                {[
-                  "Hosting",
-                  "Teknisk drift",
-                  "Oppdateringer",
-                  "Sikkerhet",
-                  "Overvåking",
-                  "Backup"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center text-gray-300">
-                    <span className="text-green-500 mr-2">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <p className="text-gray-300 bg-slate-700/50 p-4 rounded-lg">
-                Nettsiden din er alltid online, rask og trygg – uten at du trenger å tenke på det.
-              </p>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="border-2 border-amber-500/30 p-10 rounded-3xl shadow-xl"
-            style={{ backgroundColor: '#0D1424' }}
-          >
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Endringer faktureres separat
-            </h3>
-            <p className="text-gray-300 mb-4">
-              Endringer i tekster, bilder, innhold, struktur og funksjonalitet faktureres etter avtale eller timepris.
-            </p>
-            <p className="text-gray-300 font-semibold">
-              Dette gir deg full fleksibilitet – og forutsigbar fastpris på drift.
-            </p>
           </motion.div>
         </div>
         </div>
       </section>
 
       {/* Portfolio/Examples */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0D1424, #0B1220)' }}>
+      <section id="eksempler" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#EEF2F7' }}>
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -707,8 +740,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl font-bold text-white mb-6">Nettsider som imponerer</h2>
-            <p className="text-xl text-gray-300">Eksempler på moderne webdesign skreddersydd for din bransje</p>
+            <h2 className="text-5xl font-bold mb-6" style={{ color: '#0D1B2A' }}>Klinikknettsider vi har laget</h2>
+            <p className="text-xl" style={{ color: '#1A1A2E' }}>Skreddersydd design for ulike helsefaglige aktører</p>
           </motion.div>
 
           <motion.div
@@ -718,201 +751,148 @@ export default function Home() {
             viewport={{ once: true, margin: "-80px" }}
             className="grid md:grid-cols-3 gap-10"
           >
-            {/* Example 1 - Klinikk */}
+            {/* Example 1 - Helseklinikk */}
             <motion.div variants={fadeInUp}>
               <Link href="/eksempler/klinikk" className="group cursor-pointer block">
                 <motion.div
-                  whileHover={{
-                    y: -8,
-                    boxShadow: '0 20px 40px rgba(6, 182, 212, 0.25)'
-                  }}
+                  whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(15,23,42,0.3)' }}
                   transition={{ type: 'spring', stiffness: 400 }}
                   className="bg-white rounded-2xl overflow-hidden shadow-2xl"
+                  style={{ height: '400px' }}
                 >
-                  <div className="relative" style={{ height: '400px', fontFamily: '"DM Sans", sans-serif' }}>
-                    <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-4 flex justify-between items-center">
-                      <div className="font-bold text-sm">Helse Klinikk</div>
-                      <div className="flex gap-2 text-xs">
-                        <span>Tjenester</span>
-                        <span>Timebestilling</span>
-                        <span>Kontakt</span>
+                  {/* Bilde – 40% */}
+                  <div style={{ height: '40%' }} className="overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="" className="w-full h-full object-cover" />
+                    {/* Nav-bar overlay */}
+                    <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-4 py-2.5 bg-slate-900/80 backdrop-blur-sm">
+                      <span className="text-white text-xs font-bold">Helse Klinikk</span>
+                      <div className="flex gap-3 text-white/80 text-xs">
+                        <span>Tjenester</span><span>Timebestilling</span><span>Kontakt</span>
                       </div>
                     </div>
-
-                    <div className="bg-gradient-to-b from-stone-100 to-white p-6 text-center">
-                      <h1 className="text-2xl font-bold text-slate-900 mb-2">Din helse er vår prioritet</h1>
-                      <p className="text-sm text-gray-600 mb-3">Profesjonell behandling i trygge hender</p>
-                      <div className="inline-block bg-slate-900 text-white text-xs px-4 py-2 rounded-full">
+                  </div>
+                  {/* Innhold – 60% */}
+                  <div className="flex flex-col justify-between p-6" style={{ height: '60%' }}>
+                    <div>
+                      <h2 className="text-lg font-bold text-slate-900 mb-1">Din helse er vår prioritet</h2>
+                      <p className="text-xs text-gray-500">Profesjonell behandling i trygge hender – tilpasset deg.</p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-4 text-xs text-gray-400">
+                        <span className="flex items-center gap-1"><Stethoscope size={12} color="#94a3b8" /> Konsultasjon</span>
+                        <span className="flex items-center gap-1"><Activity size={12} color="#94a3b8" /> Behandling</span>
+                        <span className="flex items-center gap-1"><Calendar size={12} color="#94a3b8" /> Timebestilling</span>
+                      </div>
+                      <div className="inline-block bg-slate-900 text-white text-xs px-5 py-2.5 rounded-full font-semibold">
                         Bestill time
                       </div>
                     </div>
-
-                    <div className="p-6 grid grid-cols-2 gap-3">
-                      {[
-                        { icon: '🩺', title: 'Konsultasjon' },
-                        { icon: '💆', title: 'Behandling' },
-                        { icon: '📋', title: 'Oppfølging' },
-                        { icon: '⏰', title: 'Timebestilling' }
-                      ].map((item, i) => (
-                        <div key={i} className="bg-stone-100 p-3 rounded-lg border border-stone-200">
-                          <div className="text-2xl mb-1">{item.icon}</div>
-                          <div className="text-xs font-semibold text-slate-900">{item.title}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="absolute bottom-3 left-6 right-6 bg-white border-2 border-amber-200 rounded-lg p-2 text-center shadow-lg">
-                      <div className="text-xs text-amber-700 font-semibold">✓ Godkjent av Helsedirektoratet</div>
-                    </div>
                   </div>
                 </motion.div>
                 <div className="mt-4 text-center">
-                  <h3 className="text-xl font-bold text-white mb-2">Helseklinikk</h3>
-                  <p className="text-gray-400 text-sm mb-3">Elegant beige & navy design med animasjoner</p>
-                  <motion.span
-                    whileHover={{ scale: 1.05 }}
-                    className="inline-block bg-slate-900 text-white px-4 py-2 rounded-full text-sm font-semibold group-hover:bg-slate-800 transition"
-                  >
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Helseklinikk</h3>
+                  <p className="text-sm mb-3" style={{ color: '#4A5568' }}>Tillitsvekkende design som konverterer besøkende til pasienter</p>
+                  <motion.span whileHover={{ scale: 1.05 }} className="inline-block bg-slate-800 text-white px-4 py-2 rounded-full text-sm font-semibold transition">
                     Se demo-nettside →
                   </motion.span>
                 </div>
               </Link>
             </motion.div>
 
-            {/* Example 2 - Håndtverker */}
+            {/* Example 2 - Fysioterapi */}
             <motion.div variants={fadeInUp}>
-              <Link href="/eksempler/handtverker" className="group cursor-pointer block">
+              <Link href="/eksempler/fysioterapi" className="group cursor-pointer block">
                 <motion.div
-                  whileHover={{
-                    y: -8,
-                    boxShadow: '0 20px 40px rgba(234, 88, 12, 0.25)'
-                  }}
+                  whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(45,155,111,0.25)' }}
                   transition={{ type: 'spring', stiffness: 400 }}
                   className="bg-white rounded-2xl overflow-hidden shadow-2xl"
+                  style={{ height: '400px' }}
                 >
-                  <div className="relative" style={{ height: '400px', fontFamily: '"Roboto Condensed", sans-serif' }}>
-                    <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-4 flex justify-between items-center">
-                      <div className="font-black text-sm"><span className="text-orange-500">BYGG</span>MESTER</div>
-                      <div className="flex gap-2 text-xs">
-                        <span>Tjenester</span>
-                        <span>Prosjekter</span>
-                        <span>Kontakt</span>
+                  {/* Bilde – 40% */}
+                  <div style={{ height: '40%' }} className="overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="" className="w-full h-full object-cover" />
+                    <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-4 py-2.5" style={{ background: 'rgba(45,155,111,0.85)', backdropFilter: 'blur(4px)' }}>
+                      <span className="text-white text-xs font-bold">FysioSenteret</span>
+                      <div className="flex gap-3 text-white/80 text-xs">
+                        <span>Behandling</span><span>Timebestilling</span><span>Kontakt</span>
                       </div>
                     </div>
-
-                    <div className="relative h-32 bg-gradient-to-r from-slate-900 to-slate-800 flex items-center justify-center text-white">
-                      <div className="text-center z-10">
-                        <h1 className="text-xl font-black mb-1">KVALITET SOM <span className="text-orange-500">VARER</span></h1>
-                        <p className="text-xs opacity-90 font-semibold">30 års erfaring med totalentreprise</p>
+                  </div>
+                  {/* Innhold – 60% */}
+                  <div className="flex flex-col justify-between p-6" style={{ height: '60%' }}>
+                    <div>
+                      <h2 className="text-lg font-bold text-slate-900 mb-1">Tilbake til livet du savner</h2>
+                      <p className="text-xs text-gray-500 mb-3">Spesialisert fysioterapi i trygge hender.</p>
+                      <div className="inline-block text-white text-xs px-5 py-2 rounded-full font-semibold" style={{ background: '#2D9B6F' }}>
+                        Bestill time
                       </div>
                     </div>
-
-                    <div className="p-6">
-                      <h2 className="text-lg font-black text-gray-900 mb-3 uppercase">Våre tjenester</h2>
-                      <div className="space-y-2">
-                        {[
-                          { icon: '🏗️', text: 'Totalentreprise' },
-                          { icon: '🔨', text: 'Rehabilitering' },
-                          { icon: '🏠', text: 'Nybygg' },
-                          { icon: '⚡', text: 'Akutt service 24/7' }
-                        ].map((item, i) => (
-                          <div key={i} className="flex items-center gap-2 text-sm">
-                            <span className="text-orange-600">{item.icon}</span>
-                            <span className="text-gray-700 font-semibold">{item.text}</span>
+                    <div className="space-y-2 text-xs text-gray-600">
+                      {['Sportsrehabilitering', 'Rygg- og nakkebehandling', 'Bevegelsestrening'].map((t, i, arr) => (
+                        <div key={i}>
+                          <div className="flex items-center gap-2 py-1">
+                            <Activity size={11} color="#2D9B6F" />{t}
                           </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="absolute bottom-3 left-6 right-6">
-                      <div className="bg-orange-600 text-white text-center py-3 font-bold text-sm">
-                        FÅ GRATIS TILBUD
-                      </div>
+                          {i < arr.length - 1 && <div className="border-t border-gray-100" />}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </motion.div>
                 <div className="mt-4 text-center">
-                  <h3 className="text-xl font-bold text-white mb-2">Håndtverksbedrift</h3>
-                  <p className="text-gray-400 text-sm mb-3">Solid, kraftig og handlingsorientert</p>
-                  <motion.span
-                    whileHover={{ scale: 1.05 }}
-                    className="inline-block bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-semibold group-hover:bg-orange-700 transition"
-                  >
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Fysioterapiklinikk</h3>
+                  <p className="text-sm mb-3" style={{ color: '#4A5568' }}>Tydelig struktur med fokus på timebestilling og behandlingsoversikt</p>
+                  <motion.span whileHover={{ scale: 1.05 }} className="inline-block text-white px-4 py-2 rounded-full text-sm font-semibold transition" style={{ background: '#2D9B6F' }}>
                     Se demo-nettside →
                   </motion.span>
                 </div>
               </Link>
             </motion.div>
 
-            {/* Example 3 - Restaurant */}
+            {/* Example 3 - Psykolog */}
             <motion.div variants={fadeInUp}>
-              <Link href="/eksempler/restaurant" className="group cursor-pointer block">
+              <Link href="/eksempler/psykolog" className="group cursor-pointer block">
                 <motion.div
-                  whileHover={{
-                    y: -8,
-                    boxShadow: '0 20px 40px rgba(217, 119, 6, 0.25)'
-                  }}
+                  whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(107,94,168,0.25)' }}
                   transition={{ type: 'spring', stiffness: 400 }}
                   className="bg-white rounded-2xl overflow-hidden shadow-2xl"
+                  style={{ height: '400px' }}
                 >
-                  <div className="relative" style={{ height: '400px', fontFamily: 'Georgia, serif' }}>
-                    <div className="bg-gradient-to-r from-amber-900 via-red-900 to-amber-900 text-amber-50 p-4 flex justify-between items-center">
-                      <div className="text-sm italic">La Bella Vista</div>
-                      <div className="flex gap-2 text-xs font-light">
-                        <span>Meny</span>
-                        <span>Om oss</span>
-                        <span>Kontakt</span>
+                  {/* Bilde – 40% */}
+                  <div style={{ height: '40%' }} className="overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" alt="" className="w-full h-full object-cover" />
+                    <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-4 py-2.5" style={{ background: 'rgba(107,94,168,0.85)', backdropFilter: 'blur(4px)' }}>
+                      <span className="text-white text-xs font-semibold">Psykolog Andersen</span>
+                      <div className="flex gap-3 text-white/80 text-xs">
+                        <span>Om meg</span><span>Tjenester</span><span>Kontakt</span>
                       </div>
                     </div>
-
-                    <div className="bg-amber-50 p-6">
-                      <h1 className="text-xl font-serif text-amber-900 mb-2 italic">En kulinarisk opplevelse</h1>
-                      <p className="text-xs text-gray-600 mb-3 font-light">Autentisk italiensk kjøkken i hjertet av Oslo</p>
-                      <div className="inline-block bg-amber-600 text-white text-xs px-4 py-2 rounded font-medium">
-                        Bestill bord
+                  </div>
+                  {/* Innhold – 60% */}
+                  <div className="flex flex-col justify-between p-6" style={{ height: '60%', background: '#fdfcff' }}>
+                    <div>
+                      <h2 className="text-lg font-semibold mb-1" style={{ color: '#3d3560', fontFamily: 'Georgia, serif' }}>Et trygt sted å starte</h2>
+                      <p className="text-xs text-gray-500 mb-3">Individuell terapi og parterapi i Oslo.</p>
+                      <div className="inline-block text-white text-xs px-5 py-2 rounded font-medium" style={{ background: '#6B5EA8' }}>
+                        Book samtale
                       </div>
                     </div>
-
-                    <div className="p-6 grid grid-cols-3 gap-2 bg-white">
-                      {[
-                        { icon: '🍝', text: 'Hjemmelaget' },
-                        { icon: '🍷', text: 'Italienske viner' },
-                        { icon: '👨‍🍳', text: 'Erfarne kokker' }
-                      ].map((item, i) => (
-                        <div key={i} className="text-center bg-amber-50 p-2 rounded">
-                          <div className="text-xl mb-1">{item.icon}</div>
-                          <div className="text-xs text-amber-900 font-light">{item.text}</div>
+                    <div className="space-y-2 text-xs text-gray-600">
+                      {['Kognitiv atferdsterapi', 'Individuell terapi', 'Angst og depresjon'].map((t, i, arr) => (
+                        <div key={i}>
+                          <div className="flex items-center gap-2 py-1">
+                            <Brain size={11} color="#6B5EA8" />{t}
+                          </div>
+                          {i < arr.length - 1 && <div className="border-t border-purple-100" />}
                         </div>
                       ))}
-                    </div>
-
-                    <div className="p-6 bg-gradient-to-b from-white to-amber-50">
-                      <div className="space-y-2">
-                        {[
-                          { name: 'Bruschetta Classica', price: 'kr 145' },
-                          { name: 'Tagliatelle al Tartufo', price: 'kr 285' },
-                          { name: 'Osso Buco Milanese', price: 'kr 395' }
-                        ].map((item, i) => (
-                          <div key={i} className="flex justify-between text-xs border-b border-amber-200 pb-2">
-                            <span className="text-amber-900 font-medium">{item.name}</span>
-                            <span className="text-amber-700">{item.price}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="absolute bottom-3 left-6 right-6 bg-white rounded-lg p-2 text-center shadow-lg">
-                      <div className="text-xs text-amber-600 font-medium">⭐⭐⭐⭐⭐ "Best i Oslo" - Aftenposten</div>
                     </div>
                   </div>
                 </motion.div>
                 <div className="mt-4 text-center">
-                  <h3 className="text-xl font-bold text-white mb-2">Restaurant</h3>
-                  <p className="text-gray-400 text-sm mb-3">Elegant, appetittvekkende og innbydende</p>
-                  <motion.span
-                    whileHover={{ scale: 1.05 }}
-                    className="inline-block bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-semibold group-hover:bg-amber-700 transition"
-                  >
+                  <h3 className="text-xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Psykolog / terapeut</h3>
+                  <p className="text-sm mb-3" style={{ color: '#4A5568' }}>Rolig og trygg estetikk som senker terskelen for å ta kontakt</p>
+                  <motion.span whileHover={{ scale: 1.05 }} className="inline-block text-white px-4 py-2 rounded-full text-sm font-semibold transition" style={{ background: '#6B5EA8' }}>
                     Se demo-nettside →
                   </motion.span>
                 </div>
@@ -927,7 +907,7 @@ export default function Home() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-center mt-16"
           >
-            <p className="text-gray-400 mb-6">Hvert design er unikt og tilpasset din bransje · Klikk for å se større</p>
+            <p className="mb-6" style={{ color: '#4A5568' }}>Hvert design er unikt og tilpasset klinikkens profil · Klikk for å se større</p>
             <motion.a
               whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(6, 182, 212, 0.4)' }}
               whileTap={{ scale: 0.95 }}
@@ -944,7 +924,7 @@ export default function Home() {
       </section>
 
       {/* Case Study */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 relative" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424)' }}>
+      <section className="py-24 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#F7F9FC' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -953,8 +933,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <span className="inline-block text-cyan-400 text-sm font-semibold tracking-wider uppercase mb-3">Ekte kunde</span>
-            <h2 className="text-4xl font-bold text-white">Kiropraktisk Senter</h2>
+            <span className="inline-block text-cyan-600 text-sm font-semibold tracking-wider uppercase mb-3">Ekte kunde</span>
+            <h2 className="text-4xl font-bold" style={{ color: '#0D1B2A' }}>Kiropraktisk Senter</h2>
           </motion.div>
 
           <motion.div
@@ -965,7 +945,7 @@ export default function Home() {
             className="grid md:grid-cols-2 gap-10 items-center"
           >
             {/* Logo */}
-            <div className="flex items-center justify-center rounded-2xl border border-gray-700/50 p-16 bg-white">
+            <div className="flex items-center justify-center rounded-2xl border p-16 bg-white" style={{ borderColor: '#DDE4ED' }}>
               <img
                 src="/images/kiropraktisksenter-logo.png"
                 alt="Kiropraktisk Senter"
@@ -982,10 +962,10 @@ export default function Home() {
                   { label: 'Teknologi', text: 'Next.js, Tailwind CSS, tilpasset design, hosting og drift inkludert.' },
                 ].map((item) => (
                   <div key={item.label} className="flex gap-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-2 flex-shrink-0" />
                     <div>
-                      <div className="text-white font-semibold text-sm mb-1">{item.label}</div>
-                      <div className="text-gray-400 text-sm leading-relaxed">{item.text}</div>
+                      <div className="font-semibold text-sm mb-1" style={{ color: '#0D1B2A' }}>{item.label}</div>
+                      <div className="text-sm leading-relaxed" style={{ color: '#4A5568' }}>{item.text}</div>
                     </div>
                   </div>
                 ))}
@@ -996,7 +976,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-block mt-8 text-cyan-400 border border-cyan-400/40 hover:bg-cyan-400/10 transition px-6 py-3 rounded-lg text-sm font-semibold"
+                className="inline-block mt-8 text-cyan-600 border border-cyan-500/40 hover:bg-cyan-50 transition px-6 py-3 rounded-lg text-sm font-semibold"
               >
                 Besøk nettsiden →
               </motion.a>
@@ -1006,14 +986,15 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section id="hvordan" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ background: 'linear-gradient(to bottom, #0D1424, #0B1220)' }}>
+      <section id="hvordan" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#EEF2F7' }}>
         <div className="max-w-7xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl font-bold text-center text-white mb-20"
+            className="text-5xl font-bold text-center mb-20"
+            style={{ color: '#0D1B2A' }}
           >
             Hvordan det fungerer
           </motion.h2>
@@ -1039,15 +1020,15 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.15 }}
                   transition={{ type: 'spring', stiffness: 400 }}
-                  className="w-16 h-16 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-cyan-500/50"
+                  className="w-16 h-16 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-cyan-500/30"
                   style={{
                     background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
                   }}
                 >
                   {item.step}
                 </motion.div>
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-300">{item.description}</p>
+                <h3 className="text-xl font-bold mb-2" style={{ color: '#0D1B2A' }}>{item.title}</h3>
+                <p style={{ color: '#1A1A2E' }}>{item.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -1055,7 +1036,7 @@ export default function Home() {
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 border-y relative" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424, #0B1220)', borderColor: '#1a2332' }}>
+      <section className="py-12 px-4 sm:px-6 lg:px-8 border-y relative" style={{ backgroundColor: '#F7F9FC', borderColor: '#DDE4ED' }}>
         <div className="max-w-6xl mx-auto">
           <motion.div
             variants={staggerContainer}
@@ -1083,8 +1064,8 @@ export default function Home() {
                 >
                   <span className="text-3xl">{item.emoji}</span>
                 </motion.div>
-                <div className="font-bold text-white">{item.title}</div>
-                <div className="text-sm text-gray-300">{item.desc}</div>
+                <div className="font-bold" style={{ color: '#0D1B2A' }}>{item.title}</div>
+                <div className="text-sm" style={{ color: '#4A5568' }}>{item.desc}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -1092,138 +1073,116 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="priser" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0B1220, #0D1424)' }}>
+      <section id="priser" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#EEF2F7' }}>
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl font-bold text-center text-white mb-20"
+            className="text-5xl font-bold text-center mb-20"
+            style={{ color: '#0D1B2A' }}
           >
             Priser
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-10 mb-20">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {/* Klinikkstart */}
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
-              whileHover={{
-                y: -10,
-                boxShadow: '0 20px 60px rgba(6, 182, 212, 0.2)',
-                scale: 1.02
-              }}
-              className="border-2 p-10 rounded-3xl shadow-2xl transition-all duration-300"
-              style={{ backgroundColor: '#0D1424', borderColor: '#1a2332' }}
+              whileHover={{ y: -10, boxShadow: '0 20px 60px rgba(100, 116, 139, 0.15)', scale: 1.02 }}
+              className="border-2 p-8 rounded-3xl shadow-md transition-all duration-300"
+              style={{ backgroundColor: '#FFFFFF', borderColor: '#CBD5E0' }}
             >
-              <div className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4">
-                START
+              <div className="bg-slate-100 text-slate-500 px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4">START</div>
+              <h3 className="text-2xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Klinikkstart</h3>
+              <p className="mb-5 text-sm" style={{ color: '#4A5568' }}>Ny klinikk eller enkel nettside</p>
+              <div className="text-4xl font-bold text-cyan-600 mb-1">kr 20.000,-</div>
+              <p className="text-sm mb-6" style={{ color: '#4A5568' }}>eks. mva</p>
+              <div className="space-y-2 mb-6">
+                {["Opptil 5 sider", "Skreddersydd design", "Mobiltilpasset", "Kontaktskjema", "Grunnleggende SEO", "Publisering"].map((item, i) => (
+                  <div key={i} className="flex items-center text-sm">
+                    <span className="text-slate-400 mr-2">✓</span><span style={{ color: '#1A1A2E' }}>{item}</span>
+                  </div>
+                ))}
               </div>
-              <h3 className="text-3xl font-bold text-white mb-2">Grunnpakke</h3>
-              <p className="text-gray-400 mb-6">Passer for: små bedrifter, enkelt behov</p>
-
-              <div className="text-5xl font-bold text-cyan-400 mb-2">
-                kr 20.000,-
-              </div>
-              <p className="text-sm text-gray-400 mb-8">eks. mva</p>
-
-              <div className="space-y-4 mb-8">
-                <p className="text-white font-semibold mb-3">Inkluderer:</p>
-                <div className="space-y-3">
-                  {[
-                    "Opptil 5 sider",
-                    "Skreddersydd design",
-                    "Mobiltilpasset",
-                    "Kontaktskjema",
-                    "Grunnleggende SEO",
-                    "Publisering"
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start">
-                      <span className="text-cyan-400 mr-3 text-xl">✓</span>
-                      <span className="text-gray-300">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="text-sm text-gray-400 bg-slate-900/50 p-4 rounded-lg">
-                <strong className="text-gray-300">Sider:</strong> Forside, Om oss, Tjenester, Kontakt, Personvern
-              </div>
+              <div className="text-xs p-3 rounded-lg" style={{ color: '#4A5568', backgroundColor: '#EEF2F7' }}>Forside, Om oss, Tjenester, Kontakt, Personvern</div>
             </motion.div>
 
+            {/* Klinikkpro */}
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6 }}
-              whileHover={{
-                y: -10,
-                boxShadow: '0 20px 60px rgba(6, 182, 212, 0.3)',
-                scale: 1.02
-              }}
-              className="border-2 p-10 rounded-3xl shadow-2xl relative overflow-hidden transition-all duration-300"
-              style={{ backgroundColor: '#0D1424', borderColor: '#06B6D4' }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ y: -10, boxShadow: '0 20px 60px rgba(6, 182, 212, 0.25)', scale: 1.02 }}
+              className="border-2 p-8 rounded-3xl shadow-md relative transition-all duration-300"
+              style={{ backgroundColor: '#FFFFFF', borderColor: '#06B6D4' }}
             >
-              <div className="text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4" style={{
-                background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
-              }}>
+              <div className="text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4" style={{ background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)' }}>
                 ANBEFALT
               </div>
-              <h3 className="text-3xl font-bold text-white mb-2">Vekst</h3>
-              <p className="text-gray-400 mb-6">For bedrifter i utvikling</p>
-
-              <div className="text-5xl font-bold text-cyan-400 mb-2">
-                kr 35.000,-
+              <h3 className="text-2xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Klinikkpro</h3>
+              <p className="mb-5 text-sm" style={{ color: '#4A5568' }}>Etablerte klinikker med behov for mer</p>
+              <div className="text-4xl font-bold text-cyan-600 mb-1">kr 35.000,-</div>
+              <p className="text-sm mb-6" style={{ color: '#4A5568' }}>eks. mva</p>
+              <div className="space-y-2 mb-6">
+                {["Opptil 10–12 sider", "Flere tjenestesider", "Bedre SEO-struktur", "CTA-optimalisert per side", "Timebestillingslenke integrert", "Alt fra Klinikkstart"].map((item, i) => (
+                  <div key={i} className="flex items-center text-sm">
+                    <span className="text-cyan-600 mr-2">✓</span><span style={{ color: '#1A1A2E' }}>{item}</span>
+                  </div>
+                ))}
               </div>
-              <p className="text-sm text-gray-400 mb-8">eks. mva</p>
+              <div className="text-xs p-3 rounded-lg" style={{ color: '#4A5568', backgroundColor: '#EEF2F7' }}>Perfekt for klinikker med flere behandlere</div>
+            </motion.div>
 
-              <div className="space-y-4 mb-8">
-                <p className="text-white font-semibold mb-3">Inkluderer:</p>
-                <div className="space-y-3">
-                  {[
-                    "Opptil 10–12 sider",
-                    "Flere tjenestesider",
-                    "Bedre struktur for SEO",
-                    "Enkel innholdsstruktur (CTA per side)",
-                    "Bedre ytelsesoppsett",
-                    "Alt fra Grunnpakke"
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start">
-                      <span className="text-cyan-400 mr-3 text-xl">✓</span>
-                      <span className="text-gray-300">{item}</span>
-                    </div>
-                  ))}
-                </div>
+            {/* Klinikk+ */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ y: -10, boxShadow: '0 20px 60px rgba(168, 85, 247, 0.2)', scale: 1.02 }}
+              className="border-2 p-8 rounded-3xl shadow-md transition-all duration-300"
+              style={{ backgroundColor: '#FFFFFF', borderColor: '#a855f7' }}
+            >
+              <div className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4">PREMIUM</div>
+              <h3 className="text-2xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Klinikk+</h3>
+              <p className="mb-5 text-sm" style={{ color: '#4A5568' }}>Full digital pakke for vekst</p>
+              <div className="text-4xl font-bold text-purple-600 mb-1">kr 55.000,-</div>
+              <p className="text-sm mb-6" style={{ color: '#4A5568' }}>eks. mva</p>
+              <div className="space-y-2 mb-6">
+                {["Alt fra Klinikkpro", "AI-chatbot integrert", "Lokal SEO-oppsett", "Google Analytics oppsett", "Prioritert support"].map((item, i) => (
+                  <div key={i} className="flex items-center text-sm">
+                    <span className="text-purple-500 mr-2">✓</span><span style={{ color: '#1A1A2E' }}>{item}</span>
+                  </div>
+                ))}
               </div>
-
-              <div className="text-sm text-gray-400 bg-slate-900/50 p-4 rounded-lg">
-                <strong className="text-gray-300">Perfekt for:</strong> Bedrifter med flere tjenester og mer innhold
-              </div>
+              <div className="text-xs p-3 rounded-lg" style={{ color: '#4A5568', backgroundColor: '#EEF2F7' }}>Full digital pakke for etablerte klinikker</div>
             </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
               whileHover={{ scale: 1.02 }}
-              className="border-2 p-8 rounded-3xl shadow-xl"
-              style={{ backgroundColor: '#0D1424', borderColor: '#1a2332' }}
+              className="border-2 p-8 rounded-3xl shadow-md"
+              style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
             >
-              <h3 className="text-2xl font-bold text-white mb-2">Hosting & vedlikehold</h3>
-              <div className="text-4xl font-bold text-cyan-400 mb-2">
-                kr 599,-/mnd
-              </div>
-              <p className="text-gray-400 text-sm mb-4">eks. mva · Abonnement (påkrevd)</p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>✓ Hosting</li>
-                <li>✓ Teknisk drift</li>
+              <h3 className="text-2xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Klinikkdrift</h3>
+              <div className="text-4xl font-bold text-cyan-600 mb-1">kr 699,-/mnd</div>
+              <p className="text-sm mb-4" style={{ color: '#4A5568' }}>eks. mva · Abonnement (påkrevd)</p>
+              <ul className="space-y-2 text-sm mb-4" style={{ color: '#1A1A2E' }}>
+                <li>✓ Hosting og overvåking</li>
                 <li>✓ Sikkerhet & oppdateringer</li>
-                <li>✓ Backup & overvåking</li>
+                <li>✓ Backup</li>
+                <li>✓ Prioritert support for helsebedrifter</li>
               </ul>
             </motion.div>
 
@@ -1233,16 +1192,14 @@ export default function Home() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
               whileHover={{ scale: 1.02 }}
-              className="border-2 p-8 rounded-3xl shadow-xl"
-              style={{ backgroundColor: '#0D1424', borderColor: '#1a2332' }}
+              className="border-2 p-8 rounded-3xl shadow-md"
+              style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
             >
-              <h3 className="text-2xl font-bold text-white mb-2">Endringer / oppdateringer</h3>
-              <div className="text-4xl font-bold text-white mb-2">
-                kr 1.300,-/time
-              </div>
-              <p className="text-gray-400 text-sm mb-4">eks. mva · Timepris eller fast pris</p>
-              <p className="text-sm text-gray-300">
-                Endringer i tekster, bilder, innhold, struktur og funksjonalitet faktureres separat etter avtale
+              <h3 className="text-2xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Endringer & innhold</h3>
+              <div className="text-4xl font-bold mb-1" style={{ color: '#0D1B2A' }}>kr 1.300,-/time</div>
+              <p className="text-sm mb-4" style={{ color: '#4A5568' }}>eks. mva · Timepris eller fast pris</p>
+              <p className="text-sm" style={{ color: '#1A1A2E' }}>
+                Tekstendringer, nye sider, bildebytte og innholdspublisering. Kunden skriver egne fagartikler – Webera publiserer dem.
               </p>
             </motion.div>
           </div>
@@ -1250,17 +1207,7 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="om" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #0D1424, #0B1220)' }}>
-        <div className="absolute inset-0 opacity-5">
-          <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-purple-500/30 to-transparent"></div>
-        </div>
-
+      <section id="om" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#F7F9FC' }}>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -1271,11 +1218,11 @@ export default function Home() {
               className="relative"
             >
               <motion.img
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.03 }}
                 transition={{ type: 'spring', stiffness: 300 }}
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80"
-                alt="Team samarbeid"
-                className="rounded-2xl shadow-xl"
+                src="/images/om-klinikk.jpg"
+                alt="Behandlingsrom"
+                className="rounded-2xl shadow-lg"
               />
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -1283,13 +1230,11 @@ export default function Home() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
                 className="absolute -bottom-6 -right-6 border p-6 rounded-xl shadow-lg"
-                style={{ backgroundColor: '#0D1424', borderColor: '#1a2332' }}
+                style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-cyan-400">
-                    <AnimatedNumber value={100} suffix="%" />
-                  </div>
-                  <div className="text-sm text-gray-300">Kundetilfredshet</div>
+                  <div className="text-3xl font-bold text-cyan-600">100%</div>
+                  <div className="text-sm" style={{ color: '#1A1A2E' }}>Anbefaler oss</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -1300,18 +1245,28 @@ export default function Home() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-white mb-6">Om Webera</h2>
-              <p className="text-xl text-gray-300 mb-8">
-                Webera er et lite, spesialisert webbyrå som jobber tett med kundene våre. Vi fokuserer på struktur, design og langsiktig kvalitet – ikke volum.
+              <h2 className="text-4xl font-bold mb-6" style={{ color: '#0D1B2A' }}>Om Webera</h2>
+              <p className="text-xl mb-6" style={{ color: '#1A1A2E' }}>
+                Webera er et webbyrå med én klar spesialitet: helsebedrifter.
+              </p>
+              <p className="mb-8 leading-relaxed" style={{ color: '#1A1A2E' }}>
+                Daglig leder driver selv helseklinikk til daglig.
+                Det gir oss en posisjon ingen andre webbyrå har –
+                vi vet hva som fungerer digitalt for klinikker
+                fordi vi lever det selv.
+              </p>
+              <p className="mb-8 leading-relaxed" style={{ color: '#1A1A2E' }}>
+                Vi jobber med fysioterapeuter, kiropraktorer, naprapater,
+                osteopater, psykologer og andre helsefaglige aktører
+                over hele landet.
               </p>
 
-              <div className="p-8 rounded-2xl border" style={{ backgroundColor: 'rgba(13, 20, 36, 0.5)', borderColor: '#1a2332' }}>
-                <p className="text-lg text-white mb-4 font-semibold">Vi tror på:</p>
-                <div className="space-y-3 text-gray-300">
+              <div className="p-8 rounded-2xl border" style={{ backgroundColor: '#EEF2F7', borderColor: '#DDE4ED' }}>
+                <div className="space-y-3">
                   {[
-                    'Tydelig kommunikasjon',
-                    'Rene løsninger',
-                    'Forutsigbare priser'
+                    'Faglig forankring i helsebransjen',
+                    'Tydelig kommunikasjon og forutsigbare priser',
+                    'Langsiktig partner – ikke bare leverandør'
                   ].map((item, i) => (
                     <motion.div
                       key={i}
@@ -1322,7 +1277,7 @@ export default function Home() {
                       className="flex items-center"
                     >
                       <span className="text-cyan-600 mr-3 text-xl">✓</span>
-                      <span className="text-lg">{item}</span>
+                      <span className="text-lg" style={{ color: '#1A1A2E' }}>{item}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -1333,7 +1288,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="kontakt" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ background: 'linear-gradient(to bottom, #0D1424, #0B1220)' }}>
+      <section id="kontakt" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#EEF2F7' }}>
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -1342,9 +1297,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-bold text-white mb-6">Ta kontakt</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Klar for en moderne nettside? Send oss en melding, så tar vi kontakt for en uforpliktende samtale.
+            <h2 className="text-5xl font-bold mb-6" style={{ color: '#0D1B2A' }}>Klar for en nettside som gir deg flere pasienter?</h2>
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: '#1A1A2E' }}>
+              Book en gratis 30-minutters samtale. Vi ser på din klinikk
+              og hva som skal til digitalt. Ingen forpliktelser.
             </p>
           </motion.div>
 
@@ -1382,14 +1338,14 @@ export default function Home() {
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 10 }}
                   transition={{ type: 'spring', stiffness: 400 }}
-                  className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                  className="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4"
                 >
-                  <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     {item.icon}
                   </svg>
                 </motion.div>
-                <h3 className="text-white font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-400">{item.text}</p>
+                <h3 className="font-semibold mb-2" style={{ color: '#0D1B2A' }}>{item.title}</h3>
+                <p style={{ color: '#4A5568' }}>{item.text}</p>
               </motion.div>
             ))}
           </motion.div>
