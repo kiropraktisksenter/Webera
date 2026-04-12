@@ -503,7 +503,7 @@ export default function Home() {
       </section>
 
       {/* Problem/Solution Section */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#F7F9FC' }}>
+      <section className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-20">
             <motion.div
@@ -574,22 +574,25 @@ export default function Home() {
             </motion.div>
           </div>
 
+        </div>
+      </section>
+
+      {/* Quote Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0D1B2A' }}>
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-16 p-8 rounded-2xl border"
-            style={{ backgroundColor: '#EEF2F7', borderColor: '#DDE4ED' }}
+            transition={{ duration: 0.7 }}
           >
-            <div className="text-center">
-              <p className="text-2xl font-semibold mb-2" style={{ color: '#0D1B2A' }}>
-                Vi driver selv klinikk – vi forstår bransjen fra innsiden.
-              </p>
-              <p className="text-xl" style={{ color: '#1A1A2E' }}>
-                Ingen maler. Ingen unødvendige kompromisser. Bare det klinikken faktisk trenger.
-              </p>
-            </div>
+            <div className="text-cyan-400 mb-6" style={{ fontSize: '5rem', lineHeight: 1, fontFamily: 'Georgia, serif' }}>&ldquo;</div>
+            <p className="text-white font-semibold leading-snug mb-8" style={{ fontSize: '1.8rem' }}>
+              Vi driver selv klinikk – vi forstår bransjen fra innsiden.
+            </p>
+            <p className="text-gray-400 text-lg">
+              Ingen maler. Ingen unødvendige kompromisser. Bare det klinikken faktisk trenger.
+            </p>
           </motion.div>
         </div>
       </section>
@@ -597,16 +600,16 @@ export default function Home() {
       {/* Why Webera Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#EEF2F7' }}>
         <div className="max-w-7xl mx-auto">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="text-4xl font-bold text-center mb-16"
-            style={{ color: '#0D1B2A' }}
+            className="text-center mb-16"
           >
-            Hvorfor helseklinikker velger Webera
-          </motion.h2>
+            <p className="text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-3">Hvorfor oss</p>
+            <h2 className="font-bold" style={{ fontSize: '2.2rem', color: '#0D1B2A' }}>Hvorfor helseklinikker velger Webera</h2>
+          </motion.div>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -648,19 +651,19 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="tjenester" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#F7F9FC' }}>
+      <section id="tjenester" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="relative z-10">
         <div className="max-w-7xl mx-auto">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl font-bold text-center mb-20"
-            style={{ color: '#0D1B2A' }}
+            className="text-center mb-20"
           >
-            Tjenester
-          </motion.h2>
+            <p className="text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-3">Hva vi tilbyr</p>
+            <h2 className="font-bold" style={{ fontSize: '2.2rem', color: '#0D1B2A' }}>Tjenester</h2>
+          </motion.div>
 
           <motion.div
             variants={staggerContainer}
@@ -702,9 +705,9 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                whileHover={{ scale: 1.02, boxShadow: '0 20px 60px rgba(6, 182, 212, 0.12)' }}
-                className="border p-8 rounded-3xl shadow-md transition-all duration-300"
-                style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
+                whileHover={{ scale: 1.02, boxShadow: '0 12px 32px rgba(0,0,0,0.10)' }}
+                className="p-8 transition-all duration-300"
+                style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', borderTop: '3px solid #0891B2', boxShadow: '0 4px 24px rgba(0,0,0,0.07)' }}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-cyan-50 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -739,7 +742,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl font-bold mb-6" style={{ color: '#0D1B2A' }}>Klinikknettsider vi har laget</h2>
+            <p className="text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-3">Eksempler</p>
+            <h2 className="font-bold mb-6" style={{ fontSize: '2.2rem', color: '#0D1B2A' }}>Klinikknettsider vi har laget</h2>
             <p className="text-xl" style={{ color: '#1A1A2E' }}>Skreddersydd design for ulike helsefaglige aktører</p>
           </motion.div>
 
@@ -985,18 +989,18 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section id="hvordan" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#EEF2F7' }}>
+      <section id="hvordan" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl font-bold text-center mb-20"
-            style={{ color: '#0D1B2A' }}
+            className="text-center mb-20"
           >
-            Hvordan det fungerer
-          </motion.h2>
+            <p className="text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-3">Prosessen</p>
+            <h2 className="font-bold" style={{ fontSize: '2.2rem', color: '#0D1B2A' }}>Hvordan det fungerer</h2>
+          </motion.div>
 
           <motion.div
             variants={staggerContainer}
@@ -1074,16 +1078,16 @@ export default function Home() {
       {/* Pricing */}
       <section id="priser" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#EEF2F7' }}>
         <div className="max-w-7xl mx-auto relative z-10">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="text-5xl font-bold text-center mb-20"
-            style={{ color: '#0D1B2A' }}
+            className="text-center mb-20"
           >
-            Priser
-          </motion.h2>
+            <p className="text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-3">Pakker</p>
+            <h2 className="font-bold" style={{ fontSize: '2.2rem', color: '#0D1B2A' }}>Priser</h2>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {/* Klinikkstart */}
@@ -1092,9 +1096,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
-              whileHover={{ y: -10, boxShadow: '0 20px 60px rgba(100, 116, 139, 0.15)', scale: 1.02 }}
-              className="border-2 p-8 rounded-3xl shadow-md transition-all duration-300"
-              style={{ backgroundColor: '#FFFFFF', borderColor: '#CBD5E0' }}
+              whileHover={{ y: -8, boxShadow: '0 16px 40px rgba(0,0,0,0.12)', scale: 1.02 }}
+              className="p-8 transition-all duration-300"
+              style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #DDE4ED', boxShadow: '0 4px 24px rgba(0,0,0,0.07)' }}
             >
               <div className="bg-slate-100 text-slate-500 px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4">START</div>
               <h3 className="text-2xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Klinikkstart</h3>
@@ -1117,9 +1121,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              whileHover={{ y: -10, boxShadow: '0 20px 60px rgba(6, 182, 212, 0.25)', scale: 1.02 }}
-              className="border-2 p-8 rounded-3xl shadow-md relative transition-all duration-300"
-              style={{ backgroundColor: '#FFFFFF', borderColor: '#06B6D4' }}
+              whileHover={{ y: -8, boxShadow: '0 16px 40px rgba(8,145,178,0.2)', scale: 1.02 }}
+              className="p-8 relative transition-all duration-300"
+              style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', border: '2px solid #0891B2', boxShadow: '0 4px 24px rgba(0,0,0,0.07)' }}
             >
               <div className="text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4" style={{ background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)' }}>
                 ANBEFALT
@@ -1144,9 +1148,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ y: -10, boxShadow: '0 20px 60px rgba(168, 85, 247, 0.2)', scale: 1.02 }}
-              className="border-2 p-8 rounded-3xl shadow-md transition-all duration-300"
-              style={{ backgroundColor: '#FFFFFF', borderColor: '#a855f7' }}
+              whileHover={{ y: -8, boxShadow: '0 16px 40px rgba(168,85,247,0.15)', scale: 1.02 }}
+              className="p-8 transition-all duration-300"
+              style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #DDE4ED', boxShadow: '0 4px 24px rgba(0,0,0,0.07)' }}
             >
               <div className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-semibold inline-block mb-4">PREMIUM</div>
               <h3 className="text-2xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Klinikk+</h3>
@@ -1170,9 +1174,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
-              whileHover={{ scale: 1.02 }}
-              className="border-2 p-8 rounded-3xl shadow-md"
-              style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
+              whileHover={{ scale: 1.02, boxShadow: '0 12px 32px rgba(0,0,0,0.10)' }}
+              className="p-8"
+              style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #DDE4ED', boxShadow: '0 4px 24px rgba(0,0,0,0.07)' }}
             >
               <h3 className="text-2xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Klinikkdrift</h3>
               <div className="text-4xl font-bold text-cyan-600 mb-1">kr 699,-/mnd</div>
@@ -1190,9 +1194,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ scale: 1.02 }}
-              className="border-2 p-8 rounded-3xl shadow-md"
-              style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
+              whileHover={{ scale: 1.02, boxShadow: '0 12px 32px rgba(0,0,0,0.10)' }}
+              className="p-8"
+              style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #DDE4ED', boxShadow: '0 4px 24px rgba(0,0,0,0.07)' }}
             >
               <h3 className="text-2xl font-bold mb-2" style={{ color: '#0D1B2A' }}>Endringer & innhold</h3>
               <div className="text-4xl font-bold mb-1" style={{ color: '#0D1B2A' }}>kr 1.300,-/time</div>
@@ -1206,7 +1210,7 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="om" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#F7F9FC' }}>
+      <section id="om" className="py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#0D1B2A' }}>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -1221,7 +1225,8 @@ export default function Home() {
                 transition={{ type: 'spring', stiffness: 300 }}
                 src="/images/om-klinikk.jpg"
                 alt="Behandlingsrom"
-                className="rounded-2xl shadow-lg"
+                className="rounded-2xl shadow-2xl"
+                style={{ boxShadow: '0 24px 60px rgba(0,0,0,0.4)' }}
               />
             </motion.div>
 
@@ -1231,23 +1236,24 @@ export default function Home() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold mb-6" style={{ color: '#0D1B2A' }}>Om Webera</h2>
-              <p className="text-xl mb-6" style={{ color: '#1A1A2E' }}>
+              <p className="text-xs font-semibold tracking-widest text-cyan-400 uppercase mb-4">Om oss</p>
+              <h2 className="font-bold mb-6 text-white" style={{ fontSize: '2.2rem' }}>Om Webera</h2>
+              <p className="text-xl mb-6 text-gray-300">
                 Webera er et webbyrå med én klar spesialitet: helsebedrifter.
               </p>
-              <p className="mb-8 leading-relaxed" style={{ color: '#1A1A2E' }}>
+              <p className="mb-8 leading-relaxed text-gray-400">
                 Daglig leder driver selv helseklinikk til daglig.
                 Det gir oss en posisjon ingen andre webbyrå har –
                 vi vet hva som fungerer digitalt for klinikker
                 fordi vi lever det selv.
               </p>
-              <p className="mb-8 leading-relaxed" style={{ color: '#1A1A2E' }}>
+              <p className="mb-8 leading-relaxed text-gray-400">
                 Vi jobber med fysioterapeuter, kiropraktorer, naprapater,
                 osteopater, psykologer og andre helsefaglige aktører
                 over hele landet.
               </p>
 
-              <div className="p-8 rounded-2xl border" style={{ backgroundColor: '#EEF2F7', borderColor: '#DDE4ED' }}>
+              <div className="p-8 rounded-2xl border" style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.1)' }}>
                 <div className="space-y-3">
                   {[
                     'Faglig forankring i helsebransjen',
@@ -1262,8 +1268,8 @@ export default function Home() {
                       transition={{ delay: i * 0.1, duration: 0.5 }}
                       className="flex items-center"
                     >
-                      <span className="text-cyan-600 mr-3 text-xl">✓</span>
-                      <span className="text-lg" style={{ color: '#1A1A2E' }}>{item}</span>
+                      <span className="text-cyan-400 mr-3 text-xl">✓</span>
+                      <span className="text-lg text-gray-300">{item}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -1274,7 +1280,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="kontakt" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#EEF2F7' }}>
+      <section id="kontakt" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -1283,7 +1289,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-bold mb-6" style={{ color: '#0D1B2A' }}>Klar for en nettside som gir deg flere pasienter?</h2>
+            <p className="text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-3">Kom i gang</p>
+            <h2 className="font-bold mb-6" style={{ fontSize: '2.2rem', color: '#0D1B2A' }}>Klar for en nettside som gir deg flere pasienter?</h2>
             <p className="text-xl max-w-2xl mx-auto" style={{ color: '#1A1A2E' }}>
               Book en gratis 30-minutters samtale. Vi ser på din klinikk
               og hva som skal til digitalt. Ingen forpliktelser.
@@ -1339,24 +1346,66 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="text-gray-400 py-12 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0B1220' }}>
+      <footer className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0D1B2A' }}>
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8"
-          >
-            <motion.img
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              src="/images/Webera Logo.svg"
-              alt="Webera - Webutvikling & Hosting"
-              className="h-40 w-auto mx-auto mb-4"
-            />
-          </motion.div>
-          <div className="text-center border-t border-gray-800 pt-8">
-            <p className="mb-4">© 2026 Webera. Alle rettigheter reservert.</p>
+          <div className="grid md:grid-cols-3 gap-12 mb-16">
+            {/* Kolonne 1 – Logo + tagline */}
+            <div>
+              <img
+                src="/images/Webera Logo.svg"
+                alt="Webera"
+                className="h-28 w-auto mb-4"
+              />
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Webbyrå eksklusivt for helseklinikker. Vi forstår bransjen fordi vi driver klinikk selv.
+              </p>
+            </div>
+
+            {/* Kolonne 2 – Tjenester */}
+            <div>
+              <h4 className="text-white font-semibold mb-4 text-sm tracking-wide uppercase">Tjenester</h4>
+              <ul className="space-y-3">
+                {[
+                  { href: '#tjenester', text: 'Klinikknettside' },
+                  { href: '#tjenester', text: 'Lokal SEO' },
+                  { href: '#tjenester', text: 'AI-chatbot' },
+                  { href: '#tjenester', text: 'Drift og vedlikehold' },
+                  { href: '#priser', text: 'Se priser' },
+                ].map((item) => (
+                  <li key={item.text}>
+                    <a href={item.href} className="text-gray-400 hover:text-cyan-400 transition text-sm">
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Kolonne 3 – Kontakt */}
+            <div>
+              <h4 className="text-white font-semibold mb-4 text-sm tracking-wide uppercase">Kontakt</h4>
+              <ul className="space-y-3 text-sm text-gray-400">
+                <li>
+                  <a href="mailto:post@webera.no" className="hover:text-cyan-400 transition">post@webera.no</a>
+                </li>
+                <li>Tønsberg, Norge</li>
+                <li>Svar innen 24 timer</li>
+                <li className="pt-2">
+                  <a
+                    href="#kontakt"
+                    className="inline-block text-white text-xs px-5 py-2.5 rounded-lg font-semibold transition"
+                    style={{ background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)' }}
+                  >
+                    Gratis konsultasjon →
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+            <p className="text-gray-500 text-sm">© 2026 Webera. Alle rettigheter reservert.</p>
+            <p className="text-gray-600 text-xs">Spesialisert webbyrå for helseklinikker · Tønsberg</p>
           </div>
         </div>
       </footer>
