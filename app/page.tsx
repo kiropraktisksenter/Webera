@@ -580,7 +580,7 @@ export default function Home() {
       </section>
 
       {/* Quote Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0D1B2A' }}>
+      <section className="py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0D1B2A' }}>
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
