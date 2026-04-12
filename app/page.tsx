@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Stethoscope, Calendar, Activity, Brain } from 'lucide-react';
+import { Stethoscope, Calendar, Activity, Brain, MapPin, Handshake, Globe, Search, Bot, Settings, Zap, Shield, Smartphone, TrendingUp } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 
 export default function Home() {
@@ -579,21 +579,14 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-16 bg-gradient-to-r from-cyan-500 to-purple-600 text-white p-8 rounded-2xl relative overflow-hidden shadow-lg"
+            className="mt-16 p-8 rounded-2xl border"
+            style={{ backgroundColor: '#EEF2F7', borderColor: '#DDE4ED' }}
           >
-            <div className="absolute inset-0 opacity-15">
-              <img
-                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80"
-                alt=""
-                aria-hidden="true"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="relative z-10 text-center">
-              <p className="text-2xl font-semibold mb-2">
+            <div className="text-center">
+              <p className="text-2xl font-semibold mb-2" style={{ color: '#0D1B2A' }}>
                 Vi driver selv klinikk – vi forstår bransjen fra innsiden.
               </p>
-              <p className="text-xl opacity-90">
+              <p className="text-xl" style={{ color: '#1A1A2E' }}>
                 Ingen maler. Ingen unødvendige kompromisser. Bare det klinikken faktisk trenger.
               </p>
             </div>
@@ -617,17 +610,17 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: '🩺',
+                icon: <Stethoscope size={24} color="#0891B2" />,
                 title: 'Faglig forankring',
                 desc: 'Vi driver selv klinikk. Vi forstår pasientreisen og hva som bygger tillit – ikke bare webdesign.'
               },
               {
-                icon: '📍',
+                icon: <MapPin size={24} color="#0891B2" />,
                 title: 'Lokal synlighet',
                 desc: 'Vi optimaliserer for lokale Google-søk slik at pasienter i ditt område finner deg først.'
               },
               {
-                icon: '🤝',
+                icon: <Handshake size={24} color="#0891B2" />,
                 title: 'Langsiktig partner',
                 desc: 'Vi er ikke ferdige ved lansering. Månedlig abonnement inkluderer drift, sikkerhet og prioritert support.'
               }
@@ -641,7 +634,11 @@ export default function Home() {
                 className="border p-8 rounded-2xl text-center"
                 style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
               >
-                <div className="text-5xl mb-4">{item.icon}</div>
+                <div className="flex justify-center mb-4">
+                  <div className="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center">
+                    {item.icon}
+                  </div>
+                </div>
                 <h3 className="text-xl font-bold mb-3" style={{ color: '#0D1B2A' }}>{item.title}</h3>
                 <p style={{ color: '#1A1A2E' }}>{item.desc}</p>
               </motion.div>
@@ -674,28 +671,28 @@ export default function Home() {
           >
             {[
               {
-                icon: '🌐',
+                icon: <Globe size={24} color="#0891B2" />,
                 tag: 'NETTSIDE',
                 title: 'Klinikknettside',
                 desc: 'Profesjonell nettside skreddersydd din klinikk.',
                 items: ['Design og tjenestesider', 'Om oss og faglig profil', 'SEO-struktur fra grunnen', 'Kontaktskjema og timebestillingsintegrasjon']
               },
               {
-                icon: '📍',
+                icon: <Search size={24} color="#0891B2" />,
                 tag: 'SEO',
                 title: 'Lokal SEO',
                 desc: 'Vi sørger for at pasienter finner deg på Google når de søker etter behandling i ditt område.',
-                items: ['Google Business-profil', 'Teknisk SEO', 'Lokal søkeordsoptimalisering', 'Strukturert data']
+                items: ['Lokal søkeordsoptimalisering', 'Teknisk SEO', 'Google Maps-synlighet', 'Strukturert data']
               },
               {
-                icon: '🤖',
+                icon: <Bot size={24} color="#0891B2" />,
                 tag: 'AI',
                 title: 'AI-chatbot',
                 desc: 'En smart assistent på nettsiden som svarer på vanlige pasientspørsmål og hjelper med timebestilling.',
                 items: ['Tilgjengelig døgnet rundt', 'Tilpasset klinikkens tjenester', 'Ingen ekstra bemanning nødvendig', 'Integrert i nettsiden']
               },
               {
-                icon: '⚙️',
+                icon: <Settings size={24} color="#0891B2" />,
                 tag: 'DRIFT',
                 title: 'Drift og vedlikehold',
                 desc: 'Hosting, sikkerhet, oppdateringer og backup. Nettsiden din er alltid online og rask.',
@@ -710,7 +707,9 @@ export default function Home() {
                 style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-3xl">{item.icon}</span>
+                  <div className="w-10 h-10 bg-cyan-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                    {item.icon}
+                  </div>
                   <span className="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-xs font-semibold">{item.tag}</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-3" style={{ color: '#0D1B2A' }}>{item.title}</h3>
@@ -1046,23 +1045,23 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
           >
             {[
-              { emoji: '🚀', title: 'Lynrask', desc: '0.5s lastetid', color: 'from-green-400 to-emerald-600' },
-              { emoji: '🔒', title: 'Sikker', desc: 'SSL inkludert', color: 'from-cyan-400 to-blue-600' },
-              { emoji: '📱', title: 'Mobil-first', desc: '100% responsiv', color: 'from-purple-400 to-pink-600' },
-              { emoji: '⚡', title: 'SEO-optimert', desc: 'Klar for Google', color: 'from-yellow-400 to-orange-600' }
+              { icon: <Zap size={24} color="#0891B2" />, title: 'Lynrask', desc: '0.5s lastetid' },
+              { icon: <Shield size={24} color="#0891B2" />, title: 'Sikker', desc: 'SSL inkludert' },
+              { icon: <Smartphone size={24} color="#0891B2" />, title: 'Mobil-first', desc: '100% responsiv' },
+              { icon: <TrendingUp size={24} color="#0891B2" />, title: 'SEO-optimert', desc: 'Klar for Google' }
             ].map((item, i) => (
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                whileHover={{ y: -10, scale: 1.05 }}
+                whileHover={{ y: -6, scale: 1.05 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
                 <motion.div
-                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  whileHover={{ scale: 1.1 }}
                   transition={{ type: 'spring', stiffness: 400 }}
-                  className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg`}
+                  className="w-16 h-16 bg-cyan-50 border border-cyan-100 rounded-2xl flex items-center justify-center mx-auto mb-3"
                 >
-                  <span className="text-3xl">{item.emoji}</span>
+                  {item.icon}
                 </motion.div>
                 <div className="font-bold" style={{ color: '#0D1B2A' }}>{item.title}</div>
                 <div className="text-sm" style={{ color: '#4A5568' }}>{item.desc}</div>
@@ -1224,19 +1223,6 @@ export default function Home() {
                 alt="Behandlingsrom"
                 className="rounded-2xl shadow-lg"
               />
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-                className="absolute -bottom-6 -right-6 border p-6 rounded-xl shadow-lg"
-                style={{ backgroundColor: '#FFFFFF', borderColor: '#DDE4ED' }}
-              >
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-cyan-600">100%</div>
-                  <div className="text-sm" style={{ color: '#1A1A2E' }}>Anbefaler oss</div>
-                </div>
-              </motion.div>
             </motion.div>
 
             <motion.div
