@@ -767,7 +767,7 @@ export default function Home() {
                 >
                   {/* Bilde – 40% */}
                   <div style={{ height: '40%' }} className="overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="" className="w-full h-full object-cover" />
+                    <img src="/images/demo-klinikk.jpg" alt="" className="w-full h-full object-cover" />
                     {/* Nav-bar overlay */}
                     <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-4 py-2.5 bg-slate-900/80 backdrop-blur-sm">
                       <span className="text-white text-xs font-bold">Helse Klinikk</span>
@@ -815,7 +815,7 @@ export default function Home() {
                 >
                   {/* Bilde – 40% */}
                   <div style={{ height: '40%' }} className="overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="" className="w-full h-full object-cover" />
+                    <img src="/images/demo-fysioterapi.jpg" alt="" className="w-full h-full object-cover" />
                     <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-4 py-2.5" style={{ background: 'rgba(45,155,111,0.85)', backdropFilter: 'blur(4px)' }}>
                       <span className="text-white text-xs font-bold">FysioSenteret</span>
                       <div className="flex gap-3 text-white/80 text-xs">
@@ -917,7 +917,7 @@ export default function Home() {
               whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(6, 182, 212, 0.4)' }}
               whileTap={{ scale: 0.95 }}
               href="#kontakt"
-              className="inline-block text-white px-8 py-4 rounded-lg text-lg font-semibold transition shadow-lg"
+              className="inline-block text-white px-6 py-3 rounded-lg font-semibold transition shadow-lg text-sm"
               style={{
                 background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06b6d4 100%)'
               }}
@@ -929,7 +929,7 @@ export default function Home() {
       </section>
 
       {/* Case Study */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#F7F9FC' }}>
+      <section className="pt-16 pb-16 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#F7F9FC' }}>
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
