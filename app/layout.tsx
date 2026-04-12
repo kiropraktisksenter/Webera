@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from 'next/font/google';
 import { Analytics } from "@vercel/analytics/next";
 import MessengerChat from '@/components/MessengerChat';
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: "Nettsider for helseklinikker | Webera",
@@ -65,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="no">
-      <body className={`${inter.className} antialiased`}>
+      <body className="antialiased">
         {children}
         <Analytics />
         <MessengerChat />
