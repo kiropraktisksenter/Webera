@@ -2,337 +2,335 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function PsykologDemo() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: 'easeOut' }
-  };
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.12
-      }
-    }
-  };
-
-  const scaleOnHover = {
-    scale: 1.05,
-    transition: { type: 'spring' as const, stiffness: 300 }
-  };
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const accent = '#6B5EA8';
-  const accentHover = '#5849A0';
   const accentLight = '#F0EEF8';
 
+  const faqs = [
+    {
+      q: 'Trenger jeg henvisning fra lege?',
+      a: 'Nei, du kan ta direkte kontakt med oss uten henvisning. For å få refusjon fra Helfo trenger du imidlertid en henvisning fra fastlegen din. Vi kan hjelpe deg avklare hva som gjelder for deg.'
+    },
+    {
+      q: 'Hva skjer i den første samtalen?',
+      a: 'Første samtale er en kartleggingssamtale. Vi bruker tid på å forstå hva du sliter med, hva du ønsker å få ut av samtalene, og hva som har skjedd frem til nå. Det er ingen krav om å fortelle alt på en gang.'
+    },
+    {
+      q: 'Hvor lenge varer et behandlingsforløp?',
+      a: 'Det varierer fra person til person. Noen opplever stor bedring etter 6–8 samtaler, andre har nytte av lengre forløp. Vi evaluerer underveis og tar det i et tempo som passer deg.'
+    },
+    {
+      q: 'Kan jeg snakke med deg online?',
+      a: 'Ja, vi tilbyr videokonsultasjoner via sikker plattform. Mange setter pris på fleksibiliteten dette gir, særlig de første gangene.'
+    },
+    {
+      q: 'Hva med taushetsplikt?',
+      a: 'Alt du deler i samtalene er strengt konfidensielt og regulert av helsepersonelloven. Vi deler ingenting med andre uten ditt eksplisitte samtykke.'
+    },
+  ];
+
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#FAF9FD' }}>
-      {/* Navigation */}
+    <div className="min-h-screen bg-white">
+      {/* Navigation – minimal, clean */}
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="sticky top-0 z-50 shadow-lg"
-        style={{ backgroundColor: '#1A1530' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="sticky top-0 z-50 bg-white"
+        style={{ borderBottom: '1px solid #EDE9F6' }}
       >
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/eksempler/psykolog" className="text-2xl font-bold text-white hover:text-purple-300 transition-colors" style={{ fontFamily: 'Georgia, serif' }}>
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex justify-between items-center h-16">
+            <Link href="/eksempler/psykolog" className="text-lg font-semibold" style={{ color: '#1A1530', fontFamily: 'Georgia, serif' }}>
               Psykologsenteret
             </Link>
 
-            {/* Desktop menu */}
             <div className="hidden md:flex items-center gap-8">
-              {['Hjem', 'Tjenester', 'Priser', 'Om oss'].map((item) => (
-                <motion.div key={item} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href={`/eksempler/psykolog${item === 'Hjem' ? '' : `/${item.toLowerCase().replace(' ', '-')}`}`}
-                    className="text-purple-200 hover:text-white transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div whileHover={scaleOnHover} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href="/eksempler/psykolog/kontakt"
-                  className="px-6 py-2 rounded-full font-semibold text-white transition-colors shadow-lg"
-                  style={{ backgroundColor: accent }}
-                >
-                  Book samtale
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* Mobile menu button */}
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 rounded text-white transition-colors"
-              style={{ backgroundColor: menuOpen ? '#2A2045' : 'transparent' }}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </motion.button>
-          </div>
-
-          {/* Mobile menu */}
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden pb-4 space-y-2"
-            >
-              {['Hjem', 'Tjenester', 'Priser', 'Om oss', 'Kontakt'].map((item) => (
-                <Link
-                  key={item}
-                  href={`/eksempler/psykolog${item === 'Hjem' ? '' : `/${item.toLowerCase()}`}`}
-                  className="block py-2 text-purple-200 hover:text-white transition-colors"
-                >
+              {['Tjenester', 'Om oss', 'Priser', 'Kontakt'].map((item) => (
+                <Link key={item} href="#" className="text-sm transition-colors" style={{ color: '#6B5EA8' }}>
                   {item}
                 </Link>
               ))}
-            </motion.div>
+              <Link
+                href="#kontakt"
+                className="px-5 py-2 rounded-full text-sm font-semibold text-white transition-all hover:opacity-90"
+                style={{ backgroundColor: accent }}
+              >
+                Book samtale
+              </Link>
+            </div>
+
+            <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2" style={{ color: accent }}>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+              </svg>
+            </button>
+          </div>
+          {menuOpen && (
+            <div className="md:hidden pb-4 border-t pt-3 space-y-2" style={{ borderColor: '#EDE9F6' }}>
+              {['Tjenester', 'Om oss', 'Priser', 'Kontakt'].map((item) => (
+                <Link key={item} href="#" className="block py-2 text-sm" style={{ color: accent }}>{item}</Link>
+              ))}
+            </div>
           )}
         </div>
       </motion.nav>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1A1530 0%, #2A2045 50%, #1A1530 100%)' }}>
-        <div className="absolute inset-0 opacity-8" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80')", backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.06 }}></div>
-
-        <div className="max-w-6xl mx-auto px-6 py-24 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Hero – spacious, text-first, calm */}
+      <section className="pt-20 pb-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-5 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="md:col-span-3"
             >
-              <motion.span
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="inline-block px-4 py-1 rounded-full text-sm font-semibold mb-6"
-                style={{ backgroundColor: 'rgba(107,94,168,0.3)', color: '#C4BAE8' }}
-              >
-                Autorisert psykolog
-              </motion.span>
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: 'Georgia, serif' }}>
-                Et trygt rom for deg
+              <p className="text-xs font-semibold uppercase tracking-widest mb-6" style={{ color: accent }}>Autorisert psykolog · Oslo sentrum</p>
+              <h1 className="font-bold mb-6 leading-tight" style={{ color: '#1A1530', fontFamily: 'Georgia, serif', fontSize: 'clamp(2.4rem, 5vw, 3.8rem)', lineHeight: '1.15' }}>
+                Det er lov å<br />be om hjelp.
               </h1>
-              <p className="text-xl mb-8 leading-relaxed" style={{ color: '#C4BAE8' }}>
-                Profesjonell hjelp for angst, depresjon og livets utfordringer. Vi møter deg der du er – uten press og uten fordommer.
+              <p className="text-lg leading-relaxed mb-4" style={{ color: '#4A4060', maxWidth: '480px' }}>
+                Vi tilbyr et trygt og fortrolig rom for deg som sliter med angst, depresjon, relasjonsproblemer eller bare trenger noen å snakke med.
               </p>
-              <motion.div
-                className="flex flex-wrap gap-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-              >
-                <motion.div whileHover={scaleOnHover} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/eksempler/psykolog/kontakt"
-                    className="px-8 py-4 rounded-full font-semibold text-white shadow-lg transition-colors"
-                    style={{ backgroundColor: accent }}
-                  >
-                    Book samtale
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={scaleOnHover} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href="/eksempler/psykolog/tjenester"
-                    className="px-8 py-4 rounded-full font-semibold border-2 text-white transition-colors"
-                    style={{ borderColor: accent }}
-                  >
-                    Les mer
-                  </Link>
-                </motion.div>
-              </motion.div>
+              <p className="text-sm mb-10" style={{ color: '#9589C8' }}>Ingen venteliste · Online eller fysisk · Kort oppsummering etter hver time</p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="#kontakt"
+                  className="px-7 py-3.5 rounded-full font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105"
+                  style={{ backgroundColor: accent }}
+                >
+                  Book din første samtale
+                </Link>
+                <Link
+                  href="#om"
+                  className="px-7 py-3.5 rounded-full font-semibold transition-all hover:bg-purple-50"
+                  style={{ color: accent, border: `1.5px solid ${accent}` }}
+                >
+                  Bli kjent med oss
+                </Link>
+              </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-              className="relative"
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.3 }}
+              className="md:col-span-2 relative"
             >
-              <motion.img
-                whileHover={{ scale: 1.03 }}
-                transition={{ type: 'spring' as const, stiffness: 300 }}
-                src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&q=80"
-                alt="Rolig terapirom"
-                className="rounded-3xl shadow-2xl w-full object-cover"
-                style={{ maxHeight: '420px' }}
-              />
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.7, type: 'spring' as const, stiffness: 200 }}
-                className="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ backgroundColor: accentLight }}>
-                    <span className="text-2xl">🌿</span>
-                  </div>
+              <div className="rounded-3xl overflow-hidden" style={{ boxShadow: '0 25px 60px rgba(107,94,168,0.15)' }}>
+                <img
+                  src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=500&q=80"
+                  alt="Rolig terapirom"
+                  className="w-full object-cover"
+                  style={{ height: '420px' }}
+                />
+              </div>
+              <div className="absolute -bottom-5 -right-5 bg-white rounded-2xl p-4 shadow-xl" style={{ border: '1px solid #EDE9F6' }}>
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">🌿</span>
                   <div>
-                    <div className="text-lg font-bold" style={{ color: '#1A1530' }}>Trygt & fortrolig</div>
-                    <div className="text-sm text-gray-500">Taushetsplikt gjelder alltid</div>
+                    <div className="text-xs font-semibold" style={{ color: '#1A1530' }}>Taushetsplikt</div>
+                    <div className="text-xs" style={{ color: '#9589C8' }}>Alltid – uten unntak</div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: accent }}>Våre tilbud</p>
-            <h2 className="text-4xl font-bold mb-4" style={{ color: '#1A1530', fontFamily: 'Georgia, serif' }}>Hva vi kan hjelpe med</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Vi tilbyr evidensbasert behandling tilpasset deg og dine utfordringer</p>
-          </motion.div>
+      {/* Soft divider */}
+      <div style={{ backgroundColor: accentLight, height: '1px', maxWidth: '100%' }} />
 
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-4 gap-6"
-          >
+      {/* Approaches / what we help with */}
+      <section className="py-24 px-6" style={{ backgroundColor: accentLight }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="max-w-xl mb-14">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: accent }}>Behandlingstilbud</p>
+            <h2 className="text-3xl font-bold mb-4" style={{ color: '#1A1530', fontFamily: 'Georgia, serif' }}>Hva kan vi hjelpe deg med?</h2>
+            <p className="text-gray-500">Vi bruker evidensbaserte metoder tilpasset deg – ikke én tilnærming som passer alle.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
             {[
-              { icon: '🧠', title: 'Kognitiv terapi', desc: 'Endre tankemønstre som holder deg tilbake' },
-              { icon: '💭', title: 'Angst og stress', desc: 'Verktøy for å håndtere hverdagens press' },
-              { icon: '🌅', title: 'Depresjon', desc: 'Finn veien tilbake til glede og mening' },
-              { icon: '👥', title: 'Parterapi', desc: 'Bedre kommunikasjon og nærhet i forholdet' },
-            ].map((service, i) => (
+              { title: 'Angst og bekymring', desc: 'Lær å forstå og håndtere angst – fra sosial angst og panikk til generalisert angstlidelse.', icon: '🌊' },
+              { title: 'Depresjon og nedstemthet', desc: 'Finn tilbake til glede, mening og motivasjon med kognitiv atferdsterapi og aktiveringsteknikker.', icon: '🌅' },
+              { title: 'Stress og utbrenthet', desc: 'Sett grenser, gjenvinne energi og lær langsiktige strategier for å forebygge utbrenthet.', icon: '🌿' },
+              { title: 'Relasjoner og samlivsbrudd', desc: 'Bearbeide brudd, forbedre kommunikasjon, eller forstå mønstre som gjentar seg i relasjoner.', icon: '🤝' },
+              { title: 'Selvfølelse og identitet', desc: 'Jobb med det indre bildet du har av deg selv – med mildhet og uten krav om perfeksjon.', icon: '🪞' },
+              { title: 'Sorg og livsendringer', desc: 'Hjelp til å bearbeide tap, store livsendringer, og finne veien videre i eget tempo.', icon: '🕊️' },
+            ].map((item, i) => (
               <motion.div
                 key={i}
-                variants={fadeInUp}
-                whileHover={{ scale: 1.04, boxShadow: '0 20px 40px rgba(107,94,168,0.12)' }}
-                transition={{ type: 'spring' as const, stiffness: 300 }}
-                className="p-8 rounded-2xl border-t-4 cursor-pointer"
-                style={{ backgroundColor: '#FAF9FD', borderTopColor: accent }}
-              >
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-lg font-bold mb-2" style={{ color: '#1A1530' }}>{service.title}</h3>
-                <p className="text-gray-600 text-sm">{service.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-center mt-12"
-          >
-            <motion.div whileHover={scaleOnHover} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/eksempler/psykolog/tjenester"
-                className="inline-block px-8 py-4 rounded-full font-semibold text-white shadow-lg"
-                style={{ backgroundColor: accent }}
-              >
-                Se alle tjenester →
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Calm Quote Section */}
-      <section className="py-20 px-6" style={{ backgroundColor: '#F0EEF8' }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="mb-8 opacity-40" style={{ fontSize: '5rem', lineHeight: 1, color: accent, fontFamily: 'Georgia, serif' }}>&ldquo;</div>
-            <p className="text-2xl font-medium leading-relaxed mb-8" style={{ color: '#2A2045', fontFamily: 'Georgia, serif' }}>
-              Det krever mot å søke hjelp. Vi er her for å gjøre det steget litt enklere.
-            </p>
-            <div className="w-16 h-1 mx-auto rounded" style={{ backgroundColor: accent }}></div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Trust Stats */}
-      <section className="py-20 px-6 relative overflow-hidden" style={{ backgroundColor: '#1A1530' }}>
-        <div className="max-w-6xl mx-auto relative z-10">
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-12 text-center"
-          >
-            {[
-              { number: '12+', text: 'År med klinisk erfaring' },
-              { number: '800+', text: 'Pasienter hjulpet' },
-              { number: '3 dager', text: 'Gjennomsnittlig ventetid' }
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                variants={fadeInUp}
-                whileHover={{ scale: 1.1, y: -10 }}
-                transition={{ type: 'spring' as const, stiffness: 300 }}
-              >
-                <div className="text-5xl font-bold mb-2" style={{ color: '#C4BAE8' }}>{stat.number}</div>
-                <div style={{ color: '#9589C8' }}>{stat.text}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: accent }}>Din prosess</p>
-            <h2 className="text-4xl font-bold" style={{ color: '#1A1530', fontFamily: 'Georgia, serif' }}>Slik starter vi</h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { step: '01', title: 'Ta kontakt', desc: 'Send oss en melding eller ring – helt uforpliktende og konfidensielt.' },
-              { step: '02', title: 'Første samtale', desc: 'Vi kartlegger situasjonen din og hva du ønsker å jobbe med.' },
-              { step: '03', title: 'Tilpasset forløp', desc: 'Et behandlingsforløp skreddersydd til deg, ditt tempo, dine mål.' },
-            ].map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.6 }}
-                className="relative p-8 rounded-2xl"
-                style={{ backgroundColor: '#FAF9FD' }}
+                transition={{ delay: i * 0.08 }}
+                className="flex gap-5 bg-white rounded-2xl p-6"
+                style={{ border: '1px solid #EDE9F6' }}
               >
-                <div className="text-6xl font-bold mb-4 opacity-15" style={{ color: accent }}>{step.step}</div>
-                <h3 className="text-xl font-bold mb-3" style={{ color: '#1A1530' }}>{step.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{step.desc}</p>
+                <div className="text-2xl flex-shrink-0 mt-0.5">{item.icon}</div>
+                <div>
+                  <h3 className="font-semibold mb-1.5" style={{ color: '#1A1530' }}>{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-gray-500">{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About / Meet the psychologist */}
+      <section id="om" className="py-24 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <div className="relative">
+                <div className="rounded-3xl overflow-hidden h-96">
+                  <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80"
+                    alt="Psykolog Sara Moen"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl p-5 shadow-xl" style={{ border: '1px solid #EDE9F6' }}>
+                  <div className="text-sm font-bold" style={{ color: '#1A1530' }}>Sara Moen</div>
+                  <div className="text-xs mt-0.5" style={{ color: accent }}>Cand. psychol. · Autorisert</div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: accent }}>Om psykologen</p>
+              <h2 className="text-3xl font-bold mb-6" style={{ color: '#1A1530', fontFamily: 'Georgia, serif' }}>Hei, jeg er Sara.</h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Jeg er autorisert psykolog med spesialisering i kognitiv atferdsterapi (KAT) og aksept- og forpliktelsesterapi (ACT). Jeg har jobbet med angst, depresjon og relasjonsproblemer siden 2013.
+              </p>
+              <p className="text-gray-600 leading-relaxed mb-8">
+                Jeg tror på en varm, direkte og løsningsorientert tilnærming – der vi jobber på lag mot målene dine, i et tempo som passer deg.
+              </p>
+              <div className="space-y-3">
+                {[
+                  'Cand. psychol., Universitetet i Oslo',
+                  'Spesialist i klinisk psykologi (under godkjenning)',
+                  'Veileder og kursleder i KAT',
+                ].map((cred, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: accent }} />
+                    <span className="text-sm text-gray-600">{cred}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* How first session works */}
+      <section className="py-24 px-6" style={{ backgroundColor: '#FAF9FD' }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: accent }}>Første gang</p>
+            <h2 className="text-3xl font-bold" style={{ color: '#1A1530', fontFamily: 'Georgia, serif' }}>Hva skjer når du tar kontakt?</h2>
+          </div>
+
+          <div className="relative">
+            {/* Connecting line */}
+            <div className="hidden md:block absolute top-8 left-0 right-0 h-px" style={{ backgroundColor: '#EDE9F6', margin: '0 12.5%' }} />
+
+            <div className="grid md:grid-cols-4 gap-8">
+              {[
+                { n: '1', title: 'Du sender en melding', desc: 'Kort og uforpliktende. Du trenger ikke fortelle alt – bare at du ønsker en prat.' },
+                { n: '2', title: 'Vi ringer deg', desc: 'Innen 1–2 dager tar vi kontakt for å avtale en tid og svare på spørsmål.' },
+                { n: '3', title: 'Første samtale', desc: '50 minutter der vi blir kjent og kartlegger hva du ønsker hjelp med.' },
+                { n: '4', title: 'Veien videre', desc: 'Sammen lager vi en plan – du bestemmer tempo, form og målene.' },
+              ].map((step, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="text-center relative"
+                >
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center text-lg font-bold text-white mx-auto mb-5 relative z-10" style={{ backgroundColor: accent }}>
+                    {step.n}
+                  </div>
+                  <h3 className="font-semibold mb-2 text-sm" style={{ color: '#1A1530' }}>{step.title}</h3>
+                  <p className="text-xs text-gray-500 leading-relaxed">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <div className="mb-12">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: accent }}>Vanlige spørsmål</p>
+            <h2 className="text-3xl font-bold" style={{ color: '#1A1530', fontFamily: 'Georgia, serif' }}>Du lurer kanskje på...</h2>
+          </div>
+
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="rounded-2xl overflow-hidden"
+                style={{ border: '1px solid #EDE9F6' }}
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex justify-between items-center px-6 py-5 text-left transition-colors hover:bg-purple-50"
+                >
+                  <span className="font-medium text-sm pr-4" style={{ color: '#1A1530' }}>{faq.q}</span>
+                  <motion.div
+                    animate={{ rotate: openFaq === i ? 45 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded-full"
+                    style={{ backgroundColor: openFaq === i ? accent : accentLight, color: openFaq === i ? 'white' : accent }}
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
+                    </svg>
+                  </motion.div>
+                </button>
+                <AnimatePresence>
+                  {openFaq === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      <div className="px-6 pb-5">
+                        <p className="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>
@@ -340,71 +338,36 @@ export default function PsykologDemo() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6" style={{ backgroundColor: '#FAF9FD' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto p-12 rounded-3xl text-center shadow-2xl"
-          style={{ background: 'linear-gradient(135deg, #1A1530, #2A2045)' }}
-        >
-          <h2 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Georgia, serif' }}>Ta det første steget</h2>
-          <p className="text-xl mb-8" style={{ color: '#C4BAE8' }}>Book en uforpliktende samtale – vi er her for deg</p>
-          <motion.div whileHover={scaleOnHover} whileTap={{ scale: 0.95 }}>
-            <Link
-              href="/eksempler/psykolog/kontakt"
-              className="inline-block px-10 py-4 rounded-full font-semibold text-white text-lg shadow-lg"
-              style={{ backgroundColor: accent }}
-            >
-              Book samtale nå
-            </Link>
-          </motion.div>
-        </motion.div>
+      <section id="kontakt" className="py-24 px-6" style={{ backgroundColor: accentLight }}>
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: accent }}>Ta det første steget</p>
+          <h2 className="text-3xl font-bold mb-4" style={{ color: '#1A1530', fontFamily: 'Georgia, serif' }}>Du trenger ikke ha det veldig ille for å fortjene hjelp.</h2>
+          <p className="mb-10 leading-relaxed" style={{ color: '#6B5EA8' }}>
+            Det holder å kjenne at noe ikke stemmer – vi tar deg imot der du er.
+          </p>
+          <Link
+            href="mailto:kontakt@psykologsenteret.no"
+            className="inline-block px-10 py-4 rounded-full font-semibold text-white text-lg shadow-xl transition-all hover:scale-105 hover:shadow-2xl"
+            style={{ backgroundColor: accent }}
+          >
+            Send meg en melding →
+          </Link>
+          <p className="text-xs mt-6" style={{ color: '#9589C8' }}>Svarer som regel innen én virkedag. Alltid konfidensielt.</p>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="text-white py-12 px-6" style={{ backgroundColor: '#0D0B18' }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: 'Georgia, serif' }}>Psykologsenteret</h3>
-              <p style={{ color: '#6B5EA8' }}>Et trygt rom for deg og dine tanker</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Tjenester</h4>
-              <div className="space-y-2" style={{ color: '#7B6EBA' }}>
-                <motion.div whileHover={{ x: 5 }} className="hover:text-white transition-colors cursor-pointer">Kognitiv terapi</motion.div>
-                <motion.div whileHover={{ x: 5 }} className="hover:text-white transition-colors cursor-pointer">Angst og stress</motion.div>
-                <motion.div whileHover={{ x: 5 }} className="hover:text-white transition-colors cursor-pointer">Parterapi</motion.div>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Kontakt</h4>
-              <div className="space-y-2" style={{ color: '#7B6EBA' }}>
-                <div>kontakt@psykologsenteret.no</div>
-                <div>+47 234 56 789</div>
-                <div>Roligata 3, Oslo</div>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Åpningstider</h4>
-              <div className="space-y-2" style={{ color: '#7B6EBA' }}>
-                <div>Man-Fre: 09:00-17:00</div>
-                <div>Kveldstime til 20:00</div>
-                <div>Lørdag: Etter avtale</div>
-              </div>
-            </div>
+      <footer className="py-10 px-6" style={{ backgroundColor: '#1A1530' }}>
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div>
+            <div className="font-semibold text-white mb-1" style={{ fontFamily: 'Georgia, serif' }}>Psykologsenteret</div>
+            <div className="text-xs" style={{ color: '#7B6EBA' }}>Roligata 3, Oslo · kontakt@psykologsenteret.no · +47 234 56 789</div>
           </div>
-
-          <div className="border-t pt-8 text-center" style={{ borderColor: '#2A2045' }}>
-            <p className="mb-4" style={{ color: '#3D3460' }}>© 2025 Psykologsenteret. Dette er en demo-nettside.</p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-full transition-colors" style={{ backgroundColor: 'rgba(107,94,168,0.2)' }}>
-                <span style={{ color: '#9589C8' }}>Laget av</span>
-                <span className="font-bold" style={{ color: '#C4BAE8' }}>Webera</span>
-              </Link>
-            </motion.div>
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-xs" style={{ color: '#3D3460' }}>Dette er en demo-nettside.</p>
+            <Link href="/" className="inline-flex items-center gap-2 text-sm px-5 py-2 rounded-full transition-colors" style={{ backgroundColor: 'rgba(107,94,168,0.2)', color: '#C4BAE8' }}>
+              Laget av <span className="font-bold ml-1">Webera</span>
+            </Link>
           </div>
         </div>
       </footer>

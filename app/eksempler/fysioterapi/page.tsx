@@ -2,396 +2,388 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FysioterapiDemo() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: 'easeOut' }
-  };
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const scaleOnHover = {
-    scale: 1.05,
-    transition: { type: 'spring' as const, stiffness: 300 }
-  };
+  const [activeTab, setActiveTab] = useState(0);
 
   const accent = '#2D9B6F';
-  const accentHover = '#247D59';
-  const accentLight = '#EAF7F1';
+
+  const services = [
+    {
+      tab: 'Sportsrehabilitering',
+      heading: 'Tilbake på banen – raskere',
+      body: 'Enten det er en strekk, senebetennelse eller operasjon – vi setter opp et individuelt rehabiliteringsforløp som tar deg fra skadeleie til full aktivitet på kortest mulig tid.',
+      points: ['Funksjonell testing ved oppstart', 'Progressivt treningsprogram', 'Tett samarbeid med trener og lege', 'Klarsignal til trening'],
+      img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80'
+    },
+    {
+      tab: 'Rygg og nakke',
+      heading: 'Smertefri igjen i hverdagen',
+      body: 'Langvarige nakke- og ryggsmerter er blant de vanligste plagene vi behandler. Vi kombinerer manuelle teknikker med målrettet trening for varig bedring.',
+      points: ['Grundig bevegelsesanalyse', 'Manuelle behandlingsteknikker', 'Ergonomiveiledning', 'Hjemmeøvelser du faktisk gjør'],
+      img: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=700&q=80'
+    },
+    {
+      tab: 'Styrke og bevegelse',
+      heading: 'Bygg en kropp som holder',
+      body: 'Forebygging er like viktig som behandling. Vi lager styrke- og bevegelsesprogram tilpasset din kropp, dine mål og din hverdag.',
+      points: ['Styrketesting og analyse', 'Skreddersydd treningsprogram', 'Biomekanisk veiledning', 'Digital oppfølging'],
+      img: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=700&q=80'
+    },
+  ];
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F5FAF7' }}>
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
       <motion.nav
-        initial={{ y: -100 }}
+        initial={{ y: -80 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="sticky top-0 z-50 shadow-lg"
-        style={{ backgroundColor: '#0F2418' }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className="sticky top-0 z-50"
+        style={{ backgroundColor: '#0F2418', borderBottom: '1px solid rgba(45,155,111,0.3)' }}
       >
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/eksempler/fysioterapi" className="text-2xl font-bold text-white hover:text-green-300 transition-colors">
-              Aktiv Fysioterapi
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center h-18 py-4">
+            <Link href="/eksempler/fysioterapi" className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-white text-sm" style={{ backgroundColor: accent }}>AF</div>
+              <span className="text-white font-bold text-lg">Aktiv Fysioterapi</span>
             </Link>
 
-            {/* Desktop menu */}
-            <div className="hidden md:flex items-center gap-8">
-              {['Hjem', 'Tjenester', 'Priser', 'Om oss'].map((item) => (
-                <motion.div key={item} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    href={`/eksempler/fysioterapi${item === 'Hjem' ? '' : `/${item.toLowerCase().replace(' ', '-')}`}`}
-                    className="text-green-100 hover:text-white transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div whileHover={scaleOnHover} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href="/eksempler/fysioterapi/kontakt"
-                  className="px-6 py-2 rounded-full font-semibold text-white transition-colors shadow-lg"
-                  style={{ backgroundColor: accent }}
-                  onMouseEnter={e => (e.currentTarget.style.backgroundColor = accentHover)}
-                  onMouseLeave={e => (e.currentTarget.style.backgroundColor = accent)}
-                >
-                  Bestill time
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* Mobile menu button */}
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 rounded text-white transition-colors"
-              style={{ backgroundColor: menuOpen ? '#1a3a26' : 'transparent' }}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </motion.button>
-          </div>
-
-          {/* Mobile menu */}
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden pb-4 space-y-2"
-            >
-              {['Hjem', 'Tjenester', 'Priser', 'Om oss', 'Kontakt'].map((item) => (
-                <Link
-                  key={item}
-                  href={`/eksempler/fysioterapi${item === 'Hjem' ? '' : `/${item.toLowerCase()}`}`}
-                  className="block py-2 text-green-100 hover:text-white transition-colors"
-                >
+            <div className="hidden md:flex items-center gap-6">
+              {['Tjenester', 'Priser', 'Om oss', 'Blogg'].map((item) => (
+                <Link key={item} href="#" className="text-sm transition-colors" style={{ color: '#A7C9B5' }}>
                   {item}
                 </Link>
               ))}
-            </motion.div>
+              <div className="w-px h-4 bg-white/20" />
+              <Link
+                href="#kontakt"
+                className="px-5 py-2 rounded-lg text-sm font-semibold text-white transition-colors"
+                style={{ backgroundColor: accent }}
+              >
+                Book time
+              </Link>
+            </div>
+
+            <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-2 text-white">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+              </svg>
+            </button>
+          </div>
+          {menuOpen && (
+            <div className="md:hidden pb-4 space-y-1 border-t border-white/10 pt-3">
+              {['Tjenester', 'Priser', 'Om oss', 'Blogg', 'Book time'].map((item) => (
+                <Link key={item} href="#" className="block py-2 text-sm" style={{ color: '#A7C9B5' }}>{item}</Link>
+              ))}
+            </div>
           )}
         </div>
       </motion.nav>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0F2418 0%, #1A3D28 50%, #0F2418 100%)' }}>
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1400&q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+      {/* Hero – full-bleed image with overlay */}
+      <section className="relative h-screen min-h-[600px] max-h-[800px] flex items-end overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1400&q=80"
+            alt="Fysioterapeut i aksjon"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(15,36,24,0.95) 0%, rgba(15,36,24,0.6) 50%, rgba(15,36,24,0.2) 100%)' }} />
+        </div>
 
-        <div className="max-w-6xl mx-auto px-6 py-24 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-            >
-              <motion.span
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="inline-block px-4 py-1 rounded-full text-sm font-semibold mb-6"
-                style={{ backgroundColor: accentLight, color: accent }}
-              >
-                Autorisert fysioterapeut
-              </motion.span>
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                Kom deg raskere tilbake i bevegelse
-              </h1>
-              <p className="text-xl mb-8" style={{ color: '#A7C9B5' }}>
-                Spesialisert fysioterapi for idrettsskader, rygg/nakke og rehabilitering. Vi hjelper deg tilbake til det du elsker.
-              </p>
+        <div className="relative z-10 w-full pb-16 px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="max-w-3xl">
               <motion.div
-                className="flex flex-wrap gap-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
               >
-                <motion.div whileHover={scaleOnHover} whileTap={{ scale: 0.95 }}>
+                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest mb-6 px-3 py-1.5 rounded-full" style={{ backgroundColor: 'rgba(45,155,111,0.25)', color: '#7DDAAD' }}>
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  Ledige timer denne uken
+                </span>
+                <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-none tracking-tight">
+                  Fra skade til<br /><span style={{ color: '#7DDAAD' }}>full styrke.</span>
+                </h1>
+                <p className="text-lg md:text-xl mb-10 max-w-xl leading-relaxed" style={{ color: '#A7C9B5' }}>
+                  Spesialisert fysioterapi i Oslo sentrum. Vi behandler idrettsskader, rygg/nakke og setter opp treningsprogram som faktisk virker.
+                </p>
+                <div className="flex flex-wrap gap-4">
                   <Link
-                    href="/eksempler/fysioterapi/kontakt"
-                    className="px-8 py-4 rounded-full font-semibold text-white shadow-lg transition-colors"
+                    href="#kontakt"
+                    className="px-8 py-4 rounded-xl font-bold text-white text-lg shadow-xl transition-all hover:scale-105"
                     style={{ backgroundColor: accent }}
                   >
-                    Bestill time
+                    Bestill time →
                   </Link>
-                </motion.div>
-                <motion.div whileHover={scaleOnHover} whileTap={{ scale: 0.95 }}>
                   <Link
-                    href="/eksempler/fysioterapi/tjenester"
-                    className="px-8 py-4 rounded-full font-semibold border-2 transition-colors"
-                    style={{ color: 'white', borderColor: '#2D9B6F' }}
+                    href="#tjenester"
+                    className="px-8 py-4 rounded-xl font-semibold text-white text-lg border transition-all hover:bg-white/10"
+                    style={{ borderColor: 'rgba(255,255,255,0.3)' }}
                   >
-                    Se tjenester
+                    Se hva vi hjelper med
                   </Link>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-              className="relative"
-            >
-              <motion.img
-                whileHover={{ scale: 1.03 }}
-                transition={{ type: 'spring' as const, stiffness: 300 }}
-                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80"
-                alt="Fysioterapi behandling"
-                className="rounded-3xl shadow-2xl w-full object-cover"
-                style={{ maxHeight: '420px' }}
-              />
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.7, type: 'spring' as const, stiffness: 200 }}
-                className="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ backgroundColor: accentLight }}>
-                    <span className="text-2xl">⭐</span>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold" style={{ color: '#0F2418' }}>4.8/5</div>
-                    <div className="text-sm text-gray-500">Fra 350+ pasienter</div>
-                  </div>
                 </div>
               </motion.div>
+            </div>
+
+            {/* Quick stats bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-wrap gap-8 mt-14 pt-10 border-t border-white/15"
+            >
+              {[
+                { val: '10+ år', label: 'klinisk erfaring' },
+                { val: '1500+', label: 'behandlede pasienter' },
+                { val: '2 dager', label: 'gjennomsnittlig ventetid' },
+                { val: 'Refusjon', label: 'fra Helfo/forsikring' },
+              ].map((s, i) => (
+                <div key={i}>
+                  <div className="text-xl font-bold text-white">{s.val}</div>
+                  <div className="text-xs mt-0.5" style={{ color: '#7DDAAD' }}>{s.label}</div>
+                </div>
+              ))}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: accent }}>Spesialiserte tjenester</p>
-            <h2 className="text-4xl font-bold mb-4" style={{ color: '#0F2418' }}>Hva vi behandler</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Fra akutte skader til langsiktig rehabilitering – vi har kompetansen du trenger</p>
-          </motion.div>
+      {/* Refusjon strip */}
+      <div style={{ backgroundColor: accent }}>
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3 text-white">
+            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="font-semibold">Refusjon fra Helfo:</span>
+            <span className="font-normal opacity-90">Du kan ha rett på delvis refusjon uten henvisning. Vi hjelper deg sjekke.</span>
+          </div>
+          <Link href="#kontakt" className="text-sm font-bold text-white underline underline-offset-2 whitespace-nowrap">
+            Spør oss →
+          </Link>
+        </div>
+      </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-4 gap-6"
-          >
-            {[
-              { icon: '🏃', title: 'Sportsrehabilitering', desc: 'Rask tilbakekomst etter idrettsskader' },
-              { icon: '🧘', title: 'Rygg og nakke', desc: 'Effektiv behandling av smerter og stivhet' },
-              { icon: '💪', title: 'Styrke og bevegelse', desc: 'Målrettet treningsprogram for deg' },
-              { icon: '🩹', title: 'Skadeforebygging', desc: 'Analyser og forebygg skader proaktivt' },
-            ].map((service, i) => (
-              <motion.div
+      {/* Services – tabbed */}
+      <section id="tjenester" className="py-24 px-6" style={{ backgroundColor: '#F5FAF7' }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: accent }}>Spesialområder</p>
+            <h2 className="text-4xl font-black" style={{ color: '#0F2418' }}>Hva vi er gode på</h2>
+          </div>
+
+          {/* Tab buttons */}
+          <div className="flex flex-wrap gap-2 mb-10">
+            {services.map((s, i) => (
+              <button
                 key={i}
-                variants={fadeInUp}
-                whileHover={{ scale: 1.04, boxShadow: '0 20px 40px rgba(45,155,111,0.12)' }}
-                transition={{ type: 'spring' as const, stiffness: 300 }}
-                className="p-8 rounded-2xl border-t-4 cursor-pointer"
-                style={{ backgroundColor: '#F5FAF7', borderTopColor: accent }}
+                onClick={() => setActiveTab(i)}
+                className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all"
+                style={{
+                  backgroundColor: activeTab === i ? accent : 'white',
+                  color: activeTab === i ? 'white' : '#4B7A64',
+                  border: activeTab === i ? `2px solid ${accent}` : '2px solid #D1EAE0',
+                }}
               >
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-lg font-bold mb-2" style={{ color: '#0F2418' }}>{service.title}</h3>
-                <p className="text-gray-600 text-sm">{service.desc}</p>
-              </motion.div>
+                {s.tab}
+              </button>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-center mt-12"
-          >
-            <motion.div whileHover={scaleOnHover} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/eksempler/fysioterapi/tjenester"
-                className="inline-block px-8 py-4 rounded-full font-semibold text-white shadow-lg transition-colors"
-                style={{ backgroundColor: accent }}
-              >
-                Se alle tjenester →
-              </Link>
+          {/* Tab content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="grid md:grid-cols-2 gap-8 items-center bg-white rounded-3xl overflow-hidden shadow-lg"
+            >
+              <div className="p-10">
+                <h3 className="text-2xl font-black mb-4" style={{ color: '#0F2418' }}>{services[activeTab].heading}</h3>
+                <p className="text-gray-600 leading-relaxed mb-8">{services[activeTab].body}</p>
+                <ul className="space-y-3">
+                  {services[activeTab].points.map((p, i) => (
+                    <li key={i} className="flex items-center gap-3">
+                      <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: accent }}>
+                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-sm text-gray-700">{p}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="#kontakt"
+                  className="inline-block mt-8 px-6 py-3 rounded-lg text-sm font-semibold text-white"
+                  style={{ backgroundColor: accent }}
+                >
+                  Book innen dette området
+                </Link>
+              </div>
+              <div className="h-72 md:h-full min-h-64 overflow-hidden">
+                <img
+                  src={services[activeTab].img}
+                  alt={services[activeTab].tab}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </motion.div>
-          </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
-      {/* Trust Stats */}
-      <section className="py-20 px-6 relative overflow-hidden" style={{ backgroundColor: '#0F2418' }}>
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1200&q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
-        <div className="max-w-6xl mx-auto relative z-10">
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-12 text-center"
-          >
-            {[
-              { number: '10+', text: 'År med erfaring' },
-              { number: '1500+', text: 'Behandlede pasienter' },
-              { number: '95%', text: 'Fornøyde etter første forløp' }
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                variants={fadeInUp}
-                whileHover={{ scale: 1.1, y: -10 }}
-                transition={{ type: 'spring' as const, stiffness: 300 }}
-              >
-                <div className="text-5xl font-bold mb-2" style={{ color: accent }}>{stat.number}</div>
-                <div style={{ color: '#A7C9B5' }}>{stat.text}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: accent }}>Slik jobber vi</p>
-            <h2 className="text-4xl font-bold" style={{ color: '#0F2418' }}>Din vei til bedre helse</h2>
-          </motion.div>
+      {/* Meet the team */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: accent }}>Teamet ditt</p>
+            <h2 className="text-4xl font-black" style={{ color: '#0F2418' }}>Fysioterapeutene dine</h2>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { step: '01', title: 'Kartlegging', desc: 'Vi starter med en grundig undersøkelse av din situasjon og mål.' },
-              { step: '02', title: 'Behandling', desc: 'Individuelt tilpasset behandlingsplan med moderne metoder.' },
-              { step: '03', title: 'Oppfølging', desc: 'Vi følger deg tett gjennom hele prosessen til du er tilbake.' },
-            ].map((step, i) => (
+              {
+                name: 'Marte Solberg',
+                role: 'Spesialist i sportsrehabilitering',
+                bio: 'MSc i idrettsfysioterapi fra NIH. Har jobbet med toppidrettsutøvere i over 8 år.',
+                img: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=400&q=80',
+                tags: ['Idrettsskader', 'Løp', 'Skulder']
+              },
+              {
+                name: 'Jonas Vik',
+                role: 'Muskel- og skjelettspesialist',
+                bio: 'Autorisert fysioterapeut med videreutdanning i manuell terapi og tørrnåling.',
+                img: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80',
+                tags: ['Rygg/nakke', 'Manuell terapi', 'Hodepine']
+              },
+              {
+                name: 'Linn Haugen',
+                role: 'Spesialist i bevegelsestrening',
+                bio: 'Klinisk spesialist med særlig interesse for forebygging og styrketrening.',
+                img: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80',
+                tags: ['Styrke', 'Forebygging', 'Eldre']
+              },
+            ].map((person, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.6 }}
-                className="relative p-8 rounded-2xl"
-                style={{ backgroundColor: '#F5FAF7' }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="group rounded-2xl overflow-hidden border"
+                style={{ borderColor: '#E2F0EA' }}
               >
-                <div className="text-6xl font-bold mb-4 opacity-20" style={{ color: accent }}>{step.step}</div>
-                <h3 className="text-xl font-bold mb-3" style={{ color: '#0F2418' }}>{step.title}</h3>
-                <p className="text-gray-600">{step.desc}</p>
+                <div className="overflow-hidden h-56">
+                  <img
+                    src={person.img}
+                    alt={person.name}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-bold text-lg" style={{ color: '#0F2418' }}>{person.name}</h3>
+                  <p className="text-sm mb-3" style={{ color: accent }}>{person.role}</p>
+                  <p className="text-sm text-gray-500 mb-4 leading-relaxed">{person.bio}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {person.tags.map((tag, j) => (
+                      <span key={j} className="text-xs px-2.5 py-1 rounded-full" style={{ backgroundColor: '#EAF7F1', color: '#2D7A58' }}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-6" style={{ backgroundColor: '#F5FAF7' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto p-12 rounded-3xl text-center shadow-2xl"
-          style={{ background: `linear-gradient(135deg, #0F2418, #1A3D28)` }}
-        >
-          <h2 className="text-3xl font-bold text-white mb-4">Klar for å komme i gang?</h2>
-          <p className="text-xl mb-8" style={{ color: '#A7C9B5' }}>Bestill din første konsultasjon i dag – vi tar deg imot raskt</p>
-          <motion.div whileHover={scaleOnHover} whileTap={{ scale: 0.95 }}>
-            <Link
-              href="/eksempler/fysioterapi/kontakt"
-              className="inline-block px-10 py-4 rounded-full font-semibold text-white text-lg shadow-lg transition-colors"
+      {/* Testimonials */}
+      <section className="py-20 px-6" style={{ backgroundColor: '#0F2418' }}>
+        <div className="max-w-7xl mx-auto">
+          <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#7DDAAD' }}>Pasienthistorier</p>
+          <h2 className="text-3xl font-black text-white mb-12">Hva pasientene sier</h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { quote: 'Etter korsbåndoperasjon var jeg tilbake på håndballbanen på 6 måneder. Marte lagde et perfekt program.', name: 'Camilla T.', context: 'Sportsrehabilitering' },
+              { quote: 'Hadde kroniske nakkesmerter i 3 år. Etter 8 behandlinger med Jonas er smertene borte.', name: 'Erik H.', context: 'Nakkebehandling' },
+              { quote: 'Endelig et sted som faktisk forklarer hva de gjør og hvorfor. Profesjonelt og vennlig.', name: 'Ida R.', context: 'Ryggbehandling' },
+            ].map((t, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="rounded-2xl p-7"
+                style={{ backgroundColor: 'rgba(45,155,111,0.12)', border: '1px solid rgba(45,155,111,0.25)' }}
+              >
+                <div className="flex mb-3">
+                  {[...Array(5)].map((_, j) => <span key={j} style={{ color: accent }}>★</span>)}
+                </div>
+                <p className="text-white leading-relaxed mb-5 italic">"{t.quote}"</p>
+                <div>
+                  <div className="font-semibold text-sm text-white">{t.name}</div>
+                  <div className="text-xs mt-0.5" style={{ color: '#7DDAAD' }}>{t.context}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA / Booking */}
+      <section id="kontakt" className="py-24 px-6 bg-white">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: accent }}>Klar til å starte?</p>
+          <h2 className="text-4xl font-black mb-4" style={{ color: '#0F2418' }}>Bestill time i dag</h2>
+          <p className="text-gray-500 mb-10">Vi har som regel ledig time innen 2 virkedager. Ring oss eller fyll ut skjemaet.</p>
+
+          <div className="grid sm:grid-cols-2 gap-4 mb-10">
+            <a
+              href="tel:+4712345678"
+              className="flex items-center justify-center gap-3 px-6 py-5 rounded-2xl font-semibold text-white text-lg transition-all hover:scale-105"
               style={{ backgroundColor: accent }}
             >
-              Bestill time nå
-            </Link>
-          </motion.div>
-        </motion.div>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              Ring oss nå
+            </a>
+            <a
+              href="mailto:post@aktivfysio.no"
+              className="flex items-center justify-center gap-3 px-6 py-5 rounded-2xl font-semibold text-lg border-2 transition-all hover:bg-green-50"
+              style={{ color: accent, borderColor: accent }}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Send epost
+            </a>
+          </div>
+
+          <div className="rounded-2xl p-6 text-left" style={{ backgroundColor: '#F5FAF7', border: '1px solid #D1EAE0' }}>
+            <p className="text-sm font-semibold mb-1" style={{ color: '#0F2418' }}>Aktiv Fysioterapi – Idrettsgata 5, Oslo</p>
+            <p className="text-sm text-gray-500">Man–Fre: 07:30–18:00 &nbsp;|&nbsp; Lørdag: 09:00–13:00</p>
+            <p className="text-sm text-gray-500">+47 456 78 901 &nbsp;|&nbsp; post@aktivfysio.no</p>
+          </div>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="text-white py-12 px-6" style={{ backgroundColor: '#070E09' }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">Aktiv Fysioterapi</h3>
-              <p style={{ color: '#6B9B7E' }}>Spesialisert behandling for aktive mennesker</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Tjenester</h4>
-              <div className="space-y-2" style={{ color: '#6B9B7E' }}>
-                <motion.div whileHover={{ x: 5 }} className="hover:text-white transition-colors cursor-pointer">Sportsrehabilitering</motion.div>
-                <motion.div whileHover={{ x: 5 }} className="hover:text-white transition-colors cursor-pointer">Rygg og nakke</motion.div>
-                <motion.div whileHover={{ x: 5 }} className="hover:text-white transition-colors cursor-pointer">Skadeforebygging</motion.div>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Kontakt</h4>
-              <div className="space-y-2" style={{ color: '#6B9B7E' }}>
-                <div>post@aktivfysio.no</div>
-                <div>+47 456 78 901</div>
-                <div>Idrettsgata 5, Oslo</div>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Åpningstider</h4>
-              <div className="space-y-2" style={{ color: '#6B9B7E' }}>
-                <div>Man-Fre: 07:30-18:00</div>
-                <div>Lørdag: 09:00-13:00</div>
-                <div>Søndag: Stengt</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t pt-8 text-center" style={{ borderColor: '#1A3D28' }}>
-            <p className="mb-4" style={{ color: '#3D6B50' }}>© 2025 Aktiv Fysioterapi. Dette er en demo-nettside.</p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-full transition-colors" style={{ backgroundColor: 'rgba(45,155,111,0.15)' }}>
-                <span style={{ color: '#6B9B7E' }}>Laget av</span>
-                <span className="font-bold" style={{ color: accent }}>Webera</span>
-              </Link>
-            </motion.div>
-          </div>
-        </div>
+      <footer className="py-10 px-6 text-center" style={{ backgroundColor: '#070E09', borderTop: '1px solid #1A3D28' }}>
+        <p className="text-sm mb-4" style={{ color: '#3D6B50' }}>© 2025 Aktiv Fysioterapi. Dette er en demo-nettside laget av Webera.</p>
+        <Link href="/" className="inline-flex items-center gap-2 text-sm px-5 py-2 rounded-full transition-colors" style={{ backgroundColor: 'rgba(45,155,111,0.15)', color: '#7DDAAD' }}>
+          Laget av <span className="font-bold ml-1">Webera</span>
+        </Link>
       </footer>
     </div>
   );
