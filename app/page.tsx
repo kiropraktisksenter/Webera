@@ -486,9 +486,10 @@ export default function Home() {
             <div className="flex justify-center">
               <div className="relative w-full max-w-sm aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
                 <img
-                  src="/images/om-klinikk.jpg"
-                  alt="Behandlingsrom"
+                  src="/images/founder.jpg"
+                  alt="Daglig leder, Webera"
                   className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center 15%' }}
                 />
               </div>
             </div>
