@@ -999,7 +999,7 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section id="hvordan" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#FFFFFF' }}>
+      <section id="hvordan" className="pt-32 pb-10 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -1020,10 +1020,10 @@ export default function Home() {
             className="grid md:grid-cols-4 gap-8"
           >
             {[
-              { step: "1", title: "Avklaring", description: "Vi avklarer behov, målgruppe og innhold." },
-              { step: "2", title: "Design & bygging", description: "Vi designer og bygger nettsiden." },
-              { step: "3", title: "Leveranse", description: "Nettsiden publiseres og gjennomgås." },
-              { step: "4", title: "Drift", description: "Hosting og vedlikehold går på abonnement." }
+              { step: "1", title: "Avklaring", description: "Vi kartlegger klinikkens behov, målgruppe, tjenester og innhold – og lager en plan." },
+              { step: "2", title: "Design & bygging", description: "Vi designer og bygger en skreddersydd nettside – ingen maler, ingen WordPress." },
+              { step: "3", title: "Leveranse", description: "Nettsiden gjennomgås sammen med deg og publiseres når du er fornøyd." },
+              { step: "4", title: "Drift", description: "Hosting, sikkerhet og oppdateringer på månedlig abonnement – nettsiden din er alltid online og trygg." }
             ].map((item, i) => (
               <motion.div
                 key={i}
