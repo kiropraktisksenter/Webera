@@ -59,6 +59,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="no">
+      <head>
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+        <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      </head>
       <body className="antialiased">
         {children}
         <Analytics />

@@ -1307,6 +1307,27 @@ export default function Home() {
             </p>
           </motion.div>
 
+          {/* Calendly */}
+          <div className="max-w-3xl mx-auto mb-0">
+            <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+              <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px', color: '#0891b2' }}>Book tid</p>
+              <h3 className="font-bold mt-1 mb-2" style={{ fontSize: '1.5rem', color: '#0D1B2A' }}>Gratis 30-minutters kartleggingssamtale</h3>
+              <p style={{ color: '#1A1A2E' }}>Velg en tid som passer deg – vi møtes på Google Meet.</p>
+            </div>
+            <div
+              className="calendly-inline-widget"
+              data-url="https://calendly.com/holthekiropraktikk/30min?hide_gdpr_banner=1&primary_color=0891b2"
+              style={{ minWidth: '320px', height: '700px' }}
+            />
+          </div>
+
+          {/* Divider */}
+          <div style={{ textAlign: 'center', margin: '48px 0 32px', display: 'flex', alignItems: 'center', gap: '16px', maxWidth: '672px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <hr style={{ flex: 1, borderColor: '#e2e8f0' }} />
+            <span style={{ color: '#888', fontSize: '0.9rem', whiteSpace: 'nowrap' }}>eller send en melding</span>
+            <hr style={{ flex: 1, borderColor: '#e2e8f0' }} />
+          </div>
+
           <ContactForm />
 
           <motion.div
