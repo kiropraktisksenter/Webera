@@ -484,12 +484,12 @@ export default function Home() {
             className="grid md:grid-cols-2 gap-12 items-center"
           >
             <div className="flex justify-center">
-              <div className="relative w-full max-w-sm aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+              <div className="relative w-full max-w-xs" style={{ aspectRatio: '3/4' }}>
                 <img
-                  src="/images/founder.jpg"
+                  src="/images/founder.png"
                   alt="Daglig leder, Webera"
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: 'center 30%' }}
+                  className="w-full h-full object-contain"
+                  style={{ objectPosition: 'center 20%' }}
                 />
               </div>
             </div>
