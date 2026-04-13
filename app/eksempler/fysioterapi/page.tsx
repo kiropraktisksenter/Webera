@@ -87,7 +87,7 @@ export default function FysioterapiDemo() {
       <section className="relative h-screen min-h-[600px] max-h-[800px] flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1400&q=80"
+            src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1400&q=80"
             alt="Fysioterapeut i aksjon"
             className="w-full h-full object-cover"
           />
