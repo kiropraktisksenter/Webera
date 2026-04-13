@@ -494,12 +494,19 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <p className="text-lg leading-relaxed mb-6" style={{ color: '#1A1A2E' }}>
+              <p className="leading-relaxed mb-6" style={{ color: '#1A1A2E', fontSize: '1.3rem', lineHeight: '1.8' }}>
                 Jeg driver selv helseklinikk til daglig.
                 Jeg startet Webera fordi jeg ikke fant et webbyrå som faktisk
                 forsto hva en helseklinikk trenger digitalt – så jeg bygget det selv.
               </p>
-              <p className="font-semibold" style={{ color: '#0891B2' }}>– Daglig leder, Webera & klinikkdriver</p>
+              <p className="font-semibold mb-4" style={{ color: '#0891B2' }}>– Lars, daglig leder Webera & klinikkdriver</p>
+              <a
+                href="#kontakt"
+                className="inline-block font-medium transition hover:opacity-80"
+                style={{ color: '#0891B2', fontSize: '0.95rem' }}
+              >
+                Ta en uforpliktende prat med meg →
+              </a>
             </div>
           </motion.div>
         </div>
