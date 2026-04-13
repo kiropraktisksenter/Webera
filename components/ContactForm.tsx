@@ -115,7 +115,7 @@ export default function ContactForm() {
         </label>
         <textarea
           required
-          rows={6}
+          rows={4}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none resize-none transition"

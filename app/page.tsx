@@ -1282,14 +1282,14 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="kontakt" className="py-32 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#FFFFFF' }}>
+      <section id="kontakt" className="py-16 px-4 sm:px-6 lg:px-8 relative" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-10"
           >
             <p className="text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-3">Kom i gang</p>
             <h2 className="font-bold mb-6" style={{ fontSize: '2.2rem', color: '#0D1B2A' }}>Klar for en nettside som gir deg flere pasienter?</h2>
@@ -1306,7 +1306,7 @@ export default function Home() {
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, margin: "-80px" }}
-            className="mt-16 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            className="mt-10 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
           >
             {[
               {
