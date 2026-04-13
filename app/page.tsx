@@ -1311,8 +1311,6 @@ export default function Home() {
           <div className="max-w-3xl mx-auto mb-0">
             <div style={{ textAlign: 'center', marginBottom: '16px' }}>
               <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px', color: '#0891b2' }}>Book tid</p>
-              <h3 className="font-bold mt-1 mb-2" style={{ fontSize: '1.5rem', color: '#0D1B2A' }}>Gratis 30-minutters kartleggingssamtale</h3>
-              <p style={{ color: '#1A1A2E' }}>Velg en tid som passer deg – vi møtes på Google Meet.</p>
             </div>
             <div
               className="calendly-inline-widget"
