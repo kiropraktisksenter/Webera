@@ -489,7 +489,7 @@ export default function Home() {
                   src="/images/founder.jpg"
                   alt="Daglig leder, Webera"
                   className="w-full h-full object-cover"
-                  style={{ objectPosition: 'center 15%' }}
+                  style={{ objectPosition: 'center 30%' }}
                 />
               </div>
             </div>
