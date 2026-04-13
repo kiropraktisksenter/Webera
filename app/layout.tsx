@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import MessengerChat from '@/components/MessengerChat';
 import "./globals.css";
@@ -61,12 +62,15 @@ export default function RootLayout({
     <html lang="no">
       <head>
         <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-        <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </head>
       <body className="antialiased">
         {children}
         <Analytics />
         <MessengerChat />
+        <Script
+          src="https://assets.calendly.com/assets/external/widget.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
