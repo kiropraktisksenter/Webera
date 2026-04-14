@@ -16,9 +16,8 @@ export default function Home() {
     "@type": "LocalBusiness",
     "@id": "https://webera.no",
     "name": "Webera",
-    "description": "Et lite, spesialisert webbyrå i Tønsberg som leverer moderne nettsider til hele Norge. Etablering fra kr 20.000,-, hosting fra kr 599,- per måned.",
+    "description": "Webera er et spesialisert webbyrå for helsebedrifter i Norge. Vi driver selv helseklinikk og forstår bransjen innenfra. Nettsider for kiropraktorer, fysioterapeuter, naprapater og psykologer.",
     "url": "https://webera.no",
-    "telephone": "+47-XXX-XX-XXX",
     "email": "post@webera.no",
     "address": {
       "@type": "PostalAddress",
@@ -775,7 +774,7 @@ export default function Home() {
                 >
                   {/* Bilde – 40% */}
                   <div style={{ height: '40%' }} className="overflow-hidden relative">
-                    <img src="/images/demo-klinikk.jpg" alt="" className="w-full h-full object-cover" />
+                    <img src="/images/demo-klinikk.jpg" alt="Demo nettside helseklinikk – Webera" className="w-full h-full object-cover" />
                     {/* Nav-bar overlay */}
                     <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-4 py-2.5 bg-slate-900/80 backdrop-blur-sm">
                       <span className="text-white text-xs font-bold">Helse Klinikk</span>
@@ -823,7 +822,7 @@ export default function Home() {
                 >
                   {/* Bilde – 40% */}
                   <div style={{ height: '40%' }} className="overflow-hidden relative">
-                    <img src="/images/demo-fysioterapi.jpg" alt="" className="w-full h-full object-cover" />
+                    <img src="/images/demo-fysioterapi.jpg" alt="Demo nettside fysioterapi – Webera" className="w-full h-full object-cover" />
                     <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-4 py-2.5" style={{ background: 'rgba(45,155,111,0.85)', backdropFilter: 'blur(4px)' }}>
                       <span className="text-white text-xs font-bold">FysioSenteret</span>
                       <div className="flex gap-3 text-white/80 text-xs">
@@ -873,7 +872,7 @@ export default function Home() {
                 >
                   {/* Bilde – 40% */}
                   <div style={{ height: '40%' }} className="overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" alt="" className="w-full h-full object-cover" />
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" alt="Demo nettside psykolog – Webera" className="w-full h-full object-cover" />
                     <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-4 py-2.5" style={{ background: 'rgba(107,94,168,0.85)', backdropFilter: 'blur(4px)' }}>
                       <span className="text-white text-xs font-semibold">Psykolog Andersen</span>
                       <div className="flex gap-3 text-white/80 text-xs">

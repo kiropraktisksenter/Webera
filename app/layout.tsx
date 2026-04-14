@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/Webera Logo.png',
+        url: 'https://webera.no/images/hero-klinikk-3.jpg',
         width: 1200,
         height: 630,
-        alt: 'Webera - Webbyrå i Tønsberg',
+        alt: 'Webera – Nettsider for helsebedrifter',
       },
     ],
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Nettsider for helseklinikker | Webera",
     description: "Webera lager profesjonelle nettsider eksklusivt for helsebedrifter. Vi driver selv klinikk – vi forstår bransjen innenfra.",
-    images: ['/images/Webera Logo.png'],
+    images: ['https://webera.no/images/hero-klinikk-3.jpg'],
   },
   robots: {
     index: true,
