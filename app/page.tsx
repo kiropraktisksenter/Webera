@@ -381,11 +381,11 @@ export default function Home() {
                   Få gratis konsultasjon
                 </motion.a>
                 <motion.a
-                  whileHover={{ scale: 1.05, backgroundColor: '#0D1424', borderColor: '#06b6d4' }}
+                  whileHover={{ scale: 1.05, backgroundColor: '#F0F0F0' }}
                   whileTap={{ scale: 0.95 }}
                   href="#tjenester"
-                  className="text-cyan-400 px-8 py-4 rounded-lg text-lg font-semibold border-2 border-cyan-500 hover:brightness-125 transition"
-                  style={{ backgroundColor: '#0D1424' }}
+                  className="px-8 py-4 rounded-lg text-lg font-semibold transition"
+                  style={{ backgroundColor: '#FFFFFF', color: '#0D1B2A' }}
                 >
                   Se klinikkløsninger
                 </motion.a>
@@ -1315,7 +1315,7 @@ export default function Home() {
             <div
               className="calendly-inline-widget"
               data-url="https://calendly.com/holthekiropraktikk/30min?hide_gdpr_banner=1&primary_color=0891b2"
-              style={{ minWidth: '320px', height: '700px' }}
+              style={{ minWidth: '320px', height: '550px' }}
             />
           </div>
 
@@ -1328,49 +1328,35 @@ export default function Home() {
 
           <ContactForm />
 
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-80px" }}
-            className="mt-10 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
-          >
-            {[
-              {
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />,
-                title: 'Epost',
-                text: 'post@webera.no'
-              },
-              {
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />,
-                title: 'Responstid',
-                text: 'Innen 24 timer'
-              },
-              {
-                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />,
-                title: 'Gratis konsultasjon',
-                text: 'Ingen forpliktelser'
-              }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                variants={fadeInUp}
-                className="text-center"
+          <div className="mt-10 max-w-2xl mx-auto">
+            <div className="flex justify-center gap-12 mb-8 text-center">
+              <div>
+                <p className="font-semibold mb-1" style={{ color: '#0D1B2A' }}>Epost</p>
+                <a href="mailto:post@webera.no" className="text-sm hover:text-cyan-600 transition" style={{ color: '#4A5568' }}>post@webera.no</a>
+              </div>
+              <div>
+                <p className="font-semibold mb-1" style={{ color: '#0D1B2A' }}>Responstid</p>
+                <p className="text-sm" style={{ color: '#4A5568' }}>Innen 24 timer</p>
+              </div>
+            </div>
+            <div className="text-center">
+              <motion.a
+                href="https://m.me/997958320068052"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-xl text-white font-semibold text-lg shadow-lg"
+                style={{ background: 'linear-gradient(135deg, #00B2FF 0%, #006AFF 60%, #9B59B6 100%)' }}
               >
-                <motion.div
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
-                  className="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4"
-                >
-                  <svg className="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    {item.icon}
-                  </svg>
-                </motion.div>
-                <h3 className="font-semibold mb-2" style={{ color: '#0D1B2A' }}>{item.title}</h3>
-                <p style={{ color: '#4A5568' }}>{item.text}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+                <svg width="24" height="24" viewBox="0 0 36 36" fill="white">
+                  <path d="M18 2.1C9.1 2.1 2 8.6 2 16.5c0 4.5 2.2 8.5 5.7 11.2V34l6-3.3c1.4.4 2.8.6 4.3.6 8.9 0 16-6.5 16-14.4S26.9 2.1 18 2.1zm1.6 19.4l-4.1-4.4-8 4.4 8.8-9.3 4.2 4.4 7.9-4.4-8.8 9.3z" />
+                </svg>
+                Snakk med oss på Messenger
+              </motion.a>
+              <p className="text-xs mt-3" style={{ color: '#888' }}>Svar typisk innen få minutter på hverdager</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1392,14 +1378,13 @@ export default function Home() {
 
             {/* Kolonne 2 – Tjenester */}
             <div>
-              <h4 className="text-white font-semibold mb-4 text-sm tracking-wide uppercase">Tjenester</h4>
+              <h4 className="text-white font-semibold mb-4 text-sm tracking-wide uppercase">Meny</h4>
               <ul className="space-y-3">
                 {[
-                  { href: '#tjenester', text: 'Klinikknettside' },
-                  { href: '#tjenester', text: 'Lokal SEO' },
-                  { href: '#tjenester', text: 'AI-chatbot' },
-                  { href: '#tjenester', text: 'Drift og vedlikehold' },
-                  { href: '#priser', text: 'Se priser' },
+                  { href: '#tjenester', text: 'Tjenester' },
+                  { href: '#eksempler', text: 'Eksempler' },
+                  { href: '#priser', text: 'Priser' },
+                  { href: '#om', text: 'Om oss' },
                 ].map((item) => (
                   <li key={item.text}>
                     <a href={item.href} className="text-gray-400 hover:text-cyan-400 transition text-sm">
@@ -1417,17 +1402,7 @@ export default function Home() {
                 <li>
                   <a href="mailto:post@webera.no" className="hover:text-cyan-400 transition">post@webera.no</a>
                 </li>
-                <li>Tønsberg, Norge</li>
                 <li>Svar innen 24 timer</li>
-                <li className="pt-2">
-                  <a
-                    href="#kontakt"
-                    className="inline-block text-white text-xs px-5 py-2.5 rounded-lg font-semibold transition"
-                    style={{ background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)' }}
-                  >
-                    Gratis konsultasjon →
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
