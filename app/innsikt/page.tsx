@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 const articles = [
   {
     slug: 'nettside-helseklinikk',
+    basePath: '/innsikt',
     category: 'Nettsider',
     title: '5 ting en god nettside for helseklinikker må ha',
     excerpt: 'Hva skiller en nettside som gir deg nye pasienter fra en som bare «er der»? Her er de fem elementene vi aldri kutter på.',
@@ -19,6 +20,7 @@ const articles = [
   },
   {
     slug: 'lokal-seo-klinikk',
+    basePath: '/innsikt',
     category: 'SEO & synlighet',
     title: 'Slik finner pasienter klinikken din på Google',
     excerpt: 'Lokal SEO for helseklinikker forklart enkelt. Google Business, NAP-data, anmeldelser og schema markup – alt du trenger å vite.',
@@ -27,11 +29,39 @@ const articles = [
   },
   {
     slug: 'wordpress-helseklinikk',
+    basePath: '/innsikt',
     category: 'Teknologi',
     title: 'Hvorfor WordPress ikke passer for helseklinikker',
     excerpt: 'WordPress driver 43 % av alle nettsider. Men for helseklinikker er det sjelden det beste valget. Her er grunnene – og hva vi bruker i stedet.',
     readTime: '5 min',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+  },
+  {
+    slug: 'nettside-for-fysioterapeut',
+    basePath: '/blogg',
+    category: 'Nettsider',
+    title: 'Nettside for fysioterapeut – hva bør den inneholde?',
+    excerpt: 'Alt en fysioterapeut trenger på nettsiden – og hva som får pasienter til å faktisk booke time.',
+    readTime: '5 min',
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80',
+  },
+  {
+    slug: 'god-klinikknettside',
+    basePath: '/blogg',
+    category: 'Innsikt',
+    title: 'Hva skiller en god klinikknettside fra en dårlig? En kiropraktor forteller',
+    excerpt: 'Jeg driver selv klinikk. Her er hva jeg ser når jeg besøker andre klinikkers nettsider – og hva som faktisk fungerer.',
+    readTime: '6 min',
+    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=80',
+  },
+  {
+    slug: 'nettside-for-naprapat',
+    basePath: '/blogg',
+    category: 'Nettsider',
+    title: 'Nettside for naprapat – hva trenger du?',
+    excerpt: 'Naprapati er mindre kjent enn fysioterapi. Nettsiden din må jobbe ekstra hardt for å forklare hva du gjør – og hvorfor pasienten skal velge deg.',
+    readTime: '5 min',
+    image: 'https://images.unsplash.com/photo-1544991936-9464fa57a54a?w=800&q=80',
   },
 ];
 
@@ -63,7 +93,7 @@ export default function InnsiktPage() {
       <div className="max-w-5xl mx-auto px-6 pb-24">
         <div className="grid md:grid-cols-3 gap-8">
           {articles.map((article) => (
-            <Link key={article.slug} href={`/innsikt/${article.slug}`} className="group block">
+            <Link key={article.slug} href={`${article.basePath}/${article.slug}`} className="group block">
               <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                 <div className="overflow-hidden h-48">
                   <img

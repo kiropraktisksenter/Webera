@@ -37,7 +37,7 @@ export default function Article1() {
             5 ting en god nettside for helseklinikker må ha
           </h1>
           <div className="flex items-center gap-4 text-sm text-gray-400">
-            <span>Lars Holthe, Webera</span>
+            <span>Webera</span>
             <span>·</span>
             <span>5 min lesing</span>
             <span>·</span>

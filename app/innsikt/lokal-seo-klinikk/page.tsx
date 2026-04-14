@@ -35,7 +35,7 @@ export default function Article2() {
             Slik finner pasienter klinikken din på Google
           </h1>
           <div className="flex items-center gap-4 text-sm text-gray-400">
-            <span>Lars Holthe, Webera</span>
+            <span>Webera</span>
             <span>·</span>
             <span>6 min lesing</span>
             <span>·</span>

@@ -1,0 +1,93 @@
+# Webera
+
+## Hvem vi er
+
+Webera er et norsk webbyrå som utelukkende bygger nettsider for helseklinikker og helsebedrifter. Vi er grunnlagt av folk som selv driver klinikk, og vi forstår bransjen innenfra.
+
+Vi holder til i Norge og betjener klinikker i hele landet.
+
+## Hva vi gjør
+
+Vi designer, utvikler og drifter skreddersydde nettsider for:
+
+- Kiropraktorklinikker
+- Fysioterapiklinikker
+- Psykologer og psykoterapisentre
+- Osteopater
+- Naprapater
+- Andre helseklinikker og spesialistklinikker
+
+Alle nettsider bygges med Next.js og moderne webteknologi. Vi bruker ikke WordPress eller malbaserte løsninger.
+
+## Tjenester og priser
+
+### Engangspakker (nettside)
+
+**Klinikkstart** — kr 20 000
+Grunnleggende nettside for klinikk. Inkluderer 5 sider, mobiltilpasning, kontaktskjema og Google Business-oppsett.
+
+**Klinikkpro** — kr 35 000
+Komplett løsning med bookingintegrasjon (Clinico, Zuite, Timely), lokal SEO-struktur, schema markup og opp til 10 sider.
+
+**Klinikk+** — kr 55 000
+Alt i Klinikkpro pluss skreddersydd design, animasjoner, FAQPage-schema, flerspråklig støtte og prioritert leveranse.
+
+### Løpende drift
+
+**Klinikkdrift** — kr 699 per måned
+Hosting, oppdateringer, sikkerhetskopi, månedlig SEO-rapport og prioritert support.
+
+## Hva som skiller oss
+
+- Vi lager kun nettsider for helseklinikker — ingen andre bransjer
+- Vi driver klinikk selv og forstår pasientreisen og konverteringspunkter
+- Vi bruker Next.js (ikke WordPress), som gir lastetid under 0,5 sekunder
+- Alle sider leveres med innebygd lokal SEO, schema markup og Core Web Vitals-optimalisering
+- Vi integrerer direkte mot timebestillingssystemer klinikken allerede bruker
+- Fast kontaktperson gjennom hele prosjektet
+
+## Målgruppe
+
+Webera hjelper klinikkdrivere og helsebedrifter i Norge som:
+
+- Mangler nettside eller har en utdatert løsning
+- Ønsker å dukke opp høyere i lokale Google-søk
+- Vil ha direkte timebestilling uten at pasienter trenger å ringe
+- Er frustrerte over trege WordPress-sider med mange plugins
+- Vil ha en profesjonell nettside som reflekterer kvaliteten på klinikkens behandling
+
+## Kontakt
+
+- Nettside: https://webera.no
+- E-post: post@webera.no
+- Kontaktskjema: https://webera.no/#kontakt
+- Gratis konsultasjon: https://webera.no/#kontakt
+
+## Ressurser
+
+- Tjenesteoversikt: https://webera.no/#tjenester
+- Eksempler / demo-sider: https://webera.no/#eksempler
+- Priser: https://webera.no/#priser
+- Artikler og innsikt: https://webera.no/innsikt
+
+## Artikler (Innsikt)
+
+- https://webera.no/innsikt/nettside-helseklinikk — 5 ting en god nettside for helseklinikker må ha
+- https://webera.no/innsikt/lokal-seo-klinikk — Slik finner pasienter klinikken din på Google
+- https://webera.no/innsikt/wordpress-helseklinikk — Hvorfor WordPress ikke passer for helseklinikker
+
+## Teknisk stack
+
+- Framework: Next.js 15 (App Router)
+- Hosting: Vercel
+- Styling: Tailwind CSS
+- Animasjoner: Framer Motion
+- AI-assistent: Claude (Anthropic)
+- Structured data: Schema.org @graph (LocalBusiness, WebSite, FAQPage)
+
+## Fakta
+
+- Stiftet: 2024
+- Lokasjon: Norge
+- Bransje: Webdesign og -utvikling, utelukkende helsesektoren
+- Språk: Norsk (bokmål)
