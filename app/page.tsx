@@ -184,6 +184,7 @@ export default function Home() {
                 { href: '#eksempler', text: 'Eksempler' },
                 { href: '#priser', text: 'Priser' },
                 { href: '#om', text: 'Om oss' },
+                { href: '/innsikt', text: 'Innsikt' },
               ].map((item) => (
                 <motion.a
                   key={item.href}
@@ -1284,6 +1285,99 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Innsikt */}
+      <section id="innsikt" className="py-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#F7F9FC' }}>
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-14"
+          >
+            <p className="text-xs font-semibold tracking-widest text-cyan-600 uppercase mb-3">Innsikt</p>
+            <h2 className="font-bold mb-4" style={{ fontSize: '2.2rem', color: '#0D1B2A' }}>For klinikkdrivere</h2>
+            <p className="text-lg max-w-xl mx-auto" style={{ color: '#4A5568' }}>
+              Praktiske artikler om nettsider, synlighet og digital vekst – skrevet av folk som kjenner bransjen innenfra.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: '-80px' }}
+            className="grid md:grid-cols-3 gap-8"
+          >
+            {[
+              {
+                slug: 'nettside-helseklinikk',
+                category: 'Nettsider',
+                title: '5 ting en god nettside for helseklinikker må ha',
+                excerpt: 'Hva skiller en nettside som gir deg nye pasienter fra en som bare «er der»?',
+                readTime: '5 min',
+                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
+              },
+              {
+                slug: 'lokal-seo-klinikk',
+                category: 'SEO & synlighet',
+                title: 'Slik finner pasienter klinikken din på Google',
+                excerpt: 'Google Business, NAP-data, anmeldelser og schema markup – alt du trenger å vite om lokal SEO.',
+                readTime: '6 min',
+                image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&q=80',
+              },
+              {
+                slug: 'wordpress-helseklinikk',
+                category: 'Teknologi',
+                title: 'Hvorfor WordPress ikke passer for helseklinikker',
+                excerpt: 'WordPress driver 43 % av alle nettsider. Men for klinikker er det sjelden det beste valget.',
+                readTime: '5 min',
+                image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80',
+              },
+            ].map((article, i) => (
+              <motion.div key={i} variants={fadeInUp}>
+                <Link href={`/innsikt/${article.slug}`} className="group block h-full">
+                  <motion.div
+                    whileHover={{ y: -6, boxShadow: '0 16px 40px rgba(0,0,0,0.10)' }}
+                    transition={{ type: 'spring', stiffness: 400 }}
+                    className="bg-white rounded-2xl overflow-hidden shadow-sm h-full flex flex-col"
+                  >
+                    <div className="overflow-hidden h-44">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-xs font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full" style={{ backgroundColor: '#EEF9F6', color: '#0891B2' }}>
+                          {article.category}
+                        </span>
+                        <span className="text-xs text-gray-400">{article.readTime}</span>
+                      </div>
+                      <h3 className="font-bold mb-3 leading-snug group-hover:text-cyan-600 transition-colors" style={{ fontSize: '1rem', color: '#0D1B2A' }}>
+                        {article.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed flex-1" style={{ color: '#6B7280' }}>
+                        {article.excerpt}
+                      </p>
+                      <p className="mt-4 text-sm font-semibold" style={{ color: '#0891B2' }}>Les artikkelen →</p>
+                    </div>
+                  </motion.div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <div className="text-center mt-12">
+            <Link href="/innsikt" className="text-sm font-semibold hover:underline" style={{ color: '#0891B2' }}>
+              Se alle artikler →
+            </Link>
           </div>
         </div>
       </section>
