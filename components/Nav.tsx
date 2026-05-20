@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const links = [
-  { href: '/', label: 'Hjem' },
+  { href: '/', label: 'Forsiden' },
   { href: '/demos', label: 'Demoer' },
   { href: '/om-oss', label: 'Om oss' },
   { href: '/kontakt', label: 'Kontakt' },
@@ -28,7 +28,6 @@ export default function Nav() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
-  // Close menu on route change
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
   return (
@@ -40,13 +39,26 @@ export default function Nav() {
           </Link>
 
           <ul className="nav-links">
-            {links.map(({ href, label }) => (
-              <li key={href}>
-                <Link href={href} className={`nav-link${pathname === href ? ' active' : ''}`}>
-                  {label}
-                </Link>
-              </li>
-            ))}
+            {links.map(({ href, label }) => {
+              const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
+              return (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="nav-link"
+                    style={isActive ? {
+                      background: 'var(--ink)',
+                      color: 'var(--paper)',
+                      padding: '6px 16px',
+                      borderRadius: '100px',
+                      fontSize: '14px',
+                    } : {}}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           <button
@@ -87,7 +99,7 @@ export default function Nav() {
                 display: 'block',
                 fontFamily: 'Instrument Serif, serif',
                 fontSize: '40px',
-                color: pathname === href ? 'var(--sage)' : 'var(--ink)',
+                color: (href === '/' ? pathname === '/' : pathname.startsWith(href)) ? 'var(--sage)' : 'var(--ink)',
                 textDecoration: 'none',
                 padding: '14px 0',
                 borderBottom: '1px solid var(--line)',

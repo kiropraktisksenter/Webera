@@ -611,6 +611,99 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── COMPARE TABLE ───────────────────────────────────────── */}
+        <section className="section" style={{ background: 'var(--cream-2)' }}>
+          <div className="container">
+            <Reveal>
+              <p className="eyebrow" style={{ marginBottom: '24px' }}>07 — Sammenligning</p>
+              <h2 className="h-section" style={{ marginBottom: '16px', maxWidth: '700px' }}>
+                Hvorfor <em>Webera</em> og ikke noe annet?
+              </h2>
+              <p className="lede" style={{ marginBottom: '56px', fontSize: '18px' }}>
+                Vi vet at du sannsynligvis vurderer flere alternativer. Her er en ærlig sammenligning – inkludert hvor vi taper.
+              </p>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', background: 'var(--paper)', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--line)' }}>
+                  <thead>
+                    <tr>
+                      <th style={{ padding: '20px 28px', textAlign: 'left', fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', borderBottom: '1px solid var(--line)', background: 'var(--cream)', width: '24%' }}>
+                        Kriterium
+                      </th>
+                      {['Webera', 'WordPress selv', 'Frilanser', 'Stort byrå'].map((h, i) => (
+                        <th key={h} style={{ padding: '20px 24px', textAlign: 'left', fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', borderBottom: '1px solid var(--line)', background: i === 0 ? 'var(--ink)' : 'var(--cream)', color: i === 0 ? 'var(--paper)' : 'var(--muted)' }}>
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { l: 'Pris', v: ['20–55k engangs', '5–15k + tid', '15–40k', '80–250k+'] },
+                      { l: 'Leveringstid', v: ['4–10 uker', 'Måneder', '4–12 uker', '3–6 mnd'] },
+                      { l: 'Eierskap til siden', v: ['Du eier 100%', 'Du eier 100%', 'Avhengig av avtale', 'Avhengig av avtale'] },
+                      { l: 'Spesialisert på helse', v: ['Ja', 'Nei', 'Sjelden', 'Sjelden'] },
+                      { l: 'Lokal SEO inkludert', v: ['Ja', 'Plugins, manuelt', 'Tillegg', 'Tillegg'] },
+                      { l: 'Skreddersydd design', v: ['Alltid', 'Mal', 'Vanligvis', 'Alltid'] },
+                      { l: 'Support etter levering', v: ['Månedlig fastpris', 'Ingen', 'Per time, varierende', 'Dyrt'] },
+                      { l: 'Eksklusiv per område', v: ['Ja', '–', 'Nei', 'Nei'] },
+                      { l: 'Driftes av klinikkeier', v: ['Ja', 'Nei', 'Nei', 'Nei'] },
+                    ].map((row, ri) => (
+                      <tr key={ri} style={{ borderBottom: ri < 8 ? '1px solid var(--line)' : 'none' }}>
+                        <td style={{ padding: '18px 28px', fontSize: '14px', color: 'var(--ink-soft)', fontWeight: 500 }}>{row.l}</td>
+                        {row.v.map((val, vi) => (
+                          <td key={vi} style={{ padding: '18px 24px', fontSize: '14px', background: vi === 0 ? 'rgba(20,24,31,0.03)' : 'transparent', color: vi === 0 ? 'var(--sage-deep)' : 'var(--muted)', fontWeight: vi === 0 ? 500 : 400 }}>
+                            {vi === 0 && <span style={{ marginRight: '6px', color: 'var(--sage)' }}>✓</span>}
+                            {val}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ── FAQ ─────────────────────────────────────────────────── */}
+        <section className="section">
+          <div className="container">
+            <Reveal>
+              <p className="eyebrow" style={{ marginBottom: '24px' }}>08 — Spørsmål</p>
+              <h2 className="h-section" style={{ marginBottom: '64px', maxWidth: '600px' }}>
+                Det folk lurer på <em>før de booker.</em>
+              </h2>
+            </Reveal>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 80px' }}>
+              {[
+                { q: 'Hvem eier nettsiden når den er ferdig?', a: 'Du. Du eier all kode, alle bilder og innholdet på siden. Vi gir deg full tilgang til kildekoden og dokumentasjon. Skulle du ønske å bytte leverandør senere, kan du gjøre det uten å starte på nytt.' },
+                { q: 'Hva om jeg ikke er fornøyd med designet?', a: 'Vi går ikke videre før du er fornøyd. Etter første designutkast har du minst to runder med justeringer inkludert. Hvis vi etter det fortsatt ikke har truffet, refunderer vi 50% – uten diskusjon.' },
+                { q: 'Kan jeg si opp drift-abonnementet når jeg vil?', a: 'Ja. Én måneds oppsigelsestid. Du tar med deg hele siden – vi hjelper deg å flytte til en annen leverandør hvis du ønsker.' },
+                { q: 'Hva skjer hvis Webera legger ned?', a: 'Nettsiden din kjører videre. Den er bygget på åpne teknologier (Next.js, Vercel) som enhver utvikler kan ta over. Du har all kildekoden i ditt eget GitHub-repo fra dag én.' },
+                { q: 'Hvor lang tid tar det å lage nettsiden?', a: 'Fra signert kontrakt til ferdig lansering: 4–6 uker for Klinikkstart, 6–8 uker for Klinikkpro, 8–10 uker for Klinikk+. Vi setter konkrete milepæler du kan følge.' },
+                { q: 'Kan jeg gjøre endringer selv etterpå?', a: 'Ja, du får tilgang til et enkelt CMS for tekstendringer og bildebytte. For større ting (nye sider, ny tjenestestruktur) hjelper vi for kr 1.300,-/time.' },
+                { q: 'Hva er forskjellen på dere og en frilanser?', a: 'En frilanser er ofte god teknisk, men du må selv vite hva du vil ha. Vi spesialiserer oss på én bransje (helse) og kommer med strategi og pasientreise-tenking inkludert. I tillegg er vi en bedrift – ikke én person som blir syk.' },
+                { q: 'Tar dere imot kunder over hele Norge?', a: 'Ja. Vi har klinikker fra Tønsberg til Tromsø. Det meste foregår digitalt – men vi tar gjerne en kaffe hos deg om du er innen rimelig avstand fra Tønsberg.' },
+              ].map((item, i) => (
+                <Reveal key={i} delay={i * 60}>
+                  <div style={{ borderTop: '1px solid var(--line)', padding: '28px 0' }}>
+                    <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '20px', color: 'var(--ink)', marginBottom: '12px', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
+                      {item.q}
+                    </p>
+                    <p style={{ fontSize: '15px', color: 'var(--ink-soft)', lineHeight: 1.65 }}>
+                      {item.a}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── INSIGHTS ────────────────────────────────────────────── */}
         <section style={{ paddingBottom: '120px', background: 'var(--cream-2)' }}>
           <div className="container" style={{ paddingTop: '120px' }}>

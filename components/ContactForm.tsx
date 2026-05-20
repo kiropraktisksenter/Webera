@@ -2,173 +2,186 @@
 
 import { useState } from 'react';
 
+type Step = 0 | 1 | 2;
+
+const inputStyle: React.CSSProperties = {
+  width: '100%',
+  background: 'transparent',
+  border: 'none',
+  borderBottom: '1px solid rgba(251,248,242,0.2)',
+  padding: '12px 0',
+  color: 'var(--paper)',
+  fontFamily: 'Geist, sans-serif',
+  fontSize: '16px',
+  outline: 'none',
+  transition: 'border-color 0.2s',
+};
+
+const labelStyle: React.CSSProperties = {
+  fontFamily: 'JetBrains Mono, monospace',
+  fontSize: '10px',
+  textTransform: 'uppercase' as const,
+  letterSpacing: '0.12em',
+  color: 'rgba(251,248,242,0.45)',
+  display: 'block',
+  marginBottom: '8px',
+};
+
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    clinicType: '',
-    message: ''
-  });
+  const [step, setStep] = useState<Step>(0);
+  const [data, setData] = useState({ name: '', email: '', phone: '', clinic: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const update = (field: string, value: string) => setData(d => ({ ...d, [field]: value }));
+
+  const next = () => setStep(s => Math.min(s + 1, 2) as Step);
+  const back = () => setStep(s => Math.max(s - 1, 0) as Step);
+
+  const submit = async () => {
     setStatus('loading');
-    setErrorMessage('');
-
+    setErrorMsg('');
     try {
-      const response = await fetch('/api/contact', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ name: data.name, email: data.email, phone: data.phone, message: `Klinikktype: ${data.clinic}\n\n${data.message}` }),
       });
-
-      const data = await response.json();
-
-      if (response.ok) {
+      const json = await res.json();
+      if (res.ok) {
         setStatus('success');
-        setFormData({ name: '', email: '', phone: '', clinicType: '', message: '' });
-
-        // Reset success message etter 5 sekunder
-        setTimeout(() => setStatus('idle'), 5000);
       } else {
         setStatus('error');
-        setErrorMessage(data.error || 'Noe gikk galt');
+        setErrorMsg(json.error || 'Noe gikk galt');
       }
-    } catch (error) {
+    } catch {
       setStatus('error');
-      setErrorMessage('Kunne ikke sende melding. Sjekk internettforbindelsen din.');
+      setErrorMsg('Kunne ikke sende melding. Prøv igjen eller send epost direkte.');
     }
   };
 
+  if (status === 'success') {
+    return (
+      <div style={{ textAlign: 'center', padding: '40px 0' }}>
+        <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'var(--sage)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+          <svg width="24" height="24" fill="none" stroke="var(--paper)" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '28px', color: 'var(--paper)', marginBottom: '12px', letterSpacing: '-0.01em' }}>
+          Takk!
+        </p>
+        <p style={{ fontSize: '15px', color: 'rgba(251,248,242,0.6)', lineHeight: 1.6 }}>
+          Vi tar kontakt innen 24 timer.
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
-      <div>
-        <label className="block mb-2 font-medium" style={{ color: '#0D1B2A' }}>
-          Navn <span className="text-cyan-600">*</span>
-        </label>
-        <input
-          type="text"
-          required
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none transition"
-          placeholder="Ditt navn"
-          disabled={status === 'loading'}
-        />
+    <div>
+      {/* Step indicator */}
+      <div style={{ display: 'flex', gap: '8px', marginBottom: '40px' }}>
+        {[0, 1, 2].map(i => (
+          <div key={i} style={{ height: '2px', flex: 1, background: i <= step ? 'var(--sage)' : 'rgba(251,248,242,0.15)', borderRadius: '2px', transition: 'background 0.3s' }} />
+        ))}
       </div>
 
-      <div>
-        <label className="block mb-2 font-medium" style={{ color: '#0D1B2A' }}>
-          Epost <span className="text-cyan-600">*</span>
-        </label>
-        <input
-          type="email"
-          required
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none transition"
-          placeholder="din@epost.no"
-          disabled={status === 'loading'}
-        />
-      </div>
+      {/* Step 0: name + email */}
+      {step === 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+          <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '24px', color: 'var(--paper)', marginBottom: '8px', letterSpacing: '-0.01em' }}>
+            La oss bli kjent.
+          </p>
+          <div>
+            <label style={labelStyle}>Navn</label>
+            <input style={inputStyle} type="text" placeholder="Fornavn Etternavn" value={data.name} onChange={e => update('name', e.target.value)} autoFocus />
+          </div>
+          <div>
+            <label style={labelStyle}>Epost</label>
+            <input style={inputStyle} type="email" placeholder="navn@klinikk.no" value={data.email} onChange={e => update('email', e.target.value)} />
+          </div>
+          <button
+            onClick={next}
+            disabled={!data.name || !data.email}
+            className="btn btn-sage"
+            style={{ alignSelf: 'flex-start', marginTop: '8px', opacity: !data.name || !data.email ? 0.4 : 1 }}
+          >
+            Neste →
+          </button>
+        </div>
+      )}
 
-      <div>
-        <label className="block mb-2 font-medium" style={{ color: '#0D1B2A' }}>
-          Telefon
-        </label>
-        <input
-          type="tel"
-          value={formData.phone}
-          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none transition"
-          placeholder="412 34 567"
-          disabled={status === 'loading'}
-        />
-      </div>
-
-      <div>
-        <label className="block mb-2 font-medium" style={{ color: '#0D1B2A' }}>
-          Hva slags klinikk driver du?
-        </label>
-        <select
-          value={formData.clinicType}
-          onChange={(e) => setFormData({ ...formData, clinicType: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none transition"
-          disabled={status === 'loading'}
-        >
-          <option value="">Velg type klinikk (valgfritt)</option>
-          <option value="Kiropraktor">Kiropraktor</option>
-          <option value="Fysioterapeut">Fysioterapeut</option>
-          <option value="Naprapat">Naprapat</option>
-          <option value="Osteopat">Osteopat</option>
-          <option value="Psykolog">Psykolog</option>
-          <option value="Annet">Annet</option>
-        </select>
-      </div>
-
-      <div>
-        <label className="block mb-2 font-medium" style={{ color: '#0D1B2A' }}>
-          Melding <span className="text-cyan-600">*</span>
-        </label>
-        <textarea
-          required
-          rows={4}
-          value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 focus:outline-none resize-none transition"
-          placeholder="Fortell oss om ditt prosjekt..."
-          disabled={status === 'loading'}
-        />
-      </div>
-
-      {status === 'success' && (
-        <div className="bg-green-500/20 border border-green-500 text-green-100 px-6 py-4 rounded-lg animate-fadeIn">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">✓</span>
-            <div>
-              <p className="font-semibold">Takk for din henvendelse!</p>
-              <p className="text-sm text-green-200">Vi tar kontakt med deg så snart som mulig.</p>
-            </div>
+      {/* Step 1: phone + clinic type */}
+      {step === 1 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+          <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '24px', color: 'var(--paper)', marginBottom: '8px', letterSpacing: '-0.01em' }}>
+            Litt om klinikken.
+          </p>
+          <div>
+            <label style={labelStyle}>Telefon</label>
+            <input style={inputStyle} type="tel" placeholder="+47 ..." value={data.phone} onChange={e => update('phone', e.target.value)} autoFocus />
+          </div>
+          <div>
+            <label style={labelStyle}>Klinikktype</label>
+            <select
+              style={{ ...inputStyle, cursor: 'pointer' }}
+              value={data.clinic}
+              onChange={e => update('clinic', e.target.value)}
+            >
+              <option value="" style={{ background: 'var(--ink)' }}>Velg klinikktype</option>
+              {['Kiropraktor', 'Fysioterapeut', 'Naprapat', 'Osteopat', 'Psykolog', 'Annet'].map(t => (
+                <option key={t} value={t} style={{ background: 'var(--ink)' }}>{t}</option>
+              ))}
+            </select>
+          </div>
+          <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
+            <button onClick={back} className="btn btn-ghost" style={{ borderColor: 'rgba(251,248,242,0.2)', color: 'rgba(251,248,242,0.6)' }}>
+              ← Tilbake
+            </button>
+            <button onClick={next} className="btn btn-sage">
+              Neste →
+            </button>
           </div>
         </div>
       )}
 
-      {status === 'error' && (
-        <div className="bg-red-500/20 border border-red-500 text-red-100 px-6 py-4 rounded-lg animate-fadeIn">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">✗</span>
-            <div>
-              <p className="font-semibold">Noe gikk galt</p>
-              <p className="text-sm text-red-200">{errorMessage}</p>
-            </div>
+      {/* Step 2: message + submit */}
+      {step === 2 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+          <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '24px', color: 'var(--paper)', marginBottom: '8px', letterSpacing: '-0.01em' }}>
+            Hva trenger du hjelp med?
+          </p>
+          <div>
+            <label style={labelStyle}>Melding</label>
+            <textarea
+              style={{ ...inputStyle, resize: 'none', minHeight: '120px' }}
+              placeholder="Fortell kort om klinikken din og hva du trenger hjelp med."
+              value={data.message}
+              onChange={e => update('message', e.target.value)}
+              autoFocus
+            />
+          </div>
+
+          {status === 'error' && (
+            <p style={{ fontSize: '14px', color: '#f87171' }}>{errorMsg}</p>
+          )}
+
+          <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
+            <button onClick={back} className="btn btn-ghost" style={{ borderColor: 'rgba(251,248,242,0.2)', color: 'rgba(251,248,242,0.6)' }}>
+              ← Tilbake
+            </button>
+            <button
+              onClick={submit}
+              disabled={!data.message || status === 'loading'}
+              className="btn btn-sage"
+              style={{ opacity: !data.message ? 0.4 : 1 }}
+            >
+              {status === 'loading' ? 'Sender...' : 'Send melding →'}
+            </button>
           </div>
         </div>
       )}
-
-      <button
-        type="submit"
-        disabled={status === 'loading'}
-        className="w-full bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-cyan-500 disabled:hover:to-cyan-600"
-      >
-        {status === 'loading' ? (
-          <span className="flex items-center justify-center gap-2">
-            <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            Sender...
-          </span>
-        ) : (
-          'Send melding'
-        )}
-      </button>
-
-      <p className="text-center text-sm" style={{ color: '#4A5568' }}>
-        Vi svarer vanligvis innen 24 timer
-      </p>
-    </form>
+    </div>
   );
 }
