@@ -150,8 +150,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   aspect-ratio: 4/5;
   border-radius: 4px;
   background-image:
-    repeating-linear-gradient(135deg, rgba(42,31,21,.06) 0 1px, transparent 1px 22px),
-    linear-gradient(160deg, var(--bg-2), #d6c4a6);
+    linear-gradient(to bottom, rgba(42,31,21,0) 50%, rgba(42,31,21,0.5) 100%),
+    url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=900&q=80');
+  background-size: cover;
+  background-position: center;
   position: relative;
   overflow: hidden;
   display: flex; align-items: end; padding: 28px;
@@ -276,12 +278,26 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 }
 .doc .photo {
   aspect-ratio: 3/4;
-  background-image:
-    repeating-linear-gradient(135deg, rgba(42,31,21,.06) 0 1px, transparent 1px 18px),
-    linear-gradient(160deg, var(--bg-2), #c9b896);
+  background-size: cover;
+  background-position: center top;
   display: flex; align-items: end; padding: 14px;
-  color: var(--ink-soft);
+  color: transparent;
   font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.doc:nth-child(1) .photo {
+  background-image:
+    linear-gradient(to top, rgba(42,31,21,0.25) 0%, transparent 50%),
+    url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80');
+}
+.doc:nth-child(2) .photo {
+  background-image:
+    linear-gradient(to top, rgba(42,31,21,0.25) 0%, transparent 50%),
+    url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80');
+}
+.doc:nth-child(3) .photo {
+  background-image:
+    linear-gradient(to top, rgba(42,31,21,0.25) 0%, transparent 50%),
+    url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&q=80');
 }
 .doc h4 {
   font-family: 'Cormorant Garamond', serif;
