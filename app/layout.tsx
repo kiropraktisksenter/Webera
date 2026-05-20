@@ -48,9 +48,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  // verification: {
-  //   google: 'LEGG_TIL_DIN_KODE_FRA_GOOGLE_SEARCH_CONSOLE',
-  // },
 };
 
 export default function RootLayout({
@@ -61,6 +58,12 @@ export default function RootLayout({
   return (
     <html lang="no">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
         <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
       </head>
       <body className="antialiased">

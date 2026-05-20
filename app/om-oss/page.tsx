@@ -1,204 +1,167 @@
-'use client';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import Reveal from '@/components/Reveal';
+import Link from 'next/link';
+import type { Metadata } from 'next';
 
-import { useState } from 'react';
+export const metadata: Metadata = {
+  title: 'Om Webera | Webbyrå for helseklinikker',
+  description: 'Webera er bygget av en klinikkdriver, for klinikkdrivere. Vi jobber med fysioterapeuter, kiropraktorer, naprapater og andre helsefaglige aktører.',
+};
+
+const metrics = [
+  { n: '120+', l: 'Pasienter behandlet ukentlig (egen klinikk)' },
+  { n: '2026', l: 'Etablert · nyoppstartet byrå' },
+  { n: '0.5s', l: 'Snitt lastetid på leveransene' },
+  { n: '100%', l: 'Skreddersøm – aldri en mal' },
+];
+
+const values = [
+  { t: 'Faglig forankring', d: 'Vi driver selv klinikk. Vi forstår pasientreisen og hva som bygger tillit – ikke bare webdesign.' },
+  { t: 'Lokal synlighet', d: 'Vi optimaliserer for lokale Google-søk slik at pasienter i ditt område finner deg først.' },
+  { t: 'Langsiktig partner', d: 'Vi er ikke ferdige ved lansering. Månedlig abonnement inkluderer drift, sikkerhet og prioritert support.' },
+];
+
+const steps = [
+  { n: '01', t: 'Avklaring', d: 'Vi kartlegger klinikkens behov, målgruppe og tjenester – og lager en plan du kan lese på 10 minutter.' },
+  { n: '02', t: 'Design & bygging', d: 'Vi designer og bygger en skreddersydd nettside. Ingen maler. Ingen WordPress. Du ser fremdriften underveis.' },
+  { n: '03', t: 'Leveranse', d: 'Vi går gjennom hver detalj sammen. Nettsiden publiseres først når du er fornøyd – ikke før.' },
+  { n: '04', t: 'Drift', d: 'Hosting, sikkerhet, oppdateringer og support på månedlig abonnement. Vi er en langsiktig partner.' },
+];
 
 export default function OmOss() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0B1220' }}>
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full border-b z-50 shadow-lg" style={{ backgroundColor: '#0B1220', borderColor: '#1a2332' }}>
-        <div className="w-full px-12 sm:px-16 lg:px-20">
-          <div className="flex justify-between items-center h-28">
-            <div className="flex items-center">
-              <a href="/">
-                <img src="/images/Webera Logo.svg" alt="Webera - Webutvikling & Hosting" className="h-36 w-auto" />
-              </a>
-            </div>
-            <div className="flex items-center gap-4">
-              <a href="/#kontakt" className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white px-4 py-2 rounded-lg hover:from-cyan-600 hover:to-cyan-700 transition shadow-lg shadow-cyan-500/50">
-                Kontakt
-              </a>
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="text-white hover:text-cyan-400 transition p-2"
-                aria-label="Meny"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Dropdown Menu */}
-        {menuOpen && (
-          <div className="absolute top-28 right-0 w-64 border-l border-b shadow-2xl" style={{ backgroundColor: '#0B1220', borderColor: '#1a2332' }}>
-            <div className="py-4">
-              <a href="/tjenester" className="block px-6 py-3 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 transition">
-                Tjenester
-              </a>
-              <a href="/hvordan-det-fungerer" className="block px-6 py-3 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 transition">
-                Hvordan det fungerer
-              </a>
-              <a href="/priser" className="block px-6 py-3 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 transition">
-                Priser
-              </a>
-              <a href="/om-oss" className="block px-6 py-3 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10 transition">
-                Om Webera
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
+    <div style={{ background: 'var(--cream)', minHeight: '100vh' }}>
+      <Nav />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0B1220' }}>
-        <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight">
-            Frilansere med fokus på kvalitet
-          </h1>
-          <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-            Webera drives av frilansere som jobber med webutvikling og drift.
-            Vi er ikke et byrå – og det er helt bevisst.
-          </p>
+      <section style={{ paddingTop: '160px', paddingBottom: '80px' }}>
+        <div className="container">
+          <Reveal>
+            <span className="eyebrow">Om Webera</span>
+            <h1 className="h-display" style={{ marginTop: '24px', maxWidth: '960px' }}>
+              Et webbyrå med <em>én</em> klar spesialitet.
+            </h1>
+            <p className="lede" style={{ marginTop: '32px' }}>
+              Webera er bygget av en klinikkdriver, for klinikkdrivere. Vi jobber med fysioterapeuter, kiropraktorer, naprapater, osteopater, psykologer og andre helsefaglige aktører over hele landet.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* Why not an agency */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0D1424' }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <img
-                src="/images/pexels-pixabay-39284.jpg"
-                alt="Effektivt samarbeid"
-                className="rounded-2xl shadow-2xl"
-              />
+      {/* Metrics */}
+      <section style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: '64px 0', background: 'var(--paper)' }}>
+        <div className="container">
+          <Reveal>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0' }}>
+              {metrics.map((m, i) => (
+                <div key={i} style={{ padding: '32px 40px', borderRight: i < metrics.length - 1 ? '1px solid var(--line)' : 'none' }}>
+                  <div style={{ fontFamily: 'Instrument Serif, serif', fontSize: '56px', lineHeight: 1, letterSpacing: '-0.02em', color: 'var(--ink)', marginBottom: '12px' }}>{m.n}</div>
+                  <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', letterSpacing: '0.08em', color: 'var(--muted)', textTransform: 'uppercase' }}>{m.l}</div>
+                </div>
+              ))}
             </div>
-            <div>
-              <h2 className="text-4xl font-bold text-white mb-8">Dette betyr:</h2>
-              <div className="space-y-6">
-                {[
-                  { icon: "💬", title: "Direkte dialog", desc: "Du snakker med dem som faktisk gjør jobben" },
-                  { icon: "⚡", title: "Korte beslutningsveier", desc: "Ingen unødvendige møter eller mellomledere" },
-                  { icon: "💰", title: "Mindre overhead", desc: "Ingen byrå-oppblåsning eller unødvendige kostnader" },
-                  { icon: "🎯", title: "Mer fokus på leveransen", desc: "Vi bruker tiden på å bygge, ikke administrere" }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start">
-                    <span className="text-3xl mr-4">{item.icon}</span>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
-                      <p className="text-gray-300">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Philosophy */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0B1220' }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-white mb-8">Vår filosofi</h2>
-              <p className="text-xl text-gray-300 leading-relaxed mb-10">
-                Vi jobber med et begrenset antall kunder og leverer løsninger vi faktisk kan stå inne for – teknisk og visuelt.
-              </p>
-
-              <div className="bg-gradient-to-r from-cyan-500 to-purple-600 p-10 rounded-3xl shadow-2xl">
-                <h3 className="text-3xl font-bold text-white mb-4 text-center">
-                  Færre prosjekter.<br/>
-                  Bedre kvalitet.<br/>
-                  Full kontroll.
-                </h3>
+      {/* Founder block */}
+      <section className="section">
+        <div className="container">
+          <Reveal>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', alignItems: 'center', maxWidth: '960px' }}>
+              <div style={{ borderRadius: '18px', aspectRatio: '3/4', overflow: 'hidden' }}>
+                <img src="/images/lars-holth.png" alt="Lars Holth – Daglig leder, Webera" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
+              </div>
+              <div>
+                <blockquote style={{ fontFamily: 'Instrument Serif, serif', fontSize: 'clamp(24px, 3vw, 36px)', lineHeight: 1.25, letterSpacing: '-0.01em', color: 'var(--ink)', marginBottom: '28px' }}>
+                  "Jeg startet Webera fordi jeg ikke fant et webbyrå som faktisk forsto hva en helseklinikk trenger digitalt – så jeg bygget det selv."
+                </blockquote>
+                <cite style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', letterSpacing: '0.1em', color: 'var(--muted)', textTransform: 'uppercase', fontStyle: 'normal' }}>
+                  Lars · Daglig leder & klinikkdriver
+                </cite>
               </div>
             </div>
-            <div>
-              <img
-                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80"
-                alt="Kvalitet og presisjon"
-                className="rounded-2xl shadow-2xl"
-              />
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Values */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0D1424' }}>
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-bold text-white mb-16 text-center">Hva vi står for</h2>
-          <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                title: "Tydelig kommunikasjon",
-                desc: "Ingen uklarheter. Du vet hva du får, og hva det koster."
-              },
-              {
-                title: "Rene løsninger",
-                desc: "Ingen maler. Ingen plugins. Bare moderne, skreddersydd kode."
-              },
-              {
-                title: "Forutsigbare priser",
-                desc: "Fast pris på leveranse. Fast månedspris på drift. Ingen overraskelser."
-              }
-            ].map((item, i) => (
-              <div key={i} className="text-center">
-                <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-cyan-400 text-2xl">✓</span>
+      <section style={{ padding: '120px 0', background: 'var(--cream-2)' }}>
+        <div className="container">
+          <Reveal>
+            <span className="eyebrow" style={{ marginBottom: '16px', display: 'block' }}>Verdier</span>
+            <h2 className="h-section" style={{ marginBottom: '64px', maxWidth: '640px' }}>
+              Hva vi <em>tror på.</em>
+            </h2>
+          </Reveal>
+          <Reveal delay={100}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+              {values.map((v, i) => (
+                <div key={i} style={{ background: 'var(--paper)', borderRadius: '18px', padding: '40px', border: '1px solid var(--line)' }}>
+                  <div style={{ fontFamily: 'Instrument Serif, serif', fontSize: '48px', color: 'var(--sage)', lineHeight: 1, marginBottom: '24px' }}>0{i + 1}</div>
+                  <h3 style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500, fontSize: '18px', marginBottom: '12px', color: 'var(--ink)' }}>{v.t}</h3>
+                  <p style={{ fontSize: '15px', color: 'var(--ink-soft)', lineHeight: 1.6 }}>{v.d}</p>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
-                <p className="text-gray-300 leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Team Image */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0B1220' }}>
-        <div className="max-w-5xl mx-auto">
-          <div className="relative">
-            <img
-              src="/images/pexels-fauxels-3184465.jpg"
-              alt="Webera team"
-              className="rounded-3xl shadow-2xl w-full"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent rounded-3xl flex items-end p-10">
-              <div className="text-center w-full">
-                <h3 className="text-3xl font-bold text-white mb-4">
-                  Klar for å samarbeide?
-                </h3>
-                <p className="text-xl text-white/90 mb-8">
-                  Vi hjelper deg gjerne med å finne ut om dette er riktig løsning for deg.
-                </p>
-                <a href="/#kontakt" className="inline-block bg-white text-cyan-600 px-10 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition shadow-lg">
-                  Ta kontakt
-                </a>
+      {/* Process */}
+      <section className="section">
+        <div className="container">
+          <Reveal>
+            <span className="eyebrow" style={{ marginBottom: '16px', display: 'block' }}>Slik jobber vi</span>
+            <h2 className="h-section" style={{ marginBottom: '64px' }}>
+              Fire steg. <em>Forutsigbart.</em>
+            </h2>
+          </Reveal>
+          <Reveal delay={100}>
+            <div style={{ display: 'flex', gap: '0' }}>
+              {steps.map((s, i) => (
+                <div key={i} style={{
+                  flex: 1,
+                  padding: '40px 40px 40px 0',
+                  borderRight: i < steps.length - 1 ? '1px solid var(--line)' : 'none',
+                  paddingRight: i < steps.length - 1 ? '40px' : '0',
+                  paddingLeft: i > 0 ? '40px' : '0',
+                  minHeight: '240px',
+                }}>
+                  <div style={{ fontFamily: 'Instrument Serif, serif', fontSize: '72px', color: 'var(--sage)', lineHeight: 1, marginBottom: '20px' }}>{s.n}</div>
+                  <h4 style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500, fontSize: '18px', marginBottom: '12px', color: 'var(--ink)' }}>{s.t}</h4>
+                  <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.6 }}>{s.d}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section style={{ borderTop: '1px solid var(--line)', padding: '120px 0' }}>
+        <div className="container">
+          <Reveal>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '40px' }}>
+              <div>
+                <span className="eyebrow">Kom i gang</span>
+                <h2 className="h-section" style={{ marginTop: '16px', maxWidth: '640px' }}>
+                  Klar for en nettside som <em>gir deg flere pasienter?</em>
+                </h2>
+              </div>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <Link href="/kontakt" className="btn btn-primary">
+                  Book gratis konsultasjon <span className="arrow">→</span>
+                </Link>
+                <a href="mailto:post@webera.no" className="btn btn-ghost">post@webera.no</a>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="text-gray-400 py-12 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#0B1220' }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
-            <img src="/images/Webera Logo.svg" alt="Webera - Webutvikling & Hosting" className="h-40 w-auto mx-auto mb-4" />
-            <p className="text-sm text-gray-500">WEBUTVIKLING & HOSTING</p>
-          </div>
-          <div className="text-center border-t border-gray-800 pt-8">
-            <p className="mb-4">© 2025 Webera. Alle rettigheter reservert.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

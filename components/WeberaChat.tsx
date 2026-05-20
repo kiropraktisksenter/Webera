@@ -10,7 +10,7 @@ type Message = {
 
 const INITIAL_MESSAGE: Message = {
   role: 'assistant',
-  content: 'Hei! 👋 Jeg er Weberas AI-assistent. Lurer du på noe om nettsider for din klinikk, priser eller prosessen?',
+  content: 'Hei! Jeg er Weberas assistent. Lurer du på noe om nettsider for din klinikk, priser eller prosessen?',
 };
 
 export default function WeberaChat() {
@@ -30,97 +30,101 @@ export default function WeberaChat() {
 
   const send = async () => {
     if (!input.trim() || loading) return;
-
     const userContent = input.trim();
     setInput('');
-
     const updatedMessages: Message[] = [...messages, { role: 'user', content: userContent }];
     setMessages(updatedMessages);
     setLoading(true);
-
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: updatedMessages }),
       });
-
       const data = await res.json();
       setMessages(prev => [...prev, { role: 'assistant', content: data.message }]);
     } catch {
-      setMessages(prev => [
-        ...prev,
-        { role: 'assistant', content: 'Beklager, noe gikk galt. Send oss en epost på post@webera.no.' },
-      ]);
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Beklager, noe gikk galt. Send oss en epost på post@webera.no.' }]);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div style={{ position: 'fixed', bottom: '28px', right: '28px', zIndex: 200, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px' }}>
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.97 }}
+            initial={{ opacity: 0, y: 12, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.97 }}
+            exit={{ opacity: 0, y: 12, scale: 0.97 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="w-80 sm:w-96 bg-white rounded-2xl overflow-hidden shadow-2xl"
-            style={{ border: '1px solid #DDE4ED' }}
+            style={{
+              width: '360px',
+              background: 'var(--paper)',
+              borderRadius: '20px',
+              overflow: 'hidden',
+              boxShadow: '0 4px 6px rgba(20,24,31,0.06), 0 24px 64px rgba(20,24,31,0.14)',
+              border: '1px solid var(--line)',
+            }}
           >
             {/* Header */}
-            <div
-              className="flex items-center justify-between px-4 py-3"
-              style={{ background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)' }}
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-lg">🤖</div>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '16px 20px',
+              background: 'var(--ink)',
+              borderBottom: '1px solid rgba(251,248,242,0.08)',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{
+                  width: '36px', height: '36px', borderRadius: '50%',
+                  background: 'var(--sage)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontFamily: 'Instrument Serif, serif', fontSize: '18px', color: 'var(--paper)',
+                }}>W</div>
                 <div>
-                  <p className="text-white font-semibold text-sm leading-tight">Webera AI</p>
-                  <p className="text-cyan-100 text-xs">Svar innen sekunder</p>
+                  <p style={{ color: 'var(--paper)', fontFamily: 'Geist, sans-serif', fontWeight: 500, fontSize: '14px', lineHeight: 1.2 }}>Webera</p>
+                  <p style={{ color: 'rgba(251,248,242,0.5)', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Assistent · Svar innen sekunder</p>
                 </div>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="text-white/70 hover:text-white transition p-1 rounded"
                 aria-label="Lukk chat"
+                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', color: 'rgba(251,248,242,0.5)', lineHeight: 1 }}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
             {/* Messages */}
-            <div
-              className="h-72 overflow-y-auto p-4 space-y-3 scrollbar-preview"
-              style={{ backgroundColor: '#F7F9FC' }}
-            >
+            <div style={{ height: '288px', overflowY: 'auto', padding: '20px', display: 'flex', flexDirection: 'column', gap: '12px', background: 'var(--cream)' }}>
               {messages.map((msg, i) => (
-                <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div
-                    className="max-w-[82%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed"
-                    style={
-                      msg.role === 'user'
-                        ? { backgroundColor: '#0891b2', color: 'white', borderBottomRightRadius: '4px' }
-                        : { backgroundColor: 'white', color: '#1A1A2E', boxShadow: '0 1px 4px rgba(0,0,0,0.07)', borderBottomLeftRadius: '4px' }
-                    }
-                  >
+                <div key={i} style={{ display: 'flex', justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start' }}>
+                  <div style={{
+                    maxWidth: '82%',
+                    padding: '10px 14px',
+                    borderRadius: msg.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
+                    fontSize: '14px',
+                    lineHeight: 1.55,
+                    fontFamily: 'Geist, sans-serif',
+                    ...(msg.role === 'user'
+                      ? { background: 'var(--ink)', color: 'var(--paper)' }
+                      : { background: 'var(--paper)', color: 'var(--ink)', border: '1px solid var(--line)', boxShadow: 'var(--shadow-soft)' }
+                    ),
+                  }}>
                     {msg.content}
                   </div>
                 </div>
               ))}
 
               {loading && (
-                <div className="flex justify-start">
-                  <div className="bg-white px-4 py-3 rounded-2xl shadow-sm flex items-center gap-1.5">
+                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  <div style={{ background: 'var(--paper)', border: '1px solid var(--line)', padding: '12px 16px', borderRadius: '16px 16px 16px 4px', display: 'flex', gap: '5px', alignItems: 'center' }}>
                     {[0, 1, 2].map(i => (
-                      <div
-                        key={i}
-                        className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce"
-                        style={{ animationDelay: `${i * 0.15}s` }}
-                      />
+                      <div key={i} style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--sage)', animation: 'bounce 1s ease-in-out infinite', animationDelay: `${i * 0.15}s` }} />
                     ))}
                   </div>
                 </div>
@@ -129,7 +133,7 @@ export default function WeberaChat() {
             </div>
 
             {/* Input */}
-            <div className="p-3 bg-white border-t flex gap-2" style={{ borderColor: '#EEF2F7' }}>
+            <div style={{ padding: '12px 16px', background: 'var(--paper)', borderTop: '1px solid var(--line)', display: 'flex', gap: '8px', alignItems: 'center' }}>
               <input
                 ref={inputRef}
                 type="text"
@@ -138,18 +142,33 @@ export default function WeberaChat() {
                 onKeyDown={e => e.key === 'Enter' && send()}
                 placeholder="Skriv en melding..."
                 disabled={loading}
-                className="flex-1 px-3 py-2 rounded-lg text-sm border focus:outline-none focus:border-cyan-400 transition"
-                style={{ borderColor: '#DDE4ED', color: '#1A1A2E' }}
+                style={{
+                  flex: 1,
+                  padding: '10px 14px',
+                  borderRadius: '999px',
+                  border: '1px solid var(--line-strong)',
+                  background: 'var(--cream)',
+                  color: 'var(--ink)',
+                  fontFamily: 'Geist, sans-serif',
+                  fontSize: '14px',
+                  outline: 'none',
+                }}
               />
               <button
                 onClick={send}
                 disabled={loading || !input.trim()}
-                className="px-3 py-2 rounded-lg text-white transition disabled:opacity-40 flex-shrink-0"
-                style={{ background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)' }}
                 aria-label="Send melding"
+                style={{
+                  width: '38px', height: '38px', borderRadius: '50%', flexShrink: 0,
+                  background: input.trim() ? 'var(--ink)' : 'var(--cream-2)',
+                  border: 'none', cursor: input.trim() ? 'pointer' : 'default',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'background 0.2s ease',
+                  color: input.trim() ? 'var(--paper)' : 'var(--muted)',
+                }}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </button>
             </div>
@@ -160,40 +179,27 @@ export default function WeberaChat() {
       {/* Toggle button */}
       <motion.button
         onClick={() => setOpen(o => !o)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="flex items-center gap-2 px-5 py-3 rounded-full text-white font-semibold shadow-xl shadow-cyan-500/30 transition"
-        style={{ background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)' }}
-        aria-label="Åpne chat"
+        whileHover={{ scale: 1.03, translateY: -1 }}
+        whileTap={{ scale: 0.97 }}
+        style={{
+          display: 'flex', alignItems: 'center', gap: '10px',
+          padding: '14px 22px', borderRadius: '999px',
+          background: 'var(--ink)', color: 'var(--paper)',
+          border: 'none', cursor: 'pointer',
+          fontFamily: 'Geist, sans-serif', fontWeight: 500, fontSize: '14px',
+          boxShadow: '0 4px 6px rgba(20,24,31,0.12), 0 12px 32px rgba(20,24,31,0.18)',
+          letterSpacing: '-0.005em',
+        }}
+        aria-label={open ? 'Lukk chat' : 'Åpne chat'}
       >
         <AnimatePresence mode="wait">
           {open ? (
-            <motion.svg
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <motion.svg key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }} width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
             </motion.svg>
           ) : (
-            <motion.svg
-              key="chat"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            <motion.svg key="chat" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }} width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </motion.svg>
           )}
         </AnimatePresence>
