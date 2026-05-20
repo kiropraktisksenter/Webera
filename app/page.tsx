@@ -3,6 +3,8 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Marquee from '@/components/Marquee';
 import Reveal from '@/components/Reveal';
+import ShowcaseCarousel from '@/components/ShowcaseCarousel';
+import FaqAccordion from '@/components/FaqAccordion';
 
 // Structured data from original page
 const structuredData = {
@@ -200,34 +202,9 @@ export default function Home() {
                 </Reveal>
               </div>
 
-              {/* Right — stat cards */}
+              {/* Right — showcase carousel */}
               <Reveal delay={120}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {/* Stat cards */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                    <div style={{ background: 'var(--paper)', border: '1px solid var(--line)', borderRadius: '16px', padding: '28px 24px' }}>
-                      <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '40px', lineHeight: 1, letterSpacing: '-0.02em', marginBottom: '6px' }}>100%</p>
-                      <p style={{ fontSize: '13px', color: 'var(--muted)' }}>Dedikert helsebransje</p>
-                    </div>
-                    <div style={{ background: 'var(--paper)', border: '1px solid var(--line)', borderRadius: '16px', padding: '28px 24px' }}>
-                      <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '40px', lineHeight: 1, letterSpacing: '-0.02em', marginBottom: '6px' }}>3–6 u</p>
-                      <p style={{ fontSize: '13px', color: 'var(--muted)' }}>Typisk leveringstid</p>
-                    </div>
-                  </div>
-
-                  {/* Live card */}
-                  <div style={{ background: 'var(--ink)', borderRadius: '16px', padding: '24px 28px', color: 'var(--paper)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div>
-                      <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'rgba(251,248,242,0.45)', marginBottom: '6px' }}>Live klient</p>
-                      <p style={{ fontSize: '15px', fontWeight: 500 }}>Kiropraktisk Senter</p>
-                      <p style={{ fontSize: '12px', color: 'rgba(251,248,242,0.5)', marginTop: '2px' }}>drift uke 38</p>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
-                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', color: 'rgba(251,248,242,0.6)' }}>Online</span>
-                    </div>
-                  </div>
-                </div>
+                <ShowcaseCarousel />
               </Reveal>
             </div>
 
@@ -678,29 +655,7 @@ export default function Home() {
               </h2>
             </Reveal>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 80px' }}>
-              {[
-                { q: 'Hvem eier nettsiden når den er ferdig?', a: 'Du. Du eier all kode, alle bilder og innholdet på siden. Vi gir deg full tilgang til kildekoden og dokumentasjon. Skulle du ønske å bytte leverandør senere, kan du gjøre det uten å starte på nytt.' },
-                { q: 'Hva om jeg ikke er fornøyd med designet?', a: 'Vi går ikke videre før du er fornøyd. Etter første designutkast har du minst to runder med justeringer inkludert. Hvis vi etter det fortsatt ikke har truffet, refunderer vi 50% – uten diskusjon.' },
-                { q: 'Kan jeg si opp drift-abonnementet når jeg vil?', a: 'Ja. Én måneds oppsigelsestid. Du tar med deg hele siden – vi hjelper deg å flytte til en annen leverandør hvis du ønsker.' },
-                { q: 'Hva skjer hvis Webera legger ned?', a: 'Nettsiden din kjører videre. Den er bygget på åpne teknologier (Next.js, Vercel) som enhver utvikler kan ta over. Du har all kildekoden i ditt eget GitHub-repo fra dag én.' },
-                { q: 'Hvor lang tid tar det å lage nettsiden?', a: 'Fra signert kontrakt til ferdig lansering: 4–6 uker for Klinikkstart, 6–8 uker for Klinikkpro, 8–10 uker for Klinikk+. Vi setter konkrete milepæler du kan følge.' },
-                { q: 'Kan jeg gjøre endringer selv etterpå?', a: 'Ja, du får tilgang til et enkelt CMS for tekstendringer og bildebytte. For større ting (nye sider, ny tjenestestruktur) hjelper vi for kr 1.300,-/time.' },
-                { q: 'Hva er forskjellen på dere og en frilanser?', a: 'En frilanser er ofte god teknisk, men du må selv vite hva du vil ha. Vi spesialiserer oss på én bransje (helse) og kommer med strategi og pasientreise-tenking inkludert. I tillegg er vi en bedrift – ikke én person som blir syk.' },
-                { q: 'Tar dere imot kunder over hele Norge?', a: 'Ja. Vi har klinikker fra Tønsberg til Tromsø. Det meste foregår digitalt – men vi tar gjerne en kaffe hos deg om du er innen rimelig avstand fra Tønsberg.' },
-              ].map((item, i) => (
-                <Reveal key={i} delay={i * 60}>
-                  <div style={{ borderTop: '1px solid var(--line)', padding: '28px 0' }}>
-                    <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '20px', color: 'var(--ink)', marginBottom: '12px', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
-                      {item.q}
-                    </p>
-                    <p style={{ fontSize: '15px', color: 'var(--ink-soft)', lineHeight: 1.65 }}>
-                      {item.a}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            <FaqAccordion />
           </div>
         </section>
 
