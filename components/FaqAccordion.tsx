@@ -8,7 +8,7 @@ const faqs = [
   { q: 'Kan jeg si opp drift-abonnementet når jeg vil?', a: 'Ja. Én måneds oppsigelsestid. Du tar med deg hele siden – vi hjelper deg å flytte til en annen leverandør hvis du ønsker.' },
   { q: 'Hva skjer hvis Webera legger ned?', a: 'Nettsiden din kjører videre. Den er bygget på åpne teknologier (Next.js, Vercel) som enhver utvikler kan ta over. Du har all kildekoden i ditt eget GitHub-repo fra dag én.' },
   { q: 'Hvor lang tid tar det å lage nettsiden?', a: 'Fra signert kontrakt til ferdig lansering: 4–6 uker for Klinikkstart, 6–8 uker for Klinikkpro, 8–10 uker for Klinikk+. Vi setter konkrete milepæler du kan følge.' },
-  { q: 'Kan jeg gjøre endringer selv etterpå?', a: 'Ja, du får tilgang til et enkelt CMS for tekstendringer og bildebytte. For større ting (nye sider, ny tjenestestruktur) hjelper vi for kr 1.300,-/time.' },
+  { q: 'Kan jeg gjøre endringer selv etterpå?', a: 'Endringer bestilles gjennom oss til kr 1.300,-/time. Du sender oss hva du vil ha endret – tekst, bilder, nye sider – og vi fikser det raskt. De fleste klinikker trenger justeringer sjelden nok til at dette er mer praktisk enn å lære seg et system selv.' },
   { q: 'Hva er forskjellen på dere og en frilanser?', a: 'En frilanser er ofte god teknisk, men du må selv vite hva du vil ha. Vi spesialiserer oss på én bransje (helse) og kommer med strategi og pasientreise-tenking inkludert. I tillegg er vi en bedrift – ikke én person som blir syk.' },
   { q: 'Tar dere imot kunder over hele Norge?', a: 'Ja. Vi har klinikker fra Tønsberg til Tromsø. Det meste foregår digitalt – men vi tar gjerne en kaffe hos deg om du er innen rimelig avstand fra Tønsberg.' },
 ];
