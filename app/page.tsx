@@ -152,7 +152,7 @@ export default function Home() {
             </Reveal>
 
             {/* 2-col layout */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '80px', alignItems: 'start' }}>
+            <div className="hero-two-col" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '80px', alignItems: 'start' }}>
 
               {/* Left */}
               <div>
@@ -748,6 +748,10 @@ export default function Home() {
         }
 
         @media (max-width: 768px) {
+          .hero-two-col {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
           .container {
             padding: 0 20px;
           }
