@@ -420,51 +420,48 @@ export default function Home() {
         <section className="section">
           <div className="container">
             <Reveal>
-              <p className="eyebrow" style={{ marginBottom: '24px' }}>04 — Demo-nettsider</p>
+              <p className="eyebrow" style={{ marginBottom: '24px' }}>04 — Utvalgte nettsider</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '56px', flexWrap: 'wrap', gap: '24px' }}>
                 <h2 className="h-section" style={{ maxWidth: '600px' }}>
                   Slik kan din klinikks <em>nettside</em> se ut.
                 </h2>
                 <div>
-                  <p className="lede" style={{ marginBottom: '20px', fontSize: '16px' }}>Skreddersydd design for ulike helsefaglige aktører.</p>
+                  <p className="lede" style={{ marginBottom: '20px', fontSize: '16px' }}>Nylig levert til kunder – og demoer for ulike helsefaglige aktører.</p>
                   <Link href="/demos" className="btn btn-ghost">Se alle demoer →</Link>
                 </div>
               </div>
             </Reveal>
 
-            {/* Asymmetric grid */}
+            {/* Live client sites first, then the demos */}
             <Reveal delay={100}>
-              <div style={{ display: 'grid', gridTemplateColumns: '7fr 5fr', gap: '12px', marginBottom: '12px' }}>
-                <a href="/previews/klinikk/index.html" target="_blank" rel="noreferrer" className="demo-tile" style={{ backgroundImage: 'url(/images/screenshot-klinikk.png)', backgroundSize: 'cover', backgroundPosition: 'top center' }}>
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,24,31,0.85) 0%, rgba(20,24,31,0.1) 60%)' }} />
-                  <div style={{ position: 'relative', zIndex: 1 }}>
-                    <span style={{ display: 'inline-block', background: 'var(--sage)', color: 'var(--paper)', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', padding: '4px 10px', borderRadius: '100px', marginBottom: '10px' }}>Demo · Helseklinikk</span>
-                    <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '28px', color: 'var(--paper)', letterSpacing: '-0.01em' }}>Nordlys Helse</p>
-                  </div>
-                </a>
-                <a href="/previews/fysio/index.html" target="_blank" rel="noreferrer" className="demo-tile" style={{ backgroundImage: 'url(/images/screenshot-fysio.png)', backgroundSize: 'cover', backgroundPosition: 'top center' }}>
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,24,31,0.85) 0%, rgba(20,24,31,0.1) 60%)' }} />
-                  <div style={{ position: 'relative', zIndex: 1 }}>
-                    <span style={{ display: 'inline-block', background: 'var(--sage)', color: 'var(--paper)', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', padding: '4px 10px', borderRadius: '100px', marginBottom: '10px' }}>Demo · Fysioterapi</span>
-                    <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '28px', color: 'var(--paper)', letterSpacing: '-0.01em' }}>Veksthuset Fysio</p>
-                  </div>
-                </a>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '12px', marginBottom: '12px' }}>
+                {[
+                  { href: 'https://helhetligkiropraktor.no', img: '/images/screenshot-helhetlig.png', name: 'Helhetlig Kiropraktor' },
+                  { href: 'https://kiropraktisksenter.no', img: '/images/screenshot-kiropraktisk.png', name: 'Kiropraktisk Senter' },
+                ].map((site) => (
+                  <a key={site.href} href={site.href} target="_blank" rel="noreferrer" className="demo-tile" style={{ backgroundImage: `url(${site.img})`, backgroundSize: 'cover', backgroundPosition: 'top center', minHeight: '320px' }}>
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,24,31,0.85) 0%, rgba(20,24,31,0.2) 60%)' }} />
+                    <div style={{ position: 'relative', zIndex: 1 }}>
+                      <span style={{ display: 'inline-block', background: '#22c55e', color: '#fff', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', padding: '4px 10px', borderRadius: '100px', marginBottom: '10px' }}>Live · Kiropraktor</span>
+                      <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '28px', color: 'var(--paper)', letterSpacing: '-0.01em' }}>{site.name}</p>
+                    </div>
+                  </a>
+                ))}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '5fr 7fr', gap: '12px' }}>
-                <a href="/previews/psykolog/index.html" target="_blank" rel="noreferrer" className="demo-tile" style={{ backgroundImage: 'url(/images/screenshot-psykolog.png)', backgroundSize: 'cover', backgroundPosition: 'top center' }}>
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,24,31,0.85) 0%, rgba(20,24,31,0.1) 60%)' }} />
-                  <div style={{ position: 'relative', zIndex: 1 }}>
-                    <span style={{ display: 'inline-block', background: 'var(--sage)', color: 'var(--paper)', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', padding: '4px 10px', borderRadius: '100px', marginBottom: '10px' }}>Demo · Psykolog</span>
-                    <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '28px', color: 'var(--paper)', letterSpacing: '-0.01em' }}>Stille Rom</p>
-                  </div>
-                </a>
-                <a href="https://kiropraktisksenter.no" target="_blank" rel="noreferrer" className="demo-tile" style={{ backgroundImage: 'url(/images/screenshot-kiropraktisk.png)', backgroundSize: 'cover', backgroundPosition: 'top center' }}>
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,24,31,0.85) 0%, rgba(20,24,31,0.2) 60%)' }} />
-                  <div style={{ position: 'relative', zIndex: 1 }}>
-                    <span style={{ display: 'inline-block', background: '#22c55e', color: '#fff', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', padding: '4px 10px', borderRadius: '100px', marginBottom: '10px' }}>Live · Kiropraktor</span>
-                    <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '28px', color: 'var(--paper)', letterSpacing: '-0.01em' }}>Kiropraktisk Senter</p>
-                  </div>
-                </a>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
+                {[
+                  { href: '/previews/klinikk/index.html', img: '/images/screenshot-klinikk.png', tag: 'Demo · Helseklinikk', name: 'Nordlys Helse' },
+                  { href: '/previews/fysio/index.html', img: '/images/screenshot-fysio.png', tag: 'Demo · Fysioterapi', name: 'Veksthuset Fysio' },
+                  { href: '/previews/psykolog/index.html', img: '/images/screenshot-psykolog.png', tag: 'Demo · Psykolog', name: 'Stille Rom' },
+                ].map((demo) => (
+                  <a key={demo.href} href={demo.href} target="_blank" rel="noreferrer" className="demo-tile" style={{ backgroundImage: `url(${demo.img})`, backgroundSize: 'cover', backgroundPosition: 'top center' }}>
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,24,31,0.85) 0%, rgba(20,24,31,0.1) 60%)' }} />
+                    <div style={{ position: 'relative', zIndex: 1 }}>
+                      <span style={{ display: 'inline-block', background: 'var(--sage)', color: 'var(--paper)', fontFamily: 'JetBrains Mono, monospace', fontSize: '10px', padding: '4px 10px', borderRadius: '100px', marginBottom: '10px' }}>{demo.tag}</span>
+                      <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: '28px', color: 'var(--paper)', letterSpacing: '-0.01em' }}>{demo.name}</p>
+                    </div>
+                  </a>
+                ))}
               </div>
             </Reveal>
           </div>
