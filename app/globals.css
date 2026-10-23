@@ -1364,162 +1364,185 @@ fieldset.felt {
   margin-top: 1rem;
 }
 
-/* ─── Hero-kollasj: små app-kort ─── */
-.kollasj {
-  position: relative;
-  height: 18.5rem;
-  /* Pynt: ved store tekststørrelser klippes den heller enn å gi sidescroll */
-  overflow: clip;
-  overflow-clip-margin: 0.75rem;
-  margin-bottom: 2.5rem;
+/* ─── Hero: skisse som blir til en app ─── */
+.skisse {
+  display: block;
+  width: 100%;
+  max-width: 26rem;
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+  font-family: var(--skrift);
 }
 
-.kort {
-  position: absolute;
-  padding: 0.875rem 1rem;
-  border-radius: 16px;
-  background: var(--flate);
-  border: 1px solid var(--linje);
-  box-shadow: var(--skygge);
-  font-size: 1rem;
-  line-height: 1.35;
-  animation: kort-inn 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(200ms + var(--i, 0) * 140ms);
+.skisse-ark {
+  fill: var(--flate);
+  stroke: var(--linje);
+  filter: drop-shadow(0 18px 28px rgba(22, 58, 48, 0.16));
 }
 
-@keyframes kort-inn {
-  from {
+.skisse-strek * {
+  fill: none;
+  stroke: var(--dempet);
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation:
+    strek-tegn 700ms ease-out var(--d) forwards,
+    strek-bort 500ms ease 2400ms forwards;
+}
+
+@keyframes strek-tegn {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes strek-bort {
+  to {
     opacity: 0;
-    translate: 0 28px;
-    scale: 0.96;
   }
 }
 
-.kort-tittel {
-  font-weight: 700;
+.skisse-ferdig > g {
+  opacity: 0;
+  translate: 0 6px;
+  animation: ferdig-inn 600ms cubic-bezier(0.16, 1, 0.3, 1) var(--d) forwards;
 }
 
-.kort-under {
-  color: var(--dempet);
-}
-
-.kort-chat {
-  top: 0;
-  left: 0;
-  width: 58%;
-  padding: 0;
-  overflow: hidden;
-  z-index: 2;
-}
-
-.kort-hode {
-  padding: 0.625rem 1rem;
-  background: var(--granskog);
-  color: var(--pa-granskog);
-  font-weight: 700;
-}
-
-.boble {
-  margin: 0.625rem 0.75rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 12px;
-  max-width: 85%;
-  animation: kort-inn 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.boble-kunde {
-  margin-left: auto;
-  background: var(--mynte);
-  animation-delay: 900ms;
-}
-
-.boble-svar {
-  background: var(--papir);
-  border: 1px solid var(--linje);
-  animation-delay: 1400ms;
-}
-
-.kort-graf {
-  top: 3.25rem;
-  right: 0;
-  width: 44%;
-  z-index: 3;
-}
-
-.soyler {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.3rem;
-  height: 4.5rem;
-  margin-top: 0.625rem;
-}
-
-.soyler span {
-  flex: 1;
-  height: var(--h);
-  border-radius: 3px 3px 0 0;
-  background: var(--granskog);
-  opacity: 0.85;
-  transform-origin: bottom;
-  animation: soyle-opp 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(700ms + var(--n) * 70ms);
-}
-
-@keyframes soyle-opp {
-  from {
-    scale: 1 0;
+@keyframes ferdig-inn {
+  to {
+    opacity: 1;
+    translate: 0 0;
   }
 }
 
-.kort-kalender {
-  top: 12.75rem;
-  right: 0;
-  width: 44%;
-  z-index: 4;
+.f-gran {
+  fill: var(--granskog);
 }
 
-.dager {
-  display: flex;
-  gap: 0.3rem;
-  margin-top: 0.5rem;
+.f-mynte {
+  fill: var(--mynte);
 }
 
-.dager span {
-  flex: 1;
-  display: grid;
-  place-items: center;
-  height: 2rem;
-  border-radius: 8px;
-  background: var(--papir);
-  color: var(--dempet);
+.f-papir {
+  fill: var(--papir);
+  stroke: var(--linje);
+}
+
+.f-tekst,
+.f-tekst-lys {
+  font-size: 16px;
+  fill: var(--blekk);
+}
+
+.f-tekst-lys {
+  fill: var(--pa-granskog);
+}
+
+.f-fet {
   font-weight: 700;
 }
 
-.dager .valgt {
-  background: var(--granskog);
-  color: var(--pa-granskog);
+.f-dempet {
+  fill: var(--dempet);
 }
 
-.kort-auto {
-  top: 12rem;
-  left: 0;
-  width: 58%;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  z-index: 4;
+/* Lyspæren tegnes, og tennes i merkepenn-gult: idéen */
+.lys-glass,
+.lys-sokkel {
+  fill: transparent;
+  stroke: var(--blekk);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: strek-tegn 600ms ease-out 1300ms forwards;
 }
 
-.hake {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: var(--granskog);
-  color: var(--pa-granskog);
-  font-weight: 800;
+.lys-glass {
+  animation:
+    strek-tegn 600ms ease-out 1300ms forwards,
+    paere-tenn 400ms ease-out 1950ms forwards;
+}
+
+.lyspaere {
+  --paere: #FFD84D;
+  --straale: #E8B800;
+}
+
+@media (prefers-color-scheme: dark) {
+  .lyspaere {
+    --straale: #FFD84D;
+  }
+}
+
+@keyframes paere-tenn {
+  to {
+    fill: var(--paere);
+  }
+}
+
+.lys-straaler path {
+  fill: none;
+  stroke: var(--straale);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.lys-straaler {
+  opacity: 0;
+  scale: 0.6;
+  transform-origin: 318px 52px;
+  animation: straaler-inn 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 2000ms forwards;
+}
+
+@keyframes straaler-inn {
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skisse-strek * {
+    animation: none;
+    opacity: 0;
+  }
+
+  .skisse-ferdig > g {
+    animation: none;
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .lys-glass,
+  .lys-sokkel {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .lys-glass {
+    fill: var(--paere);
+  }
+
+  .lys-straaler {
+    animation: none;
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* Forslagene ligger nå under skjemaet */
+.hero-hoved .inspirasjon {
+  margin-top: 2.5rem;
+}
+
+.inspirasjon h2 {
+  font-size: 1.125rem;
 }
 
 /* ─── Inntoning ved scrolling ─── */
@@ -1616,12 +1639,6 @@ fieldset.felt {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .kort,
-  .boble,
-  .soyler span {
-    animation: none;
-  }
-
   [data-avslor],
   .steg li::before,
   .steg li::after,
@@ -1650,4 +1667,9 @@ fieldset.felt {
 .avslutning p {
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Skissen starter først når den er synlig (Avslor setter .synlig) */
+.avslor-aktiv .skisse:not(.synlig) * {
+  animation-play-state: paused;
 }

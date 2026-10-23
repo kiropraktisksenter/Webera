@@ -14,7 +14,7 @@ export default function Inspirasjon() {
   return (
     <section className="inspirasjon" aria-labelledby="inspirasjon-tittel">
       <h2 id="inspirasjon-tittel">Usikker på hvor du skal begynne?</h2>
-      <p className="dempet liten">Velg et eksempel, så legges det inn i feltet som et utgangspunkt.</p>
+      <p className="sr-only">Velg et eksempel, så legges det inn i feltet som et utgangspunkt.</p>
       <ul className="inspirasjon-liste">
         {EKSEMPLER.map((tekst) => (
           <li key={tekst}>
