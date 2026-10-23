@@ -123,44 +123,66 @@ export async function POST(request: Request) {
   if (d.nettsted) return svarOk();
 
   const mottaker = process.env.IDE_MOTTAKER || 'post@webera.no';
-  const avsender = process.env.IDE_AVSENDER || 'ide@webera.no';
-  const nokkel = process.env.RESEND_API_KEY;
+  const send = velgSender();
 
-  if (!nokkel) {
+  if (!send) {
     if (process.env.NODE_ENV !== 'production') {
-      console.info('[ide] RESEND_API_KEY mangler – e-posten ble bare logget:\n' + eposttekst(d));
+      console.info('[ide] Ingen e-postnøkkel – e-posten ble bare logget:\n' + eposttekst(d));
       return svarOk();
     }
-    console.error('[ide] RESEND_API_KEY er ikke satt. Idéen ble ikke sendt.');
+    console.error('[ide] Verken RESEND_API_KEY eller SENDGRID_API_KEY er satt. Idéen ble ikke sendt.');
     return NextResponse.json({ feil: 'server' }, { status: 500 });
   }
 
-  const resend = new Resend(nokkel);
-
-  const { error } = await resend.emails.send({
-    from: `Webera <${avsender}>`,
-    to: [mottaker],
-    replyTo: d.epost,
-    subject: emne(d.ide),
-    text: eposttekst(d),
-  });
-
-  if (error) {
-    console.error('[ide] Resend feilet:', error.name, error.message);
-    return NextResponse.json({ feil: 'server' }, { status: 502 });
-  }
+  const levert = await send({ til: mottaker, svarTil: d.epost, emne: emne(d.ide), tekst: eposttekst(d) });
+  if (!levert) return NextResponse.json({ feil: 'server' }, { status: 502 });
 
   // Bekreftelsen er fin å ha, men idéen er allerede levert hvis denne feiler.
-  const bekreftelse = await resend.emails.send({
-    from: `Webera <${avsender}>`,
-    to: [d.epost],
-    replyTo: mottaker,
-    subject: 'Idéen din er mottatt',
-    text: bekreftelsestekst(d),
-  });
-  if (bekreftelse.error) {
-    console.error('[ide] Bekreftelse feilet:', bekreftelse.error.name, bekreftelse.error.message);
-  }
+  await send({ til: d.epost, svarTil: mottaker, emne: 'Idéen din er mottatt', tekst: bekreftelsestekst(d) });
 
   return svarOk();
+}
+
+type Epost = { til: string; svarTil: string; emne: string; tekst: string };
+
+// Resend er hovedløsningen. Til den er satt opp (nøkkel + DNS), brukes SendGrid,
+// som den gamle siden brukte, med den allerede verifiserte avsenderen post@webera.no.
+function velgSender(): ((e: Epost) => Promise<boolean>) | null {
+  const resendNokkel = process.env.RESEND_API_KEY;
+  if (resendNokkel) {
+    const resend = new Resend(resendNokkel);
+    const fra = `Webera <${process.env.IDE_AVSENDER || 'ide@webera.no'}>`;
+    return async (e) => {
+      const { error } = await resend.emails.send({ from: fra, to: [e.til], replyTo: e.svarTil, subject: e.emne, text: e.tekst });
+      if (error) console.error('[ide] Resend feilet:', error.name, error.message);
+      return !error;
+    };
+  }
+
+  const sendgridNokkel = process.env.SENDGRID_API_KEY;
+  if (sendgridNokkel) {
+    const fra = process.env.SENDGRID_AVSENDER || 'post@webera.no';
+    return async (e) => {
+      try {
+        const svar = await fetch('https://api.sendgrid.com/v3/mail/send', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${sendgridNokkel}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            personalizations: [{ to: [{ email: e.til }] }],
+            from: { email: fra, name: 'Webera' },
+            reply_to: { email: e.svarTil },
+            subject: e.emne,
+            content: [{ type: 'text/plain', value: e.tekst }],
+          }),
+        });
+        if (!svar.ok) console.error('[ide] SendGrid feilet:', svar.status, (await svar.text()).slice(0, 300));
+        return svar.ok;
+      } catch (feil) {
+        console.error('[ide] SendGrid feilet:', feil);
+        return false;
+      }
+    };
+  }
+
+  return null;
 }
