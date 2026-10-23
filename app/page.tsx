@@ -167,8 +167,8 @@ export default function Forside() {
             <div>
               <h2 id="om-oss-tittel">Om oss</h2>
               <p className="ingress">
-                Webera er et lite studio i Tønsberg. Vi har bygget nettsider, AI-assistent og verktøy som sparer tid i en
-                travel klinikkhverdag.
+                Webera er et lite studio i Tønsberg. Vi lager nettsider, AI-assistenter og verktøy som sparer tid for
+                bedrifter i alle bransjer.
               </p>
               <p>
                 Vi vet hvordan det er å drive en bedrift med lite tid til overs, og vi liker å finne enkle løsninger på
