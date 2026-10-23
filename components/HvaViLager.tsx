@@ -104,11 +104,11 @@ export default function HvaViLager() {
   return (
     <section className="seksjon" id="hva-vi-lager" aria-labelledby="lager-tittel">
       <div className="ramme">
-        <div className="seksjon-intro">
+        <div className="seksjon-intro" data-avslor>
           <h2 id="lager-tittel">Hva vi kan lage</h2>
           <p>Noen eksempler. Det viktigste er problemet du vil løse, ikke hva løsningen heter.</p>
         </div>
-        <ul className="typer">
+        <ul className="typer" data-avslor>
           {TYPER.map((t) => (
             <li key={t.tittel}>
               <svg

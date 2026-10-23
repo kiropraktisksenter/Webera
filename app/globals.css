@@ -1363,3 +1363,272 @@ fieldset.felt {
   justify-self: start;
   margin-top: 1rem;
 }
+
+/* ─── Hero-kollasj: små app-kort ─── */
+.kollasj {
+  position: relative;
+  height: 18.5rem;
+  /* Pynt: ved store tekststørrelser klippes den heller enn å gi sidescroll */
+  overflow: clip;
+  overflow-clip-margin: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.kort {
+  position: absolute;
+  padding: 0.875rem 1rem;
+  border-radius: 16px;
+  background: var(--flate);
+  border: 1px solid var(--linje);
+  box-shadow: var(--skygge);
+  font-size: 1rem;
+  line-height: 1.35;
+  animation: kort-inn 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(200ms + var(--i, 0) * 140ms);
+}
+
+@keyframes kort-inn {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+    scale: 0.96;
+  }
+}
+
+.kort-tittel {
+  font-weight: 700;
+}
+
+.kort-under {
+  color: var(--dempet);
+}
+
+.kort-chat {
+  top: 0;
+  left: 0;
+  width: 58%;
+  padding: 0;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.kort-hode {
+  padding: 0.625rem 1rem;
+  background: var(--granskog);
+  color: var(--pa-granskog);
+  font-weight: 700;
+}
+
+.boble {
+  margin: 0.625rem 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  max-width: 85%;
+  animation: kort-inn 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.boble-kunde {
+  margin-left: auto;
+  background: var(--mynte);
+  animation-delay: 900ms;
+}
+
+.boble-svar {
+  background: var(--papir);
+  border: 1px solid var(--linje);
+  animation-delay: 1400ms;
+}
+
+.kort-graf {
+  top: 3.25rem;
+  right: 0;
+  width: 44%;
+  z-index: 3;
+}
+
+.soyler {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.3rem;
+  height: 4.5rem;
+  margin-top: 0.625rem;
+}
+
+.soyler span {
+  flex: 1;
+  height: var(--h);
+  border-radius: 3px 3px 0 0;
+  background: var(--granskog);
+  opacity: 0.85;
+  transform-origin: bottom;
+  animation: soyle-opp 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(700ms + var(--n) * 70ms);
+}
+
+@keyframes soyle-opp {
+  from {
+    scale: 1 0;
+  }
+}
+
+.kort-kalender {
+  top: 12.75rem;
+  right: 0;
+  width: 44%;
+  z-index: 4;
+}
+
+.dager {
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.dager span {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  height: 2rem;
+  border-radius: 8px;
+  background: var(--papir);
+  color: var(--dempet);
+  font-weight: 700;
+}
+
+.dager .valgt {
+  background: var(--granskog);
+  color: var(--pa-granskog);
+}
+
+.kort-auto {
+  top: 12rem;
+  left: 0;
+  width: 58%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 4;
+}
+
+.hake {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--granskog);
+  color: var(--pa-granskog);
+  font-weight: 800;
+}
+
+/* ─── Inntoning ved scrolling ─── */
+[data-avslor] {
+  transition:
+    opacity 700ms ease,
+    translate 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.avslor-aktiv [data-avslor]:not(.synlig) {
+  opacity: 0;
+  translate: 0 32px;
+}
+
+/* Tidslinjen tegnes opp steg for steg */
+.steg li::before,
+.steg li::after {
+  transition:
+    opacity 500ms ease,
+    scale 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.steg li::after {
+  transform-origin: left center;
+}
+
+.steg li:nth-child(2)::before,
+.steg li:nth-child(1)::after {
+  transition-delay: 150ms;
+}
+
+.steg li:nth-child(3)::before,
+.steg li:nth-child(2)::after {
+  transition-delay: 300ms;
+}
+
+.steg li:nth-child(4)::before,
+.steg li:nth-child(3)::after {
+  transition-delay: 450ms;
+}
+
+.steg li:nth-child(5)::before,
+.steg li:nth-child(4)::after {
+  transition-delay: 600ms;
+}
+
+.avslor-aktiv .steg:not(.synlig) li::before {
+  opacity: 0;
+  scale: 0.5;
+}
+
+.avslor-aktiv .steg:not(.synlig) li::after {
+  scale: 0 1;
+}
+
+/* ─── Hover på rutene ─── */
+.typer li,
+.prisliste div,
+.panel {
+  transition:
+    translate 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+@media (hover: hover) {
+  .typer li:hover,
+  .prisliste div:hover {
+    translate: 0 -4px;
+    box-shadow: var(--skygge);
+    border-color: var(--granskog);
+  }
+}
+
+.typer-ikon {
+  transition:
+    background 200ms ease,
+    color 200ms ease;
+}
+
+.typer li:hover .typer-ikon {
+  background: var(--granskog);
+  color: var(--pa-granskog);
+}
+
+.nettleser {
+  transition: translate 300ms ease;
+}
+
+@media (hover: hover) {
+  .prosjekt:hover .nettleser {
+    translate: 0 -6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kort,
+  .boble,
+  .soyler span {
+    animation: none;
+  }
+
+  [data-avslor],
+  .steg li::before,
+  .steg li::after,
+  .typer li,
+  .prisliste div,
+  .panel,
+  .nettleser {
+    transition: none;
+  }
+}

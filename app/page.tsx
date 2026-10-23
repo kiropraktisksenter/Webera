@@ -2,7 +2,9 @@ import Image, { type StaticImageData } from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import HeroKollasj from '@/components/HeroKollasj';
 import HvaViLager from '@/components/HvaViLager';
+import Avslor from '@/components/Avslor';
 import IdeSkjema from '@/components/IdeSkjema';
 import IdeVideo from '@/components/IdeVideo';
 import Inspirasjon from '@/components/Inspirasjon';
@@ -78,6 +80,7 @@ export default function Forside() {
               </div>
             </div>
             <div className="hero-aside">
+              <HeroKollasj />
               <Inspirasjon />
             </div>
           </div>
@@ -88,13 +91,13 @@ export default function Forside() {
         <section className="seksjon band-mork" id="slik-fungerer-det" aria-labelledby="steg-tittel">
           <div className="ramme">
             <div className="steg-topp">
-              <div className="seksjon-intro">
+              <div className="seksjon-intro" data-avslor>
                 <h2 id="steg-tittel">Slik fungerer det</h2>
                 <p>Fra første tanke til ferdig løsning, i fem steg.</p>
               </div>
               <IdeVideo />
             </div>
-            <ol className="steg">
+            <ol className="steg" data-avslor>
               {STEG.map(([tittel, tekst]) => (
                 <li key={tittel}>
                   <h3>{tittel}</h3>
@@ -107,11 +110,11 @@ export default function Forside() {
 
         <section className="seksjon" id="eierskap" aria-labelledby="eierskap-tittel">
           <div className="ramme">
-            <div className="seksjon-intro">
+            <div className="seksjon-intro" data-avslor>
               <h2 id="eierskap-tittel">Hvem eier løsningen?</h2>
               <p>Det finnes to modeller. Vi avklarer dette før vi begynner, og det står i tilbudet.</p>
             </div>
-            <div className="paneler">
+            <div className="paneler" data-avslor>
               <div className="panel">
                 <span className="merke">Vanligst</span>
                 <h3>Du eier den</h3>
@@ -128,12 +131,12 @@ export default function Forside() {
 
         <section className="seksjon band-mynte" id="laget" aria-labelledby="laget-tittel">
           <div className="ramme">
-            <div className="seksjon-intro">
+            <div className="seksjon-intro" data-avslor>
               <h2 id="laget-tittel">Ting vi har laget</h2>
             </div>
             <ul className="prosjekter">
               {PROSJEKTER.map((p) => (
-                <li className="prosjekt" key={p.url}>
+                <li className="prosjekt" key={p.url} data-avslor>
                   <div className="prosjekt-tekst">
                     <h3>{p.navn}</h3>
                     <p>{p.tekst}</p>
@@ -175,7 +178,7 @@ export default function Forside() {
                 konkrete problemer. Derfor tar vi ett prosjekt om gangen.
               </p>
             </div>
-            <ul className="fakta">
+            <ul className="fakta" data-avslor>
               <li>
                 <strong>Ett</strong> prosjekt om gangen
               </li>
@@ -191,11 +194,11 @@ export default function Forside() {
 
         <section className="seksjon band-mynte" id="pris" aria-labelledby="pris-tittel">
           <div className="ramme">
-            <div className="seksjon-intro">
+            <div className="seksjon-intro" data-avslor>
               <h2 id="pris-tittel">Pris</h2>
               <p>Du vet hva det koster før vi begynner.</p>
             </div>
-            <dl className="prisliste">
+            <dl className="prisliste" data-avslor>
               <div>
                 <dt>Første samtale</dt>
                 <dd>Gratis</dd>
@@ -220,10 +223,10 @@ export default function Forside() {
 
         <section className="seksjon" id="ikke" aria-labelledby="ikke-tittel">
           <div className="ramme">
-            <div className="seksjon-intro">
+            <div className="seksjon-intro" data-avslor>
               <h2 id="ikke-tittel">Det vi ikke gjør</h2>
             </div>
-            <p className="utsagn">
+            <p className="utsagn" data-avslor>
               Vi driver ikke med markedsføring eller annonsering, og vi tar ikke flere prosjekter enn vi rekker. Passer
               ikke idéen din for oss, sier vi det ærlig – og tipser gjerne om hvem som kan hjelpe.
             </p>
@@ -232,7 +235,7 @@ export default function Forside() {
 
         <section className="seksjon" id="sporsmal" aria-labelledby="faq-tittel" style={{ paddingTop: 0 }}>
           <div className="ramme">
-            <div className="seksjon-intro">
+            <div className="seksjon-intro" data-avslor>
               <h2 id="faq-tittel">Vanlige spørsmål</h2>
             </div>
             <div className="faq">
@@ -255,6 +258,7 @@ export default function Forside() {
         </section>
       </main>
       <Footer />
+      <Avslor />
     </>
   );
 }
