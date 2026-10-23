@@ -203,7 +203,7 @@ export const IdeTilLosning: React.FC = () => {
               }),
             }}
           >
-            Når har dere åpent?
+            Kan dere levere neste uke?
           </div>
           <div
             style={{
@@ -222,7 +222,7 @@ export const IdeTilLosning: React.FC = () => {
               }),
             }}
           >
-            Vi har åpent hverdager 8–16. Vil du bestille time?
+            Ja, det går fint. Vil du sende en forespørsel?
           </div>
           <div
             style={{
@@ -236,7 +236,7 @@ export const IdeTilLosning: React.FC = () => {
               opacity: interpolate(frame, [220, 230], [0, 1], klamp),
             }}
           >
-            Bestill time
+            Send forespørsel
           </div>
         </div>
       </div>
