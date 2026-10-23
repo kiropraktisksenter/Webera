@@ -1,79 +1,61 @@
-import type { Metadata } from "next";
-import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next";
-import WeberaChat from '@/components/WeberaChat';
-import "./globals.css";
+import type { Metadata, Viewport } from 'next';
+import { Schibsted_Grotesk } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
+import SporOmNoe from '@/components/SporOmNoe';
+import './globals.css';
+
+const schibsted = Schibsted_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '800'],
+  display: 'swap',
+  variable: '--font-schibsted',
+});
+
+const TITTEL = 'Webera – fra idé til digital løsning | Tønsberg';
+const BESKRIVELSE =
+  'Har du en idé til en app, et verktøy eller en AI-løsning? Fortell Lars om den. Gratis første samtale, fast pris og løsninger laget for måten du jobber på.';
 
 export const metadata: Metadata = {
-  title: "Nettsider for helseklinikker | Webera",
-  description: "Webera lager profesjonelle nettsider og digitale løsninger for helseklinikker. Vi driver selv klinikk – vi forstår bransjen innenfra.",
-  keywords: "nettside kiropraktor, nettside fysioterapeut, webbyrå helsebedrift, nettside helseklinikk, lokal SEO klinikk, nettside naprapat, webbyrå Tønsberg, nettsider for helsebedrifter",
-  authors: [{ name: "Webera" }],
-  creator: "Webera",
-  publisher: "Webera",
   metadataBase: new URL('https://webera.no'),
-  alternates: {
-    canonical: '/',
-  },
+  title: { default: TITTEL, template: '%s | Webera' },
+  description: BESKRIVELSE,
+  authors: [{ name: 'Lars Holth' }],
+  creator: 'Webera AS',
+  publisher: 'Webera AS',
+  alternates: { canonical: '/' },
   openGraph: {
-    title: "Nettsider for helseklinikker | Webera",
-    description: "Webera lager profesjonelle nettsider og digitale løsninger for helseklinikker. Vi driver selv klinikk – vi forstår bransjen innenfra.",
+    title: TITTEL,
+    description: BESKRIVELSE,
     url: 'https://webera.no',
     siteName: 'Webera',
     locale: 'nb_NO',
     type: 'website',
-    images: [
-      {
-        url: 'https://webera.no/images/hero-klinikk-3.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Webera – Nettsider for helsebedrifter',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Nettsider for helseklinikker | Webera",
-    description: "Webera lager profesjonelle nettsider eksklusivt for helsebedrifter. Vi driver selv klinikk – vi forstår bransjen innenfra.",
-    images: ['https://webera.no/images/hero-klinikk-3.jpg'],
+    title: TITTEL,
+    description: BESKRIVELSE,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FAFAF7' },
+    { media: '(prefers-color-scheme: dark)', color: '#171C1B' },
+  ],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="no">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-      </head>
-      <body className="antialiased">
+    <html lang="nb" className={schibsted.variable}>
+      <body>
+        <a className="hopp-til-innhold" href="#innhold">
+          Hopp til innholdet
+        </a>
         {children}
+        <SporOmNoe />
         <Analytics />
-        <WeberaChat />
-        <Script
-          src="https://assets.calendly.com/assets/external/widget.js"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );
