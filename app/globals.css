@@ -674,57 +674,6 @@ fieldset.felt {
   max-width: none;
 }
 
-/* ─── Inspirasjon ─── */
-.inspirasjon h2 {
-  font-size: 1.375rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.inspirasjon-liste {
-  list-style: none;
-  margin: 1rem 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.625rem;
-}
-
-.inspirasjon-liste button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  min-height: 48px;
-  padding: 0.625rem 1rem 0.625rem 0.75rem;
-  border: 1px solid var(--linje);
-  border-radius: 999px;
-  background: var(--flate);
-  color: var(--blekk);
-  font: inherit;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.3;
-  text-align: left;
-  cursor: pointer;
-}
-
-.inspirasjon-liste button span[aria-hidden] {
-  flex: none;
-  display: inline-grid;
-  place-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  background: var(--granskog);
-  color: var(--pa-granskog);
-  font-weight: 700;
-  line-height: 1;
-}
-
-.inspirasjon-liste button:hover {
-  border-color: var(--granskog);
-}
-
 /* ─── Slik fungerer det: tidslinje på mørkt bånd ─── */
 .steg {
   list-style: none;
@@ -1296,11 +1245,6 @@ fieldset.felt {
 }
 
 /* Store tekststørrelser: knapper og etiketter skal bryte, ikke flyte ut */
-.inspirasjon-liste li,
-.inspirasjon-liste button {
-  max-width: 100%;
-}
-
 .nettleser-topp span {
   min-width: 0;
   overflow-wrap: anywhere;
@@ -1671,14 +1615,8 @@ fieldset.felt {
 
 }
 
-/* Forslagene ligger nå under skjemaet */
-.hero-hoved .inspirasjon {
-  margin-top: 2.5rem;
-}
 
-.inspirasjon h2 {
-  font-size: 1.125rem;
-}
+
 
 /* ─── Inntoning ved scrolling ─── */
 [data-avslor] {

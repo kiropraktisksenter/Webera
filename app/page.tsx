@@ -7,7 +7,6 @@ import HvaViLager from '@/components/HvaViLager';
 import Avslor from '@/components/Avslor';
 import IdeSkjema from '@/components/IdeSkjema';
 import IdeVideo from '@/components/IdeVideo';
-import Inspirasjon from '@/components/Inspirasjon';
 import SendIdeLenke from '@/components/SendIdeLenke';
 import kiropraktiskBilde from '@/public/images/screenshot-kiropraktisk.png';
 import helhetligBilde from '@/public/images/screenshot-helhetlig.png';
@@ -78,7 +77,6 @@ export default function Forside() {
               <div data-ikke-dekk>
                 <IdeSkjema />
               </div>
-              <Inspirasjon />
             </div>
             <div className="hero-aside">
               <Eksempler />

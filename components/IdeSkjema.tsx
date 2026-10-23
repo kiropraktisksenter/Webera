@@ -13,7 +13,6 @@ import {
   type IdeFelter,
 } from '@/lib/ide';
 
-export const INSPIRASJON_HENDELSE = 'webera:inspirasjon';
 const UTKAST_NOKKEL = 'webera-ide-utkast';
 const PLASSHOLDER =
   'For eksempel: Vi bruker en time hver dag på å svare på de samme spørsmålene fra kunder …';
@@ -87,25 +86,6 @@ export default function IdeSkjema({ visAlt = false }: { visAlt?: boolean }) {
   useEffect(() => {
     if (utkastLastet.current) lagreUtkast(felter);
   }, [felter]);
-
-  // Eksempler fra «Usikker på hvor du skal begynne?»
-  useEffect(() => {
-    function vedInspirasjon(e: Event) {
-      const tekst = (e as CustomEvent<string>).detail;
-      setFelter((f) => ({ ...f, ide: f.ide.trim() ? `${f.ide.trimEnd()}\n\n${tekst}` : tekst }));
-      setFeil((f) => ({ ...f, ide: undefined }));
-      const felt = ideRef.current;
-      if (!felt) return;
-      felt.scrollIntoView({ block: 'center' });
-      felt.focus({ preventScroll: true });
-      requestAnimationFrame(() => {
-        const slutt = felt.value.length;
-        felt.setSelectionRange(slutt, slutt);
-      });
-    }
-    window.addEventListener(INSPIRASJON_HENDELSE, vedInspirasjon);
-    return () => window.removeEventListener(INSPIRASJON_HENDELSE, vedInspirasjon);
-  }, []);
 
   useEffect(() => {
     if (apen && fokuserVedApning.current) {
