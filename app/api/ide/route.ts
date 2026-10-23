@@ -59,11 +59,11 @@ function bekreftelsestekst(d: Ide) {
   return [
     `Hei ${d.navn},`,
     '',
-    'Takk, idéen din er mottatt. Jeg svarer innen to virkedager.',
+    'Takk, idéen din er mottatt. Vi svarer innen to virkedager.',
     '',
     'Har du noe å legge til, svarer du bare på denne e-posten.',
     '',
-    '– Lars, Webera',
+    'Hilsen Webera',
     '',
     '---',
     'Dette sendte du:',
@@ -152,7 +152,7 @@ export async function POST(request: Request) {
 
   // Bekreftelsen er fin å ha, men idéen er allerede levert hvis denne feiler.
   const bekreftelse = await resend.emails.send({
-    from: `Lars i Webera <${avsender}>`,
+    from: `Webera <${avsender}>`,
     to: [d.epost],
     replyTo: mottaker,
     subject: 'Idéen din er mottatt',

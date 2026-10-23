@@ -23,7 +23,7 @@ const REKKEFOLGE: Feltnavn[] = ['ide', 'brukere', 'idag', 'budsjett', 'tidsramme
 const STATUS = {
   nettverk: 'Idéen ble ikke sendt. Sjekk nettet og prøv igjen.',
   forMange: 'Det er sendt mange idéer herfra på kort tid. Vent noen minutter og prøv igjen.',
-  server: 'Idéen ble ikke sendt på grunn av en feil hos meg. Prøv igjen om litt, eller send den til post@webera.no.',
+  server: 'Idéen ble ikke sendt på grunn av en feil hos oss. Prøv igjen om litt, eller send den til post@webera.no.',
   sjekkFelter: 'Noe i skjemaet må rettes. Se meldingene ved feltene.',
 } as const;
 
@@ -301,7 +301,7 @@ export default function IdeSkjema({ visAlt = false }: { visAlt?: boolean }) {
           <button type="button" className="knapp" onClick={fortsett}>
             Fortsett
           </button>
-          <p className="dempet">Jeg svarer innen to virkedager. Første samtale er gratis.</p>
+          <p className="dempet">Vi svarer innen to virkedager. Første samtale er gratis.</p>
         </div>
       )}
 
@@ -357,7 +357,7 @@ export default function IdeSkjema({ visAlt = false }: { visAlt?: boolean }) {
                 {sender ? 'Sender …' : 'Send idéen'}
               </button>
               <p className="dempet liten">
-                Det du sender leses bare av meg. <Link href="/personvern">Les om personvern.</Link>
+                Det du sender leses bare av oss. <Link href="/personvern">Les om personvern.</Link>
               </p>
             </div>
           </div>

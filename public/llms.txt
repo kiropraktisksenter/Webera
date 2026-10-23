@@ -1,13 +1,13 @@
 # Webera
 
-Webera AS er et lite studio i Tønsberg drevet av Lars Holth. Lars tar imot idéer fra bedrifter og privatpersoner som vil lage noe digitalt – en app, et internt verktøy, en AI-assistent, en automatisering eller en nettside – og hjelper dem fra idé til ferdig løsning. Lars er også kiropraktor og driver egen klinikk, og tar derfor ett prosjekt om gangen.
+Webera AS er et lite studio i Tønsberg. Vi tar imot idéer fra bedrifter og privatpersoner som vil lage noe digitalt – en app, et internt verktøy, en AI-assistent, en automatisering eller en nettside – og hjelper dem fra idé til ferdig løsning. Vi tar ett prosjekt om gangen.
 
 ## Slik fungerer det
 
 1. Du sender idéen via skjemaet på https://webera.no/send-ide
 2. En gratis og uforpliktende prat
 3. Fast pristilbud: hva som lages, hva det koster og når det er klart
-4. Lars bygger, du følger med underveis
+4. Vi bygger, du følger med underveis
 5. Levering, og avtale om eventuell hjelp videre
 
 ## Pris
@@ -19,7 +19,7 @@ Webera AS er et lite studio i Tønsberg drevet av Lars Holth. Lars tar imot idé
 
 ## Eierskap
 
-Enten eier kunden løsningen (kode og innhold), eller Lars eier den og kunden leier den. Det avklares før arbeidet starter.
+Enten eier kunden løsningen (kode og innhold), eller Webera eier den og kunden leier den. Det avklares før arbeidet starter.
 
 ## Kontakt
 

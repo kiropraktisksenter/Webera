@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from 'react';
 import SendIdeLenke from './SendIdeLenke';
 
 const LENKER = [
+  { href: '/#hva-vi-lager', tekst: 'Hva vi lager' },
   { href: '/#slik-fungerer-det', tekst: 'Slik fungerer det' },
-  { href: '/#laget', tekst: 'Ting jeg har laget' },
-  { href: '/#om-lars', tekst: 'Om Lars' },
+  { href: '/#laget', tekst: 'Ting vi har laget' },
+  { href: '/#om-oss', tekst: 'Om oss' },
 ];
 
 export default function Header() {

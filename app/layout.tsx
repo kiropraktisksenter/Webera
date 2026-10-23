@@ -13,13 +13,12 @@ const schibsted = Schibsted_Grotesk({
 
 const TITTEL = 'Webera – fra idé til digital løsning | Tønsberg';
 const BESKRIVELSE =
-  'Har du en idé til en app, et verktøy eller en AI-løsning? Fortell Lars om den. Gratis første samtale, fast pris og løsninger laget for måten du jobber på.';
+  'Har du en idé til en app, et verktøy eller en AI-løsning? Fortell oss om den. Gratis første samtale, fast pris og løsninger laget for måten du jobber på.';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://webera.no'),
   title: { default: TITTEL, template: '%s | Webera' },
   description: BESKRIVELSE,
-  authors: [{ name: 'Lars Holth' }],
   creator: 'Webera AS',
   publisher: 'Webera AS',
   alternates: { canonical: '/' },

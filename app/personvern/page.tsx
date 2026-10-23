@@ -17,13 +17,13 @@ export default function Personvern() {
         <div className="ramme tekstkolonne">
           <h1>Personvern</h1>
           <p className="ingress">
-            Kort fortalt: Det du sender, leses bare av meg, og brukes bare til å svare deg og eventuelt lage et tilbud.
+            Kort fortalt: Det du sender, leses bare av oss, og brukes bare til å svare deg og eventuelt lage et tilbud.
           </p>
 
           <h2>Hvem er ansvarlig?</h2>
           <p>
-            Webera AS i Tønsberg er ansvarlig for opplysningene. Det er meg, Lars Holth, som leser og svarer på det som
-            kommer inn. Du når meg på <a href="mailto:post@webera.no">post@webera.no</a>.
+            Webera AS i Tønsberg er ansvarlig for opplysningene. Det er vi som leser og svarer på det som kommer inn.
+            Du når oss på <a href="mailto:post@webera.no">post@webera.no</a>.
           </p>
 
           <h2>Hva samles inn?</h2>
@@ -32,15 +32,15 @@ export default function Personvern() {
             <li>Budsjett og tidsramme du velger.</li>
             <li>Navn og e-post, og bedrift og telefon hvis du fyller det ut.</li>
           </ul>
-          <p>Jeg ber ikke om flere opplysninger enn dette, og skjemaet legger ingenting i nettadressen.</p>
+          <p>Vi ber ikke om flere opplysninger enn dette, og skjemaet legger ingenting i nettadressen.</p>
 
           <h2>Hva skjer når du trykker «Send idéen»?</h2>
           <p>
-            Skjemaet sendes som en e-post til innboksen min. Til det bruker jeg e-posttjenesten Resend, som behandler
+            Skjemaet sendes som en e-post til innboksen vår. Til det bruker vi e-posttjenesten Resend, som behandler
             e-posten på vegne av Webera. Du får også en kort bekreftelse på e-post.
           </p>
           <p>
-            Idéen brukes ikke til markedsføring, deles ikke med andre og brukes ikke til å trene AI-modeller. Jeg tar
+            Idéen brukes ikke til markedsføring, deles ikke med andre og brukes ikke til å trene AI-modeller. Vi tar
             vare på henvendelsen så lenge det trengs for å svare deg og eventuelt lage et tilbud og gjennomføre
             prosjektet.
           </p>
@@ -54,7 +54,7 @@ export default function Personvern() {
           <h2>Chatten «Spør om noe»</h2>
           <p>
             Chatten er en AI-assistent. Det du skriver der, sendes til Anthropic for å lage et svar. Webera lagrer ikke
-            samtalen. Skriv ikke sensitive opplysninger i chatten. Vil du at jeg skal lese idéen din, bruker du
+            samtalen. Skriv ikke sensitive opplysninger i chatten. Vil du at vi skal lese idéen din, bruker du
             skjemaet.
           </p>
 
@@ -66,8 +66,8 @@ export default function Personvern() {
 
           <h2>Dine rettigheter</h2>
           <p>
-            Du kan be om å få se, rette eller slette opplysningene jeg har om deg. Send en e-post til{' '}
-            <a href="mailto:post@webera.no">post@webera.no</a>. Mener du at jeg behandler opplysningene feil, kan du
+            Du kan be om å få se, rette eller slette opplysningene vi har om deg. Send en e-post til{' '}
+            <a href="mailto:post@webera.no">post@webera.no</a>. Mener du at vi behandler opplysningene feil, kan du
             klage til <a href="https://www.datatilsynet.no">Datatilsynet</a>.
           </p>
 

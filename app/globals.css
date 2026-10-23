@@ -13,6 +13,12 @@
   --feil: #B3261E;
   --kant: #7A8583;
   --linje: rgba(27, 42, 42, 0.14);
+  --mynte: #E5F0EA;
+  --band: #163A30;
+  --pa-band: #F1F5F2;
+  --band-dempet: #B9CFC6;
+  --band-aksent: #9FD8C2;
+  --skygge: 0 1px 2px rgba(22, 58, 48, 0.06), 0 12px 32px -8px rgba(22, 58, 48, 0.18);
 
   --skrift: var(--font-schibsted), system-ui, -apple-system, 'Segoe UI', sans-serif;
   --tekstbredde: 44rem;
@@ -32,6 +38,12 @@
     --feil: #F2B8B5;
     --kant: #7D8885;
     --linje: rgba(238, 241, 239, 0.16);
+    --mynte: #1F2C28;
+    --band: #1D3F35;
+    --pa-band: #EEF1EF;
+    --band-dempet: #B4C7C0;
+    --band-aksent: #8FD3B9;
+    --skygge: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -8px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -82,8 +94,9 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  letter-spacing: -0.01em;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
 }
 
 h3 {
@@ -162,8 +175,40 @@ img {
 }
 
 .seksjon {
-  padding: clamp(3.5rem, 8vw, 6rem) 0;
-  border-top: 1px solid var(--linje);
+  padding: clamp(4rem, 10vw, 7.5rem) 0;
+}
+
+/* Bånd gir siden rytme: mørk granskog for prosessen og avslutningen,
+   mynte for utsagn. Tokenene byttes lokalt, så knapper og lenker følger med. */
+.band-mork {
+  background: var(--band);
+  color: var(--pa-band);
+  --blekk: var(--pa-band);
+  --dempet: var(--band-dempet);
+  --granskog: var(--band-aksent);
+  --pa-granskog: var(--band);
+  --linje: rgba(241, 245, 242, 0.22);
+}
+
+.band-mynte {
+  background: var(--mynte);
+}
+
+.seksjon-intro {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.seksjon-intro h2,
+.seksjon-intro p {
+  margin: 0;
+}
+
+.seksjon-intro p {
+  font-size: 1.375rem;
+  line-height: 1.45;
+  color: var(--dempet);
 }
 
 .ingress {
@@ -317,7 +362,25 @@ img {
 
 /* ─── Hero ─── */
 .hero {
-  padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(3rem, 8vw, 6rem);
+  padding: clamp(2.5rem, 7vw, 5.5rem) 0 clamp(4rem, 9vw, 7rem);
+  background:
+    radial-gradient(60rem 32rem at 100% 0%, var(--mynte), transparent 70%),
+    var(--papir);
+}
+
+.hero h1 {
+  font-size: clamp(2.75rem, 7vw, 5.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 15ch;
+}
+
+.hero-undertekst {
+  font-size: 1.375rem;
+  line-height: 1.45;
+  color: var(--dempet);
+  max-width: 34ch;
+  margin: 0 0 2.25rem;
 }
 
 .hero-rutenett {
@@ -347,7 +410,7 @@ img {
 }
 
 .hero h1 {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 /* ─── Idéskjemaet ─── */
@@ -438,8 +501,9 @@ textarea.inndata {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   border: 1px solid var(--kant);
-  border-radius: 8px;
+  border-radius: 14px;
   background: var(--flate);
+  box-shadow: var(--skygge);
 }
 
 .idefelt:focus-within {
@@ -455,7 +519,7 @@ textarea.inndata {
 .idefelt-speil {
   grid-area: 1 / 1;
   margin: 0;
-  padding: 1rem 1.125rem;
+  padding: 1.25rem 1.375rem;
   font: inherit;
   font-size: clamp(1.5rem, 3.2vw, 1.75rem);
   font-weight: 500;
@@ -613,179 +677,322 @@ fieldset.felt {
 /* ─── Inspirasjon ─── */
 .inspirasjon h2 {
   font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .inspirasjon-liste {
   list-style: none;
-  margin: 0 0 0.75rem;
+  margin: 1rem 0 0;
   padding: 0;
-  border-top: 1px solid var(--linje);
-}
-
-.inspirasjon-liste li {
-  border-bottom: 1px solid var(--linje);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
 }
 
 .inspirasjon-liste button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
+  gap: 0.625rem;
   min-height: 48px;
-  padding: 0.75rem 0;
-  border: 0;
-  background: none;
+  padding: 0.625rem 1rem 0.625rem 0.75rem;
+  border: 1px solid var(--linje);
+  border-radius: 999px;
+  background: var(--flate);
   color: var(--blekk);
   font: inherit;
-  font-size: 1.125rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
   text-align: left;
   cursor: pointer;
 }
 
 .inspirasjon-liste button span[aria-hidden] {
-  color: var(--granskog);
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--granskog);
+  color: var(--pa-granskog);
   font-weight: 700;
+  line-height: 1;
 }
 
 .inspirasjon-liste button:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
+  border-color: var(--granskog);
 }
 
-/* ─── Slik fungerer det ─── */
+/* ─── Slik fungerer det: tidslinje på mørkt bånd ─── */
 .steg {
   list-style: none;
   counter-reset: steg;
-  margin: 2rem 0 0;
+  margin: 0;
   padding: 0;
   display: grid;
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 2.5rem 1.5rem;
 }
 
 .steg li {
   counter-increment: steg;
-  display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr);
-  gap: 0 1rem;
+  position: relative;
+  padding-top: 4.5rem;
 }
 
 .steg li::before {
   content: counter(steg);
-  grid-row: span 2;
-  font-size: 2.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--granskog);
+  color: var(--pa-granskog);
+  font-size: 1.375rem;
   font-weight: 800;
-  line-height: 1;
-  color: var(--granskog);
+}
+
+/* Linjen som binder stegene sammen */
+.steg li::after {
+  content: '';
+  position: absolute;
+  top: 1.625rem;
+  left: 4rem;
+  right: -0.75rem;
+  border-top: 2px dashed var(--linje);
+}
+
+.steg li:last-child::after {
+  display: none;
 }
 
 .steg h3 {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.375rem;
 }
 
 .steg p {
   margin: 0;
+  color: var(--dempet);
 }
 
-/* ─── To kolonner (eierskap, prosjekter, om Lars) ─── */
-.to-deler {
+/* ─── Hvem eier løsningen? ─── */
+.paneler {
   display: grid;
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1.25rem;
 }
 
-@media (min-width: 48rem) {
-  .to-deler {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 3rem;
-  }
+.panel {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 20px;
+  background: var(--flate);
+  border: 1px solid var(--linje);
 }
 
-.to-deler > div {
-  border-top: 2px solid var(--blekk);
-  padding-top: 1rem;
+.panel-mynte {
+  background: var(--mynte);
+  border-color: transparent;
 }
 
+.panel h3 {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-top: 1rem;
+}
+
+.panel p {
+  margin: 0;
+}
+
+.merke {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--granskog);
+  color: var(--granskog);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.merke-tom {
+  border-color: var(--kant);
+  color: var(--dempet);
+}
+
+.fotnote {
+  margin: 1.5rem 0 0;
+  color: var(--dempet);
+}
+
+/* ─── Ting vi har laget ─── */
 .prosjekter {
   list-style: none;
-  margin: 2rem 0 0;
+  margin: 0;
   padding: 0;
   display: grid;
-  gap: 3rem;
+  gap: clamp(3rem, 8vw, 5.5rem);
 }
 
 .prosjekt {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 1.25rem;
-}
-
-.prosjekt a {
-  overflow-wrap: anywhere;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 @media (min-width: 56rem) {
   .prosjekt {
-    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
-    gap: 3rem;
-    align-items: start;
-  }
-}
-
-.prosjekt img,
-.portrett {
-  border: 1px solid var(--linje);
-  border-radius: 6px;
-}
-
-.om-lars {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 2rem;
-}
-
-@media (min-width: 56rem) {
-  .om-lars {
-    grid-template-columns: minmax(0, var(--tekstbredde)) minmax(0, 18rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
     gap: 4rem;
-    align-items: start;
   }
+
+  .prosjekt:nth-child(even) {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  }
+
+  .prosjekt:nth-child(even) .prosjekt-tekst {
+    order: 2;
+  }
+}
+
+.prosjekt h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.prosjekt a {
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+.nettleser {
+  border-radius: 14px;
+  border: 1px solid var(--linje);
+  background: var(--flate);
+  box-shadow: var(--skygge);
+  overflow: hidden;
+}
+
+.nettleser-topp {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--mynte);
+  border-bottom: 1px solid var(--linje);
+}
+
+.nettleser-topp i {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--kant);
+  opacity: 0.5;
+}
+
+.nettleser-topp span {
+  margin-left: 0.75rem;
+  padding: 0.125rem 0.75rem;
+  border-radius: 999px;
+  background: var(--flate);
+  color: var(--dempet);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* ─── Om oss ─── */
+.om-oss {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 2.5rem 4rem;
+  align-items: start;
+}
+
+.fakta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fakta li {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--linje);
+  color: var(--dempet);
+}
+
+.fakta li:first-child {
+  padding-top: 0;
+}
+
+.fakta strong {
+  display: block;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--granskog);
 }
 
 /* ─── Pris ─── */
 .prisliste {
-  margin: 2rem 0 0;
-  max-width: var(--tekstbredde);
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
 }
 
 .prisliste div {
   display: grid;
-  gap: 0.125rem 2rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--linje);
-}
-
-.prisliste div:first-child {
-  border-top: 1px solid var(--linje);
-}
-
-@media (min-width: 40rem) {
-  .prisliste div {
-    grid-template-columns: 16rem 1fr;
-  }
+  align-content: start;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: var(--flate);
+  border: 1px solid var(--linje);
 }
 
 .prisliste dt {
-  font-weight: 700;
+  color: var(--dempet);
+  font-size: 1rem;
 }
 
 .prisliste dd {
   margin: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.prisliste dd small {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: normal;
+  color: var(--dempet);
+}
+
+/* ─── Det vi ikke gjør ─── */
+.utsagn {
+  margin: 0;
+  max-width: 32ch;
+  font-size: clamp(1.5rem, 3.4vw, 2.375rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
 }
 
 /* ─── FAQ ─── */
 .faq {
-  margin-top: 1.5rem;
   max-width: var(--tekstbredde);
   border-top: 1px solid var(--linje);
 }
@@ -799,8 +1006,9 @@ fieldset.felt {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 48px;
-  padding: 0.75rem 0;
+  min-height: 56px;
+  padding: 1rem 0;
+  font-size: 1.25rem;
   font-weight: 700;
   cursor: pointer;
   list-style: none;
@@ -812,10 +1020,17 @@ fieldset.felt {
 
 .faq summary::after {
   content: '+';
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--mynte);
   color: var(--granskog);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .faq details[open] summary::after {
@@ -823,7 +1038,21 @@ fieldset.felt {
 }
 
 .faq details p {
-  margin: 0 0 1rem;
+  margin: 0 0 1.25rem;
+}
+
+/* ─── Avslutning ─── */
+.avslutning h2 {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  letter-spacing: -0.035em;
+  max-width: 14ch;
+  margin-bottom: 1rem;
+}
+
+.avslutning p {
+  font-size: 1.375rem;
+  color: var(--dempet);
+  margin-bottom: 2rem;
 }
 
 /* ─── Footer ─── */
@@ -1018,4 +1247,119 @@ fieldset.felt {
 
 .ramme.tekstkolonne > * {
   max-width: var(--tekstbredde);
+}
+
+/* ─── Animasjonen «Fra idé til ferdig løsning» ─── */
+.steg-topp {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 2rem 4rem;
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.steg-topp .seksjon-intro {
+  margin-bottom: 0;
+}
+
+.ide-video {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}
+
+.ide-video video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  background: var(--papir);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+}
+
+.ide-video-knapp {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--linje);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--blekk);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ide-video-knapp:hover {
+  border-color: var(--blekk);
+}
+
+/* Store tekststørrelser: knapper og etiketter skal bryte, ikke flyte ut */
+.inspirasjon-liste li,
+.inspirasjon-liste button {
+  max-width: 100%;
+}
+
+.nettleser-topp span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ─── Hva vi kan lage ─── */
+.typer {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+}
+
+.typer li {
+  padding: 1.75rem;
+  border-radius: 20px;
+  background: var(--flate);
+  border: 1px solid var(--linje);
+}
+
+.typer-ikon {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.75rem;
+  border-radius: 14px;
+  background: var(--mynte);
+  color: var(--granskog);
+  margin-bottom: 1.25rem;
+  box-sizing: border-box;
+}
+
+.typer h3 {
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.typer p {
+  margin: 0;
+  color: var(--dempet);
+}
+
+.typer .typer-annet {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  background: var(--band);
+  border-color: transparent;
+  color: var(--pa-band);
+  --blekk: var(--pa-band);
+  --dempet: var(--band-dempet);
+  --granskog: var(--band-aksent);
+  --pa-granskog: var(--band);
+}
+
+.typer-annet .knapp {
+  justify-self: start;
+  margin-top: 1rem;
 }

@@ -54,12 +54,12 @@ export const TOMT_SKJEMA: IdeFelter = {
 };
 
 export const FEIL = {
-  ideKort: 'Skriv litt mer om idéen, så jeg forstår hva du trenger.',
+  ideKort: 'Skriv litt mer om idéen, så vi forstår hva du trenger.',
   ideLang: `Idéen kan være på maks ${MAKS.ide} tegn. Kort den litt ned, og fortell resten i samtalen.`,
   budsjett: 'Velg et omtrentlig budsjett. «Vet ikke ennå» er et helt greit svar.',
   tidsramme: 'Velg når du trenger løsningen. «Jeg utforsker bare» er også et svar.',
-  navn: 'Skriv navnet ditt, så vet jeg hvem jeg svarer.',
-  epostTom: 'Skriv e-postadressen din, så jeg kan svare deg.',
+  navn: 'Skriv navnet ditt, så vet vi hvem vi svarer.',
+  epostTom: 'Skriv e-postadressen din, så vi kan svare deg.',
   epostUgyldig: 'Sjekk e-postadressen. Den skal se omtrent slik ut: navn@firma.no.',
   forLang: 'Teksten er for lang. Kort den litt ned.',
 } as const;

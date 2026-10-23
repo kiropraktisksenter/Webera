@@ -1,11 +1,12 @@
-import Image from 'next/image';
+import Image, { type StaticImageData } from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import HvaViLager from '@/components/HvaViLager';
 import IdeSkjema from '@/components/IdeSkjema';
+import IdeVideo from '@/components/IdeVideo';
 import Inspirasjon from '@/components/Inspirasjon';
 import SendIdeLenke from '@/components/SendIdeLenke';
-import larsBilde from '@/public/images/lars-holth.png';
 import kiropraktiskBilde from '@/public/images/screenshot-kiropraktisk.png';
 import helhetligBilde from '@/public/images/screenshot-helhetlig.png';
 
@@ -16,19 +17,35 @@ const strukturertData = {
   url: 'https://webera.no',
   email: 'post@webera.no',
   description:
-    'Lars Holth tar imot idéer fra bedrifter og privatpersoner og bygger digitale løsninger: apper, interne verktøy, AI-assistenter, automatisering og nettsider.',
+    'Webera tar imot idéer fra bedrifter og privatpersoner og bygger digitale løsninger: apper, interne verktøy, AI-assistenter, automatisering og nettsider.',
   address: { '@type': 'PostalAddress', addressLocality: 'Tønsberg', addressCountry: 'NO' },
   areaServed: { '@type': 'Country', name: 'Norge' },
-  founder: { '@type': 'Person', name: 'Lars Holth' },
   knowsLanguage: 'nb',
 };
 
 const STEG = [
-  ['Du sender idéen.', 'Beskriv problemet med dine egne ord. Det trenger ikke være ferdig tenkt.'],
-  ['Vi tar en prat.', 'Gratis og uforpliktende. Jeg spør om det jeg trenger for å forstå behovet.'],
-  ['Du får et fast pristilbud.', 'Med hva som lages, hva det koster og når det er klart.'],
-  ['Jeg bygger, du følger med.', 'Du ser løsningen underveis og kan si fra tidlig.'],
-  ['Levering.', 'Du får løsningen, og vi avtaler om du vil ha hjelp videre.'],
+  ['Du sender idéen', 'Beskriv problemet med dine egne ord. Det trenger ikke være ferdig tenkt.'],
+  ['Vi tar en prat', 'Gratis og uforpliktende. Vi spør om det vi trenger for å forstå behovet.'],
+  ['Du får et fast pristilbud', 'Med hva som lages, hva det koster og når det er klart.'],
+  ['Vi bygger, du følger med', 'Du ser løsningen underveis og kan si fra tidlig.'],
+  ['Levering', 'Du får løsningen, og vi avtaler om du vil ha hjelp videre.'],
+];
+
+const PROSJEKTER: { navn: string; tekst: string; url: string; domene: string; bilde: StaticImageData }[] = [
+  {
+    navn: 'Kiropraktisk Senter',
+    tekst: 'Nettside og AI-oppsett for en kiropraktorklinikk i Tønsberg.',
+    url: 'https://kiropraktisksenter.no',
+    domene: 'kiropraktisksenter.no',
+    bilde: kiropraktiskBilde,
+  },
+  {
+    navn: 'Helhetlig Kiropraktor',
+    tekst: 'Nettside.',
+    url: 'https://helhetligkiropraktor.no',
+    domene: 'helhetligkiropraktor.no',
+    bilde: helhetligBilde,
+  },
 ];
 
 const FAQ: [string, React.ReactNode][] = [
@@ -36,11 +53,11 @@ const FAQ: [string, React.ReactNode][] = [
   [
     'Hva skjer med idéen jeg sender?',
     <>
-      Den leses bare av meg og brukes ikke til noe annet. Se <Link href="/personvern">personvern</Link>.
+      Den leses bare av oss og brukes ikke til noe annet. Se <Link href="/personvern">personvern</Link>.
     </>,
   ],
   ['Hvor lang tid tar det?', 'Avhenger av hva som skal lages. Du får et anslag i tilbudet.'],
-  ['Jobber du med bedrifter utenfor Tønsberg?', 'Ja, det meste foregår digitalt.'],
+  ['Jobber dere med bedrifter utenfor Tønsberg?', 'Ja, det meste foregår digitalt.'],
 ];
 
 export default function Forside() {
@@ -52,7 +69,10 @@ export default function Forside() {
         <section className="hero" id="ide" aria-labelledby="hero-tittel">
           <div className="ramme hero-rutenett">
             <div className="hero-hoved">
-              <h1 id="hero-tittel">Har du en idé til noe digitalt? Fortell meg om den.</h1>
+              <h1 id="hero-tittel">Har du en idé til noe digitalt? Fortell oss om den.</h1>
+              <p className="hero-undertekst">
+                En app, et verktøy, en AI-assistent eller en automatisering. Vi hjelper deg fra idé til ferdig løsning.
+              </p>
               <div data-ikke-dekk>
                 <IdeSkjema />
               </div>
@@ -63,9 +83,17 @@ export default function Forside() {
           </div>
         </section>
 
-        <section className="seksjon" id="slik-fungerer-det" aria-labelledby="steg-tittel">
-          <div className="ramme tekstkolonne">
-            <h2 id="steg-tittel">Slik fungerer det</h2>
+        <HvaViLager />
+
+        <section className="seksjon band-mork" id="slik-fungerer-det" aria-labelledby="steg-tittel">
+          <div className="ramme">
+            <div className="steg-topp">
+              <div className="seksjon-intro">
+                <h2 id="steg-tittel">Slik fungerer det</h2>
+                <p>Fra første tanke til ferdig løsning, i fem steg.</p>
+              </div>
+              <IdeVideo />
+            </div>
             <ol className="steg">
               {STEG.map(([tittel, tekst]) => (
                 <li key={tittel}>
@@ -79,99 +107,108 @@ export default function Forside() {
 
         <section className="seksjon" id="eierskap" aria-labelledby="eierskap-tittel">
           <div className="ramme">
-            <h2 id="eierskap-tittel">Hvem eier løsningen?</h2>
-            <div className="to-deler">
-              <div>
-                <h3>Du eier den.</h3>
-                <p>Du betaler for utviklingen og eier kode og innhold. Vanligst.</p>
+            <div className="seksjon-intro">
+              <h2 id="eierskap-tittel">Hvem eier løsningen?</h2>
+              <p>Det finnes to modeller. Vi avklarer dette før vi begynner, og det står i tilbudet.</p>
+            </div>
+            <div className="paneler">
+              <div className="panel">
+                <span className="merke">Vanligst</span>
+                <h3>Du eier den</h3>
+                <p>Du betaler for utviklingen og eier kode og innhold.</p>
               </div>
-              <div>
-                <h3>Jeg eier den, du leier den.</h3>
+              <div className="panel panel-mynte">
+                <span className="merke merke-tom">Lavere oppstart</span>
+                <h3>Vi eier den, du leier den</h3>
                 <p>Passer når løsningen kan være nyttig for flere. Lavere oppstartskostnad for deg.</p>
               </div>
             </div>
-            <p style={{ marginTop: '2rem' }}>Vi avklarer dette før jeg begynner, og det står i tilbudet.</p>
           </div>
         </section>
 
-        <section className="seksjon" id="laget" aria-labelledby="laget-tittel">
+        <section className="seksjon band-mynte" id="laget" aria-labelledby="laget-tittel">
           <div className="ramme">
-            <h2 id="laget-tittel">Ting jeg har laget</h2>
+            <div className="seksjon-intro">
+              <h2 id="laget-tittel">Ting vi har laget</h2>
+            </div>
             <ul className="prosjekter">
-              <li className="prosjekt">
-                <div>
-                  <h3>Kiropraktisk Senter</h3>
-                  <p>Nettside og AI-oppsett for egen klinikk.</p>
-                  <p>
-                    <a href="https://kiropraktisksenter.no" rel="noopener">
-                      kiropraktisksenter.no
-                    </a>
-                  </p>
-                </div>
-                <Image
-                  src={kiropraktiskBilde}
-                  alt="Skjermbilde av forsiden til kiropraktisksenter.no"
-                  sizes="(min-width: 56rem) 40rem, 100vw"
-                />
+              {PROSJEKTER.map((p) => (
+                <li className="prosjekt" key={p.url}>
+                  <div className="prosjekt-tekst">
+                    <h3>{p.navn}</h3>
+                    <p>{p.tekst}</p>
+                    <p>
+                      <a href={p.url} rel="noopener">
+                        Besøk {p.domene}
+                      </a>
+                    </p>
+                  </div>
+                  <div className="nettleser">
+                    <div className="nettleser-topp" aria-hidden="true">
+                      <i />
+                      <i />
+                      <i />
+                      <span>{p.domene}</span>
+                    </div>
+                    <Image
+                      src={p.bilde}
+                      alt={`Skjermbilde av forsiden til ${p.domene}`}
+                      sizes="(min-width: 56rem) 44rem, 100vw"
+                    />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="seksjon" id="om-oss" aria-labelledby="om-oss-tittel">
+          <div className="ramme om-oss">
+            <div>
+              <h2 id="om-oss-tittel">Om oss</h2>
+              <p className="ingress">
+                Webera er et lite studio i Tønsberg. Vi har bygget nettsider, AI-assistent og verktøy som sparer tid i en
+                travel klinikkhverdag.
+              </p>
+              <p>
+                Vi vet hvordan det er å drive en bedrift med lite tid til overs, og vi liker å finne enkle løsninger på
+                konkrete problemer. Derfor tar vi ett prosjekt om gangen.
+              </p>
+            </div>
+            <ul className="fakta">
+              <li>
+                <strong>Ett</strong> prosjekt om gangen
               </li>
-              <li className="prosjekt">
-                <div>
-                  <h3>Helhetlig Kiropraktor</h3>
-                  <p>Nettside.</p>
-                  <p>
-                    <a href="https://helhetligkiropraktor.no" rel="noopener">
-                      helhetligkiropraktor.no
-                    </a>
-                  </p>
-                </div>
-                <Image
-                  src={helhetligBilde}
-                  alt="Skjermbilde av forsiden til helhetligkiropraktor.no"
-                  sizes="(min-width: 56rem) 40rem, 100vw"
-                />
+              <li>
+                <strong>To virkedager</strong> svartid på nye idéer
+              </li>
+              <li>
+                <strong>Tønsberg</strong> der vi holder til, men det meste foregår digitalt
               </li>
             </ul>
           </div>
         </section>
 
-        <section className="seksjon" id="om-lars" aria-labelledby="om-lars-tittel">
-          <div className="ramme om-lars">
-            <div>
-              <h2 id="om-lars-tittel">Om Lars</h2>
-              <p className="ingress">
-                Jeg er kiropraktor og driver min egen klinikk i Tønsberg. Der har jeg bygget det meste av det digitale
-                selv – nettside, AI-assistent og verktøy som sparer meg for tid.
-              </p>
-              <p>
-                Jeg vet hvordan det er å drive en bedrift med lite tid til overs, og jeg liker å finne enkle løsninger
-                på konkrete problemer. Fordi jeg også står i klinikken, tar jeg ett prosjekt om gangen.
-              </p>
-            </div>
-            <Image
-              className="portrett"
-              src={larsBilde}
-              alt="Portrett av Lars Holth"
-              sizes="(min-width: 56rem) 18rem, 100vw"
-              style={{ maxWidth: '18rem', width: '100%' }}
-            />
-          </div>
-        </section>
-
-        <section className="seksjon" id="pris" aria-labelledby="pris-tittel">
+        <section className="seksjon band-mynte" id="pris" aria-labelledby="pris-tittel">
           <div className="ramme">
-            <h2 id="pris-tittel">Pris</h2>
+            <div className="seksjon-intro">
+              <h2 id="pris-tittel">Pris</h2>
+              <p>Du vet hva det koster før vi begynner.</p>
+            </div>
             <dl className="prisliste">
               <div>
                 <dt>Første samtale</dt>
                 <dd>Gratis</dd>
               </div>
               <div>
-                <dt>Prosjekter</dt>
-                <dd>Fast pris etter at vi har avklart behovet</dd>
+                <dt>Prosjekter, etter at vi har avklart behovet</dt>
+                <dd>Fast pris</dd>
               </div>
               <div>
                 <dt>Endringer og videre arbeid</dt>
-                <dd>1 300 kr per time eks. mva.</dd>
+                <dd>
+                  1 300 kr <small>per time eks. mva.</small>
+                </dd>
               </div>
               <div>
                 <dt>Drift og vedlikehold</dt>
@@ -182,18 +219,22 @@ export default function Forside() {
         </section>
 
         <section className="seksjon" id="ikke" aria-labelledby="ikke-tittel">
-          <div className="ramme tekstkolonne">
-            <h2 id="ikke-tittel">Det jeg ikke gjør</h2>
-            <p className="ingress">
-              Jeg driver ikke med markedsføring eller annonsering, og jeg tar ikke flere prosjekter enn jeg rekker.
-              Passer ikke idéen din for meg, sier jeg det ærlig – og tipser gjerne om hvem som kan hjelpe.
+          <div className="ramme">
+            <div className="seksjon-intro">
+              <h2 id="ikke-tittel">Det vi ikke gjør</h2>
+            </div>
+            <p className="utsagn">
+              Vi driver ikke med markedsføring eller annonsering, og vi tar ikke flere prosjekter enn vi rekker. Passer
+              ikke idéen din for oss, sier vi det ærlig – og tipser gjerne om hvem som kan hjelpe.
             </p>
           </div>
         </section>
 
-        <section className="seksjon" id="sporsmal" aria-labelledby="faq-tittel">
+        <section className="seksjon" id="sporsmal" aria-labelledby="faq-tittel" style={{ paddingTop: 0 }}>
           <div className="ramme">
-            <h2 id="faq-tittel">Vanlige spørsmål</h2>
+            <div className="seksjon-intro">
+              <h2 id="faq-tittel">Vanlige spørsmål</h2>
+            </div>
             <div className="faq">
               {FAQ.map(([sporsmal, svar]) => (
                 <details key={sporsmal}>
@@ -205,10 +246,10 @@ export default function Forside() {
           </div>
         </section>
 
-        <section className="seksjon" aria-labelledby="avslutning-tittel">
+        <section className="seksjon band-mork avslutning" aria-labelledby="avslutning-tittel">
           <div className="ramme">
             <h2 id="avslutning-tittel">Klar til å fortelle om idéen?</h2>
-            <p className="dempet">Jeg svarer innen to virkedager. Første samtale er gratis.</p>
+            <p>Vi svarer innen to virkedager. Første samtale er gratis.</p>
             <SendIdeLenke />
           </div>
         </section>

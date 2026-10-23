@@ -6,7 +6,7 @@ const ORGNR: string | null = null;
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer band-mork">
       <div className="ramme footer-indre">
         <p>
           <strong>Webera AS</strong>

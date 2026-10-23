@@ -37,7 +37,8 @@ DNS for webera.no styres hos **online4u.no** (navneservere `ns01/ns02.online4u.n
 ## 3. Ting som står som TODO
 
 - **Org.nr.** for Webera AS fantes ikke i den gamle koden. Legg det inn i `components/Footer.tsx` (konstanten `ORGNR`).
-- Les gjennom tekstene, spesielt «Om Lars» (`app/page.tsx`) og personvernsiden (`app/personvern/page.tsx`).
+- Les gjennom tekstene på forsiden (`app/page.tsx`, nå i vi-form) og personvernsiden (`app/personvern/page.tsx`).
+- Personvernsiden sier at det er «vi» som leser henvendelsene. Juster hvis noen andre enn Webera skal lese dem.
 
 ## 4. Test før lansering
 
@@ -47,6 +48,10 @@ DNS for webera.no styres hos **online4u.no** (navneservere `ns01/ns02.online4u.n
    - «Svar» på e-posten går til innsenderen,
    - bekreftelsen kommer til innsenderen.
 3. Prøv chatten «Spør om noe».
+
+## Animasjonen
+
+Animasjonen i «Slik fungerer det» er laget med Remotion i mappen `video/`. Se `video/README.md` for hvordan den endres og rendres på nytt.
 
 ## Nyttige skript
 

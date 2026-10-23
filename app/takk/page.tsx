@@ -16,7 +16,7 @@ export default function Takk() {
         <div className="ramme tekstkolonne">
           <h1>Idéen er sendt</h1>
           <p className="ingress">
-            Jeg leser den og svarer deg på e-post innen to virkedager. Har du noe å legge til, svarer du bare på
+            Vi leser den og svarer deg på e-post innen to virkedager. Har du noe å legge til, svarer du bare på
             bekreftelsen du fikk.
           </p>
           <p>

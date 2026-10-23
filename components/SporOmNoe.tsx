@@ -8,7 +8,7 @@ type Melding = { role: 'user' | 'assistant'; content: string };
 const START: Melding = {
   role: 'assistant',
   content:
-    'Hei! Jeg kan svare på hvordan Webera fungerer, eller hjelpe deg å sette ord på idéen din før du sender den til Lars.',
+    'Hei! Jeg kan svare på hvordan Webera fungerer, eller hjelpe deg å sette ord på idéen din før du sender den til oss.',
 };
 
 const SMAL_SKJERM = '(max-width: 40rem)';
@@ -84,7 +84,7 @@ export default function SporOmNoe() {
       const data = (await svar.json()) as { message?: string };
       setMeldinger((m) => [
         ...m,
-        { role: 'assistant', content: data.message || 'Jeg fikk ikke svart nå. Prøv igjen, eller send idéen i skjemaet.' },
+        { role: 'assistant', content: data.message || 'Fikk ikke svart nå. Prøv igjen, eller send idéen i skjemaet.' },
       ]);
     } catch {
       setMeldinger((m) => [
@@ -103,7 +103,7 @@ export default function SporOmNoe() {
           <div className="chat-hode">
             <div>
               <h2 id="chat-tittel">Spør om noe</h2>
-              <p id="chat-merknad">AI-assistent – svarene kan være unøyaktige. Lars leser alle idéer selv.</p>
+              <p id="chat-merknad">AI-assistent – svarene kan være unøyaktige. Et menneske leser alle idéer.</p>
             </div>
             <button type="button" className="chat-lukk" onClick={lukk}>
               Lukk
