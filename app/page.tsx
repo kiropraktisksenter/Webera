@@ -2,7 +2,7 @@ import Image, { type StaticImageData } from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import SkisseTilApp from '@/components/SkisseTilApp';
+import RegnskapsAgent from '@/components/RegnskapsAgent';
 import HvaViLager from '@/components/HvaViLager';
 import Avslor from '@/components/Avslor';
 import IdeSkjema from '@/components/IdeSkjema';
@@ -81,7 +81,7 @@ export default function Forside() {
               <Inspirasjon />
             </div>
             <div className="hero-aside">
-              <SkisseTilApp />
+              <RegnskapsAgent />
             </div>
           </div>
         </section>

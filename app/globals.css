@@ -1364,175 +1364,214 @@ fieldset.felt {
   margin-top: 1rem;
 }
 
-/* ─── Hero: skisse som blir til en app ─── */
-.skisse {
-  display: block;
-  width: 100%;
+/* ─── Hero: idé → fagdeler → AI-spesialist i regnskap ───
+   Tidslinje (ms): skriving 200–1200, merkepenn 1150–1550, deler 1600–2600,
+   sammensmelting 3000–3500, resultat 3250–3750, merker 3600–4300. */
+.agent {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
   max-width: 26rem;
-  height: auto;
   margin-inline: auto;
-  overflow: visible;
-  font-family: var(--skrift);
 }
 
-.skisse-ark {
-  fill: var(--flate);
-  stroke: var(--linje);
-  filter: drop-shadow(0 18px 28px rgba(22, 58, 48, 0.16));
+.agent-ide {
+  padding: 1.125rem 1.25rem;
+  border-radius: 16px;
+  background: var(--flate);
+  border: 1px solid var(--kant);
+  box-shadow: var(--skygge);
 }
 
-.skisse-strek * {
-  fill: none;
-  stroke: var(--dempet);
-  stroke-width: 2.25;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
+.agent-etikett {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.375rem;
+}
+
+.agent-tekst {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  min-height: 2.8em;
+}
+
+.agent-merke {
+  background-image: linear-gradient(to bottom, transparent 55%, var(--merkepenn) 55%, var(--merkepenn) 92%, transparent 92%);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: merke-sveip 400ms cubic-bezier(0.16, 1, 0.3, 1) 1150ms forwards;
+}
+
+@keyframes merke-sveip {
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+.agent-tegn {
+  opacity: 0;
+  animation: tegn-inn 1ms linear forwards;
+  animation-delay: calc(200ms + var(--i) * 26ms);
+}
+
+@keyframes tegn-inn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Området der delene dukker opp og resultatet lander */
+.agent-flate {
+  position: relative;
+  display: grid;
+  min-height: 14rem;
+}
+
+/* Delene i animasjonen skal aldri gi sidescroll; klipp i kanten av hero */
+.hero {
+  overflow-x: clip;
+}
+
+.agent-del {
+  position: absolute;
+  padding: 0.375rem 0.75rem;
+  border-radius: 999px;
+  background: var(--flate);
+  border: 1px solid var(--granskog);
+  color: var(--granskog);
+  font-size: 1rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  scale: 0.6;
   animation:
-    strek-tegn 700ms ease-out var(--d) forwards,
-    strek-bort 500ms ease 2400ms forwards;
+    del-inn 450ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(1600ms + var(--n) * 125ms) forwards,
+    del-samles 500ms cubic-bezier(0.55, 0, 0.45, 1) 3000ms forwards;
 }
 
-@keyframes strek-tegn {
+@keyframes del-inn {
   to {
-    stroke-dashoffset: 0;
+    opacity: 1;
+    scale: 1;
   }
 }
 
-@keyframes strek-bort {
+@keyframes del-samles {
+  from {
+    opacity: 1;
+    scale: 1;
+  }
   to {
+    left: 38%;
+    top: 40%;
     opacity: 0;
+    scale: 0.4;
   }
 }
 
-.skisse-ferdig > g {
+.agent-resultat {
+  align-self: center;
+  padding: 1.25rem;
+  border-radius: 20px;
+  background: var(--band);
+  color: var(--pa-band);
+  box-shadow: 0 24px 50px -20px rgba(22, 58, 48, 0.55);
+  opacity: 0;
+  scale: 0.85;
+  animation: resultat-inn 500ms cubic-bezier(0.34, 1.4, 0.64, 1) 3250ms forwards;
+}
+
+@keyframes resultat-inn {
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.agent-hode {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.agent-ikon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 12px;
+  background: #FFD84D;
+  color: #1B2A2A;
+  font-weight: 800;
+}
+
+.agent-navn {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.agent-under {
+  font-size: 1rem;
+  color: var(--band-dempet);
+}
+
+.agent-merker {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.agent-merker li {
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  background: rgba(241, 245, 242, 0.12);
+  font-size: 1rem;
+  line-height: 1.3;
   opacity: 0;
   translate: 0 6px;
-  animation: ferdig-inn 600ms cubic-bezier(0.16, 1, 0.3, 1) var(--d) forwards;
+  animation: merke-inn 300ms ease-out calc(3600ms + var(--n) * 70ms) forwards;
 }
 
-@keyframes ferdig-inn {
+@keyframes merke-inn {
   to {
     opacity: 1;
     translate: 0 0;
   }
 }
 
-.f-gran {
-  fill: var(--granskog);
-}
-
-.f-mynte {
-  fill: var(--mynte);
-}
-
-.f-papir {
-  fill: var(--papir);
-  stroke: var(--linje);
-}
-
-.f-tekst,
-.f-tekst-lys {
-  font-size: 16px;
-  fill: var(--blekk);
-}
-
-.f-tekst-lys {
-  fill: var(--pa-granskog);
-}
-
-.f-fet {
-  font-weight: 700;
-}
-
-.f-dempet {
-  fill: var(--dempet);
-}
-
-/* Lyspæren tegnes, og tennes i merkepenn-gult: idéen */
-.lys-glass,
-.lys-sokkel {
-  fill: transparent;
-  stroke: var(--blekk);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: strek-tegn 600ms ease-out 1300ms forwards;
-}
-
-.lys-glass {
-  animation:
-    strek-tegn 600ms ease-out 1300ms forwards,
-    paere-tenn 400ms ease-out 1950ms forwards;
-}
-
-.lyspaere {
-  --paere: #FFD84D;
-  --straale: #E8B800;
-}
-
-@media (prefers-color-scheme: dark) {
-  .lyspaere {
-    --straale: #FFD84D;
-  }
-}
-
-@keyframes paere-tenn {
-  to {
-    fill: var(--paere);
-  }
-}
-
-.lys-straaler path {
-  fill: none;
-  stroke: var(--straale);
-  stroke-width: 4;
-  stroke-linecap: round;
-}
-
-.lys-straaler {
-  opacity: 0;
-  scale: 0.6;
-  transform-origin: 318px 52px;
-  animation: straaler-inn 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 2000ms forwards;
-}
-
-@keyframes straaler-inn {
-  to {
-    opacity: 1;
-    scale: 1;
-  }
+/* Starter først når motivet er synlig (Avslor setter .synlig) */
+.avslor-aktiv .agent:not(.synlig) * {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skisse-strek * {
-    animation: none;
-    opacity: 0;
-  }
-
-  .skisse-ferdig > g {
-    animation: none;
-    opacity: 1;
-    translate: 0 0;
-  }
-
-  .lys-glass,
-  .lys-sokkel {
-    animation: none;
-    stroke-dashoffset: 0;
-  }
-
-  .lys-glass {
-    fill: var(--paere);
-  }
-
-  .lys-straaler {
+  .agent-tegn,
+  .agent-resultat,
+  .agent-merker li {
     animation: none;
     opacity: 1;
     scale: 1;
+    translate: 0 0;
+  }
+
+  .agent-merke {
+    animation: none;
+    background-size: 100% 100%;
+  }
+
+  .agent-del {
+    animation: none;
+    display: none;
   }
 }
 
@@ -1667,9 +1706,4 @@ fieldset.felt {
 .avslutning p {
   margin-left: auto;
   margin-right: auto;
-}
-
-/* Skissen starter først når den er synlig (Avslor setter .synlig) */
-.avslor-aktiv .skisse:not(.synlig) * {
-  animation-play-state: paused;
 }
