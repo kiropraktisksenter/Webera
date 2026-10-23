@@ -1364,10 +1364,10 @@ fieldset.felt {
   margin-top: 1rem;
 }
 
-/* ─── Hero: idéen blir til Regnskap-Roar ───
-   Tidslinje (ms): skriving 200–1200, merkepenn 1150–1550, kort 1700–2200,
-   Roar spretter 1750–2350, lyspære 2050, boble 2200–2600, vinker 2300–2500,
-   blunk 2950–3310. */
+/* ─── Hero: idé → temaer → Regnskap-Roar ───
+   Tidslinje (ms): skriving 200–1200, merkepenn 1150–1550, temaer 1600–2700,
+   samles 2950–3450, kort 3450–3900, Roar spretter 3450–4050, lyspære 3700,
+   boble 3850–4250, vinker 3950–4150, blunk 4500–4860. */
 .agent {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -1431,7 +1431,62 @@ fieldset.felt {
   overflow-x: clip;
 }
 
+/* Temaene og resultatkortet deler samme plass, så temaene «blir» til Roar */
+.agent-scene {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.agent-scene > * {
+  grid-area: 1 / 1;
+}
+
+.agent-temaer {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 0.5rem;
+  /* Samles mot midten av Roar: kortets padding (1,25rem) + halve Roar */
+  transform-origin: calc(1.25rem + clamp(5.5rem, 26vw, 7.5rem) / 2) 50%;
+  animation: temaer-samles 500ms cubic-bezier(0.6, 0, 0.8, 0.4) 2950ms forwards;
+}
+
+.agent-temaer li {
+  padding: 0.375rem 0.875rem;
+  border-radius: 999px;
+  background: var(--flate);
+  border: 1px solid var(--granskog);
+  color: var(--granskog);
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px -6px rgba(22, 58, 48, 0.3);
+  opacity: 0;
+  translate: 0 10px;
+  scale: 0.8;
+  animation: tema-inn 400ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(1600ms + var(--n) * 150ms) forwards;
+}
+
+@keyframes tema-inn {
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes temaer-samles {
+  to {
+    opacity: 0;
+    scale: 0.15;
+    rotate: -8deg;
+  }
+}
+
 .agent-resultat {
+  align-self: center;
   padding: 1.25rem;
   border-radius: 20px;
   background: var(--band);
@@ -1439,7 +1494,8 @@ fieldset.felt {
   box-shadow: 0 24px 50px -20px rgba(22, 58, 48, 0.55);
   opacity: 0;
   scale: 0.85;
-  animation: resultat-inn 500ms cubic-bezier(0.34, 1.4, 0.64, 1) 1700ms forwards;
+  transform-origin: calc(1.25rem + clamp(5.5rem, 26vw, 7.5rem) / 2) 50%;
+  animation: resultat-inn 450ms cubic-bezier(0.34, 1.4, 0.64, 1) 3450ms forwards;
 }
 
 @keyframes resultat-inn {
@@ -1469,10 +1525,10 @@ fieldset.felt {
   width: clamp(5.5rem, 26vw, 7.5rem);
   height: auto;
   overflow: visible;
-  transform-origin: 50% 100%;
+  transform-origin: 50% 50%;
   opacity: 0;
   scale: 0.3;
-  animation: roar-inn 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 1750ms forwards;
+  animation: roar-inn 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 3450ms forwards;
 }
 
 @keyframes roar-inn {
@@ -1485,7 +1541,7 @@ fieldset.felt {
 .roar-arm {
   transform-box: view-box;
   transform-origin: 88px 98px;
-  animation: roar-vink 300ms ease-in-out 2300ms 4 alternate;
+  animation: roar-vink 300ms ease-in-out 3950ms 4 alternate;
 }
 
 @keyframes roar-vink {
@@ -1500,7 +1556,7 @@ fieldset.felt {
 .roar-oyne {
   transform-box: fill-box;
   transform-origin: center;
-  animation: roar-blunk 180ms ease-in-out 2950ms 2 alternate;
+  animation: roar-blunk 180ms ease-in-out 4500ms 2 alternate;
 }
 
 @keyframes roar-blunk {
@@ -1510,7 +1566,7 @@ fieldset.felt {
 }
 
 .roar-paere {
-  animation: roar-lys 500ms ease-out 2050ms 1;
+  animation: roar-lys 500ms ease-out 3700ms 1;
 }
 
 @keyframes roar-lys {
@@ -1531,7 +1587,7 @@ fieldset.felt {
   line-height: 1.35;
   opacity: 0;
   translate: 0 8px;
-  animation: merke-inn 400ms ease-out 2200ms forwards;
+  animation: merke-inn 400ms ease-out 3850ms forwards;
 }
 
 .agent-navn {
@@ -1558,6 +1614,11 @@ fieldset.felt {
   .roar-oyne,
   .roar-paere {
     animation: none;
+  }
+
+  .agent-temaer {
+    animation: none;
+    visibility: hidden;
   }
 
   .agent-tegn,

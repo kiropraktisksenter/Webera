@@ -1,7 +1,10 @@
-// Hero-motiv: idéen skrives med merkepenn, og blir til figuren Regnskap-Roar.
-// Ren CSS-animasjon, spilles én gang (ca. 3 s) når den kommer til syne. Dekorativ.
+// Hero-motiv: idéen skrives med merkepenn, temaene en regnskapsekspert må kunne
+// dukker opp, og de samles og blir til figuren Regnskap-Roar.
+// Ren CSS-animasjon, spilles én gang (under 5 s) når den kommer til syne. Dekorativ.
 
 const IDE = 'Lag en AI-agent som er god på regnskap';
+
+const TEMAER = ['Årsregnskap', 'Fakturering', 'Lønnskjøring', 'Avstemming', 'Regnskapsloven', 'MVA'];
 
 const v = (vars: Record<string, string | number>) => vars as React.CSSProperties;
 
@@ -21,11 +24,21 @@ export default function RegnskapsAgent() {
         </p>
       </div>
 
-      <div className="agent-resultat">
-        <Roar />
-        <div className="agent-hode-tekst">
-          <div className="agent-navn">Regnskap‑Roar</div>
-          <div className="agent-boble">Jeg er spesialist på regnskap</div>
+      <div className="agent-scene">
+        <ul className="agent-temaer">
+          {TEMAER.map((t, n) => (
+            <li key={t} style={v({ '--n': n })}>
+              {t}
+            </li>
+          ))}
+        </ul>
+
+        <div className="agent-resultat">
+          <Roar />
+          <div className="agent-hode-tekst">
+            <div className="agent-navn">Regnskap‑Roar</div>
+            <div className="agent-boble">Jeg er spesialist på regnskap</div>
+          </div>
         </div>
       </div>
     </div>
