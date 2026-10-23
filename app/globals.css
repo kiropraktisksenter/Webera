@@ -1,474 +1,1743 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+/* ─── Designtokens ───
+   Kontrast (WCAG) er sjekket med scripts/kontrast.mjs. */
 :root {
-  --cream: #f4efe6;
-  --cream-2: #ebe5d8;
-  --cream-3: #e2dac8;
-  --paper: #fbf8f2;
-  --ink: #14181f;
-  --ink-2: #1c2230;
-  --ink-soft: #2a3243;
-  --sage: #4f6f5b;
-  --sage-deep: #2f4a3a;
-  --muted: #6b6457;
-  --line: rgba(20,24,31,0.12);
-  --line-strong: rgba(20,24,31,0.24);
-  --shadow-soft: 0 1px 2px rgba(20,24,31,.04), 0 8px 32px rgba(20,24,31,.06);
+  color-scheme: light dark;
+
+  --papir: #FAFAF7;
+  --flate: #FFFFFF;
+  --blekk: #1B2A2A;
+  --dempet: #56615F;
+  --granskog: #1E4A3D;
+  --pa-granskog: #FFFFFF;
+  --merkepenn: #FFE066;
+  --feil: #B3261E;
+  --kant: #7A8583;
+  --linje: rgba(27, 42, 42, 0.14);
+  --mynte: #E5F0EA;
+  --band: #163A30;
+  --pa-band: #F1F5F2;
+  --band-dempet: #B9CFC6;
+  --band-aksent: #9FD8C2;
+  --skygge: 0 1px 2px rgba(22, 58, 48, 0.06), 0 12px 32px -8px rgba(22, 58, 48, 0.18);
+
+  --skrift: var(--font-schibsted), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --tekstbredde: 44rem;
+  --sidebredde: 72rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  color: var(--ink);
-  background: var(--cream);
-  font-family: 'Geist', sans-serif;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papir: #171C1B;
+    --flate: #202726;
+    --blekk: #EEF1EF;
+    --dempet: #A9B3B0;
+    --granskog: #7FC4AC;
+    --pa-granskog: #171C1B;
+    --merkepenn: #6B5A12;
+    --feil: #F2B8B5;
+    --kant: #7D8885;
+    --linje: rgba(238, 241, 239, 0.16);
+    --mynte: #1F2C28;
+    --band: #1D3F35;
+    --pa-band: #EEF1EF;
+    --band-dempet: #B4C7C0;
+    --band-aksent: #8FD3B9;
+    --skygge: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -8px rgba(0, 0, 0, 0.5);
   }
 }
 
-/* Custom scrollbar */
-.scrollbar-preview::-webkit-scrollbar {
-  width: 8px;
+/* ─── Base ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-.scrollbar-preview::-webkit-scrollbar-track {
-  background: var(--cream-2);
-  border-radius: 10px;
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
-.scrollbar-preview::-webkit-scrollbar-thumb {
-  background: var(--cream-3);
-  border-radius: 10px;
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
-.scrollbar-preview::-webkit-scrollbar-thumb:hover {
-  background: var(--muted);
+
+body {
+  margin: 0;
+  background: var(--papir);
+  color: var(--blekk);
+  font-family: var(--skrift);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5em;
+  line-height: 1.1;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  font-size: 1.375rem;
+}
+
+p {
+  margin: 0 0 1em;
+  max-width: 68ch;
+}
+
+a {
+  color: var(--granskog);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--granskog);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--granskog);
+  color: var(--pa-granskog);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hopp-til-innhold {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--granskog);
+  color: var(--pa-granskog);
+  font-weight: 700;
+}
+
+.hopp-til-innhold:focus {
+  top: 0.5rem;
 }
 
 /* ─── Layout ─── */
-.container {
-  max-width: 1440px;
+.ramme {
+  width: 100%;
+  max-width: var(--sidebredde);
   margin: 0 auto;
-  padding: 0 32px;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
 }
 
-.section {
-  padding: 120px 0;
+.tekstkolonne {
+  max-width: var(--tekstbredde);
 }
 
-/* ─── Typography ─── */
-.eyebrow {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.seksjon {
+  padding: clamp(4rem, 10vw, 7.5rem) 0;
 }
 
-.eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 22px;
-  height: 1px;
-  background: var(--muted);
-  flex-shrink: 0;
+/* Bånd gir siden rytme: mørk granskog for prosessen og avslutningen,
+   mynte for utsagn. Tokenene byttes lokalt, så knapper og lenker følger med. */
+.band-mork {
+  background: var(--band);
+  color: var(--pa-band);
+  --blekk: var(--pa-band);
+  --dempet: var(--band-dempet);
+  --granskog: var(--band-aksent);
+  --pa-granskog: var(--band);
+  --linje: rgba(241, 245, 242, 0.22);
 }
 
-.h-display {
-  font-family: 'Instrument Serif', serif;
-  font-weight: 400;
-  font-size: clamp(48px, 8vw, 128px);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+.band-mynte {
+  background: var(--mynte);
 }
 
-.h-section {
-  font-family: 'Instrument Serif', serif;
-  font-weight: 400;
-  font-size: clamp(40px, 6vw, 88px);
-  line-height: 1;
-  letter-spacing: -0.02em;
+.seksjon-intro {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 
-.h-card {
-  font-family: 'Instrument Serif', serif;
-  font-weight: 400;
-  font-size: clamp(24px, 3vw, 36px);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+.seksjon-intro h2,
+.seksjon-intro p {
+  margin: 0;
 }
 
-.lede {
-  font-family: 'Geist', sans-serif;
-  font-weight: 400;
-  font-size: 20px;
+.seksjon-intro p {
+  font-size: 1.375rem;
   line-height: 1.45;
-  color: var(--ink-soft);
-  max-width: 620px;
+  color: var(--dempet);
 }
 
-/* ─── Buttons ─── */
-.btn {
+.ingress {
+  font-size: 1.375rem;
+  line-height: 1.5;
+}
+
+.dempet {
+  color: var(--dempet);
+}
+
+.liten {
+  font-size: 1rem;
+}
+
+/* ─── Knapper ─── */
+.knapp {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-family: 'Geist', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--granskog);
+  border-radius: 6px;
+  background: var(--granskog);
+  color: var(--pa-granskog);
+  font: inherit;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2;
   text-decoration: none;
   cursor: pointer;
-  border: none;
-  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.btn-primary {
-  background: var(--ink);
-  color: var(--paper);
-}
-.btn-primary:hover {
-  background: var(--sage-deep);
-  transform: translateY(-1px);
+.knapp:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
-.btn-ghost {
+.knapp[disabled] {
+  cursor: progress;
+  opacity: 0.75;
+}
+
+.knapp-liten {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.knapp-sekundar {
   background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--line-strong);
-}
-.btn-ghost:hover {
-  background: var(--ink);
-  color: var(--paper);
-  transform: translateY(-1px);
+  color: var(--granskog);
 }
 
-.btn-sage {
-  background: var(--sage);
-  color: var(--paper);
-}
-.btn-sage:hover {
-  background: var(--sage-deep);
-  transform: translateY(-1px);
+/* ─── Header ─── */
+.header {
+  border-bottom: 1px solid var(--linje);
 }
 
-/* ─── Nav ─── */
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  padding: 0 32px;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease;
-  border-bottom: 1px solid transparent;
-}
-
-.nav.scrolled {
-  background: rgba(244, 239, 230, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
-}
-
-.nav-inner {
-  max-width: 1440px;
-  margin: 0 auto;
-  width: 100%;
+.header-indre {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.5rem;
 }
 
-.nav-logo {
-  font-family: 'Instrument Serif', serif;
-  font-size: 22px;
-  font-weight: 400;
-  color: var(--ink);
+.ordmerke {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--blekk);
   text-decoration: none;
-  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
-.nav-logo span {
-  color: var(--sage);
+.ordmerke:hover {
+  text-decoration: none;
 }
 
-.nav-links {
+.ordmerke span {
+  color: var(--granskog);
+}
+
+.nav-liste {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 0.25rem 1.75rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.nav-link {
-  font-family: 'Geist', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--ink-soft);
+.nav-liste a:not(.knapp) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--blekk);
+  font-size: 1rem;
+  font-weight: 500;
   text-decoration: none;
-  transition: color 0.15s ease;
 }
 
-.nav-link:hover,
-.nav-link.active {
-  color: var(--ink);
+.nav-liste a:not(.knapp):hover {
+  text-decoration: underline;
 }
 
-/* ─── Mobile menu ─── */
-.mobile-menu {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: var(--cream);
+.meny-knapp {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .meny-knapp {
+    display: inline-flex;
+  }
+
+  .nav {
+    display: none;
+    width: 100%;
+    padding-bottom: 1rem;
+  }
+
+  .nav[data-apen='true'] {
+    display: block;
+  }
+
+  .header-indre {
+    flex-wrap: wrap;
+  }
+
+  .nav-liste {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-liste a:not(.knapp) {
+    width: 100%;
+    font-size: 1.125rem;
+    border-bottom: 1px solid var(--linje);
+  }
+
+  .nav-liste .knapp {
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+}
+
+/* ─── Hero ─── */
+.hero {
+  padding: clamp(2.5rem, 7vw, 5.5rem) 0 clamp(4rem, 9vw, 7rem);
+  background:
+    radial-gradient(60rem 32rem at 100% 0%, var(--mynte), transparent 70%),
+    var(--papir);
+}
+
+.hero h1 {
+  font-size: clamp(2.75rem, 7vw, 5.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 15ch;
+}
+
+.hero-undertekst {
+  font-size: 1.375rem;
+  line-height: 1.45;
+  color: var(--dempet);
+  max-width: 34ch;
+  margin: 0 0 2.25rem;
+}
+
+.hero-rutenett {
   display: flex;
-  flex-direction: column;
-  padding: 32px;
-  transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-wrap: wrap;
+  gap: 3.5rem 4rem;
+  align-items: flex-start;
 }
 
-.mobile-menu.open {
-  transform: translateX(0);
+/* Flex med wrap i stedet for media query, så oppsettet også bryter
+   riktig når bare teksten forstørres (rem i media queries skalerer ikke). */
+.hero-hoved {
+  flex: 1 1 32rem;
+  max-width: var(--tekstbredde);
+  min-width: 0;
 }
 
-.nav-hamburger {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-}
-.nav-hamburger span {
-  display: block;
-  width: 22px;
-  height: 1.5px;
-  background: var(--ink);
+.hero-aside {
+  flex: 1 1 18rem;
+  min-width: 0;
 }
 
-/* Hide hamburger on desktop, show nav links */
-@media (min-width: 768px) {
-  .nav-hamburger { display: none; }
-  .nav-links { display: flex !important; }
-}
-/* Hide nav links on mobile, show hamburger */
-@media (max-width: 767px) {
-  .nav-links { display: none !important; }
-  .nav-hamburger { display: flex; }
+@media (min-width: 64rem) {
+  .hero-aside {
+    padding-top: 0.5rem;
+  }
 }
 
-/* ─── Marquee ─── */
-.marquee {
-  overflow: hidden;
-  background: var(--cream-2);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 20px 0;
+.hero h1 {
+  margin-bottom: 1.25rem;
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 38s linear infinite;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* ─── Reveal ─── */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.3, 1),
-              transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
-}
-
-.reveal.in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ─── Section-specific ─── */
-.services-dark {
-  background: var(--ink);
-  border-radius: 28px;
-  margin: 0 16px;
-  padding: 80px;
-  color: var(--paper);
-}
-
-.services-dark .eyebrow {
-  color: rgba(251,248,242,0.5);
-}
-
-.services-dark .eyebrow::before {
-  background: rgba(251,248,242,0.5);
-}
-
-.services-grid {
+/* ─── Idéskjemaet ─── */
+.skjema {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid rgba(251,248,242,0.12);
-  border-radius: 12px;
+  gap: 1.5rem;
+}
+
+.felt {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.etikett,
+.felt legend {
+  font-weight: 700;
+  font-size: 1.125rem;
+  padding: 0;
+}
+
+.etikett-stor {
+  font-size: 1.375rem;
+}
+
+.valgfri {
+  font-weight: 400;
+  color: var(--dempet);
+}
+
+.hint {
+  font-size: 1rem;
+  color: var(--dempet);
+  margin: 0;
+}
+
+.feilmelding {
+  font-size: 1rem;
+  color: var(--feil);
+  font-weight: 500;
+  margin: 0;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.feilmelding::before {
+  content: '!';
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.15rem;
+  border-radius: 50%;
+  background: var(--feil);
+  color: var(--flate);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.inndata {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--kant);
+  border-radius: 6px;
+  background: var(--flate);
+  color: var(--blekk);
+  font: inherit;
+  font-size: 1.125rem;
+}
+
+textarea.inndata {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.inndata[aria-invalid='true'] {
+  border: 2px solid var(--feil);
+}
+
+.inndata:focus-visible {
+  outline-offset: 1px;
+}
+
+/* Det store idéfeltet med merkepenn: tekstfeltet ligger over et speil
+   som tegner markeringen under teksten. Speilet bestemmer høyden. */
+.idefelt {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border: 1px solid var(--kant);
+  border-radius: 14px;
+  background: var(--flate);
+  box-shadow: var(--skygge);
+}
+
+.idefelt:focus-within {
+  outline: 2px solid var(--granskog);
+  outline-offset: 2px;
+}
+
+.idefelt[data-ugyldig='true'] {
+  border: 2px solid var(--feil);
+}
+
+.idefelt > textarea,
+.idefelt-speil {
+  grid-area: 1 / 1;
+  margin: 0;
+  padding: 1.25rem 1.375rem;
+  font: inherit;
+  font-size: clamp(1.5rem, 3.2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: normal;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: normal;
+  min-height: 10rem;
+  max-width: none;
+}
+
+.idefelt > textarea {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--blekk);
+  resize: none;
   overflow: hidden;
-}
-
-.service-item {
-  padding: 48px;
-  border-right: 1px solid rgba(251,248,242,0.12);
-  border-bottom: 1px solid rgba(251,248,242,0.12);
-}
-
-.service-item:nth-child(2n) {
-  border-right: none;
-}
-
-.service-item:nth-child(n+3) {
-  border-bottom: none;
-}
-
-.excl-card {
-  background: var(--ink);
-  border-radius: 28px;
-  margin: 0 16px;
-  padding: 64px;
-  color: var(--paper);
   position: relative;
+  z-index: 1;
+}
+
+.idefelt > textarea:focus-visible {
+  outline: none;
+}
+
+.idefelt > textarea::placeholder {
+  color: var(--dempet);
+  opacity: 1;
+}
+
+.idefelt-speil {
+  color: transparent;
+  pointer-events: none;
+  user-select: none;
+  visibility: visible;
+}
+
+.idefelt-speil mark {
+  color: transparent;
+  background: linear-gradient(to bottom, transparent 52%, var(--merkepenn) 52%, var(--merkepenn) 92%, transparent 92%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  border-radius: 2px;
+}
+
+.skjema-handling {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.skjema-handling p {
+  margin: 0;
+}
+
+@media (max-width: 40rem) {
+  .skjema-handling .knapp {
+    width: 100%;
+  }
+}
+
+/* Utfolding etter «Fortsett»: høyde + opacity, ca. 250 ms */
+.utfold {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 250ms ease-out, opacity 250ms ease-out;
+}
+
+.utfold[data-apen='true'] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.utfold > div {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.utfold[data-apen='true'] > div {
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .utfold {
+    transition: none;
+  }
+}
+
+.utfold-indre {
+  display: grid;
+  gap: 1.5rem;
+  padding: 0.25rem 0 0.25rem;
+}
+
+fieldset.felt {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.valg {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.valg label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.valg input[type='radio'] {
+  width: 1.375rem;
+  height: 1.375rem;
+  margin: 0;
+  accent-color: var(--granskog);
+  flex: none;
+}
+
+.felt-par {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .felt-par {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.honningkrukke {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
   overflow: hidden;
 }
 
-.excl-card::before {
+.statusmelding {
+  border-left: 4px solid var(--feil);
+  padding: 0.75rem 1rem;
+  background: var(--flate);
+  margin: 0;
+  max-width: none;
+}
+
+/* ─── Slik fungerer det: tidslinje på mørkt bånd ─── */
+.steg {
+  list-style: none;
+  counter-reset: steg;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 2.5rem 1.5rem;
+}
+
+.steg li {
+  counter-increment: steg;
+  position: relative;
+  padding-top: 4.5rem;
+}
+
+.steg li::before {
+  content: counter(steg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--granskog);
+  color: var(--pa-granskog);
+  font-size: 1.375rem;
+  font-weight: 800;
+}
+
+/* Linjen som binder stegene sammen */
+.steg li::after {
   content: '';
   position: absolute;
-  top: -120px;
-  right: -120px;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(79,111,91,0.3) 0%, transparent 70%);
-  pointer-events: none;
+  top: 1.625rem;
+  left: 4rem;
+  right: -0.75rem;
+  border-top: 2px dashed var(--linje);
 }
 
-.split-card {
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  overflow: hidden;
+.steg li:last-child::after {
+  display: none;
 }
 
-.split-inner {
+.steg h3 {
+  margin-bottom: 0.375rem;
+}
+
+.steg p {
+  margin: 0;
+  color: var(--dempet);
+}
+
+/* ─── Hvem eier løsningen? ─── */
+.paneler {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1.25rem;
 }
 
-.split-col {
-  padding: 48px;
-}
-
-.split-col:first-child {
-  border-right: 1px solid var(--line);
-  background: #fff8f8;
-}
-
-.split-col:last-child {
-  background: #f4fbf6;
-}
-
-/* ─── Demo tiles ─── */
-.demo-tile {
+.panel {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
   border-radius: 20px;
+  background: var(--flate);
+  border: 1px solid var(--linje);
+}
+
+.panel-mynte {
+  background: var(--mynte);
+  border-color: transparent;
+}
+
+.panel h3 {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-top: 1rem;
+}
+
+.panel p {
+  margin: 0;
+}
+
+.merke {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--granskog);
+  color: var(--granskog);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.merke-tom {
+  border-color: var(--kant);
+  color: var(--dempet);
+}
+
+.fotnote {
+  margin: 1.5rem 0 0;
+  color: var(--dempet);
+}
+
+/* ─── Ting vi har laget ─── */
+.prosjekter {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(3rem, 8vw, 5.5rem);
+}
+
+.prosjekt {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (min-width: 56rem) {
+  .prosjekt {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+    gap: 4rem;
+  }
+
+  .prosjekt:nth-child(even) {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  }
+
+  .prosjekt:nth-child(even) .prosjekt-tekst {
+    order: 2;
+  }
+}
+
+.prosjekt h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.prosjekt a {
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+.nettleser {
+  border-radius: 14px;
+  border: 1px solid var(--linje);
+  background: var(--flate);
+  box-shadow: var(--skygge);
   overflow: hidden;
-  position: relative;
-  min-height: 240px;
+}
+
+.nettleser-topp {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--mynte);
+  border-bottom: 1px solid var(--linje);
+}
+
+.nettleser-topp i {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--kant);
+  opacity: 0.5;
+}
+
+.nettleser-topp span {
+  margin-left: 0.75rem;
+  padding: 0.125rem 0.75rem;
+  border-radius: 999px;
+  background: var(--flate);
+  color: var(--dempet);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* ─── Om oss ─── */
+.om-oss {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 2.5rem 4rem;
+  align-items: start;
+}
+
+.fakta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fakta li {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--linje);
+  color: var(--dempet);
+}
+
+.fakta li:first-child {
+  padding-top: 0;
+}
+
+.fakta strong {
+  display: block;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--granskog);
+}
+
+/* ─── Pris ─── */
+.prisliste {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+}
+
+.prisliste div {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: var(--flate);
+  border: 1px solid var(--linje);
+}
+
+.prisliste dt {
+  color: var(--dempet);
+  font-size: 1rem;
+}
+
+.prisliste dd {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.prisliste dd small {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: normal;
+  color: var(--dempet);
+}
+
+/* ─── Det vi ikke gjør ─── */
+.utsagn {
+  margin: 0;
+  max-width: 32ch;
+  font-size: clamp(1.5rem, 3.4vw, 2.375rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+/* ─── FAQ ─── */
+.faq {
+  max-width: var(--tekstbredde);
+  border-top: 1px solid var(--linje);
+}
+
+.faq details {
+  border-bottom: 1px solid var(--linje);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 56px;
+  padding: 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: '+';
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--mynte);
+  color: var(--granskog);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.faq details[open] summary::after {
+  content: '–';
+}
+
+.faq details p {
+  margin: 0 0 1.25rem;
+}
+
+/* ─── Avslutning ─── */
+.avslutning h2 {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  letter-spacing: -0.035em;
+  max-width: 14ch;
+  margin-bottom: 1rem;
+}
+
+.avslutning p {
+  font-size: 1.375rem;
+  color: var(--dempet);
+  margin-bottom: 2rem;
+}
+
+/* ─── Footer ─── */
+.footer {
+  border-top: 1px solid var(--linje);
+  padding: 2.5rem 0 6rem;
+  font-size: 1rem;
+  color: var(--dempet);
+}
+
+.footer-indre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  align-items: center;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ─── Enkle undersider (takk, personvern, 404) ─── */
+.underside {
+  padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(3rem, 8vw, 6rem);
+}
+
+.underside h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.underside h2 {
+  font-size: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.underside ul {
+  padding-left: 1.25rem;
+  max-width: 68ch;
+}
+
+.underside li {
+  margin-bottom: 0.5rem;
+}
+
+/* ─── Chat «Spør om noe» ─── */
+.chat {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 60;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 28px;
-  text-decoration: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  align-items: flex-end;
+  gap: 0.75rem;
 }
 
-.demo-tile:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 48px rgba(20,24,31,0.18);
+.chat-apne {
+  min-height: 48px;
+  border-radius: 999px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
 }
 
-/* ─── Pricing cards ─── */
-.price-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 40px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.chat-apne[hidden] {
+  display: none;
 }
 
-.price-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-soft);
-}
-
-.price-card.featured {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-}
-
-/* ─── Article cards ─── */
-.article-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 32px;
-  text-decoration: none;
-  display: block;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.article-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-soft);
-}
-
-/* ─── Footer link ─── */
-.footer-link {
-  font-size: 14px;
-  color: rgba(251,248,242,0.65);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-.footer-link:hover {
-  color: var(--paper);
-}
-
-/* ─── Promise tile ─── */
-.promise-tile {
-  border-top: 1px solid rgba(251,248,242,0.12);
-  padding: 28px 0;
+.chat-panel {
+  width: min(24rem, calc(100vw - 2rem));
+  max-height: min(36rem, calc(100dvh - 2rem));
   display: flex;
-  align-items: baseline;
-  gap: 20px;
+  flex-direction: column;
+  background: var(--flate);
+  color: var(--blekk);
+  border: 1px solid var(--kant);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
 }
 
-.promise-tile:last-child {
-  border-bottom: 1px solid rgba(251,248,242,0.12);
+.chat-hode {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0.75rem 0.75rem 1rem;
+  border-bottom: 1px solid var(--linje);
+}
+
+.chat-hode h2 {
+  font-size: 1.125rem;
+  margin: 0 0 0.125rem;
+}
+
+.chat-hode p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--dempet);
+}
+
+.chat-lukk {
+  flex: none;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--kant);
+  border-radius: 6px;
+  background: var(--flate);
+  color: var(--blekk);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chat-logg {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--papir);
+  min-height: 12rem;
+}
+
+.chat-melding {
+  max-width: 85%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.chat-melding[data-rolle='assistant'] {
+  align-self: flex-start;
+  background: var(--flate);
+  border: 1px solid var(--linje);
+}
+
+.chat-melding[data-rolle='user'] {
+  align-self: flex-end;
+  background: var(--granskog);
+  color: var(--pa-granskog);
+}
+
+.chat-skjema {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-top: 1px solid var(--linje);
+}
+
+.chat-skjema .inndata {
+  min-height: 44px;
+  font-size: 1rem;
+}
+
+.chat-fot {
+  padding: 0 0.75rem 0.75rem;
+  margin: 0;
+  font-size: 1rem;
+}
+
+@media (max-width: 40rem) {
+  .chat[data-apen='true'] {
+    inset: 0;
+    align-items: stretch;
+  }
+
+  .chat[data-apen='true'] .chat-panel {
+    width: 100%;
+    max-height: none;
+    height: 100%;
+    border-radius: 0;
+    border: 0;
+  }
+}
+
+/* Smal tekstkolonne, men venstrejustert sammen med resten av siden */
+.ramme.tekstkolonne {
+  max-width: var(--sidebredde);
+}
+
+.ramme.tekstkolonne > * {
+  max-width: var(--tekstbredde);
+}
+
+/* ─── Animasjonen «Fra idé til ferdig løsning» ─── */
+.steg-topp {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 2rem 4rem;
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.steg-topp .seksjon-intro {
+  margin-bottom: 0;
+}
+
+.ide-video {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}
+
+.ide-video video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  background: var(--papir);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.45);
+}
+
+.ide-video-knapp {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--linje);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--blekk);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ide-video-knapp:hover {
+  border-color: var(--blekk);
+}
+
+/* Store tekststørrelser: knapper og etiketter skal bryte, ikke flyte ut */
+.nettleser-topp span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ─── Hva vi kan lage ─── */
+.typer {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+}
+
+.typer li {
+  padding: 1.75rem;
+  border-radius: 20px;
+  background: var(--flate);
+  border: 1px solid var(--linje);
+}
+
+.typer-ikon {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.75rem;
+  border-radius: 14px;
+  background: var(--mynte);
+  color: var(--granskog);
+  margin-bottom: 1.25rem;
+  box-sizing: border-box;
+}
+
+.typer h3 {
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.typer p {
+  margin: 0;
+  color: var(--dempet);
+}
+
+.typer .typer-annet {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  background: var(--band);
+  border-color: transparent;
+  color: var(--pa-band);
+  --blekk: var(--pa-band);
+  --dempet: var(--band-dempet);
+  --granskog: var(--band-aksent);
+  --pa-granskog: var(--band);
+}
+
+.typer-annet .knapp {
+  justify-self: start;
+  margin-top: 1rem;
+}
+
+/* ─── Hero: idé → temaer → figur (Regnskap-Roar og vennene hans) ───
+   Tidslinje (ms): skriving 200–1200, merkepenn 1150–1550, temaer 1600–2700,
+   samles 2950–3450, kort 3450–3900, figur spretter 3450–4050,
+   boble 3850–4250, hilsen 4100–4800. */
+.agent {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  max-width: 26rem;
+  margin-inline: auto;
+}
+
+.agent-ide {
+  padding: 1.125rem 1.25rem;
+  border-radius: 16px;
+  background: var(--flate);
+  border: 1px solid var(--kant);
+  box-shadow: var(--skygge);
+}
+
+.agent-etikett {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.375rem;
+}
+
+.agent-tekst {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  min-height: 2.8em;
+}
+
+.agent-merke {
+  background-image: linear-gradient(to bottom, transparent 55%, var(--merkepenn) 55%, var(--merkepenn) 92%, transparent 92%);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: merke-sveip 400ms cubic-bezier(0.16, 1, 0.3, 1) 1150ms forwards;
+}
+
+@keyframes merke-sveip {
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+.agent-tegn {
+  opacity: 0;
+  animation: tegn-inn 1ms linear forwards;
+  animation-delay: calc(200ms + var(--i) * 26ms);
+}
+
+@keyframes tegn-inn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Ingenting i hero skal gi sidescroll; klipp i kanten */
+.hero {
+  overflow-x: clip;
+}
+
+/* Temaene og resultatkortet deler samme plass, så temaene «blir» til Roar */
+.agent-scene {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  /* Fast minstehøyde, så pilene ikke hopper mellom eksemplene */
+  min-height: 12.5rem;
+  align-items: center;
+}
+
+.agent-scene > * {
+  grid-area: 1 / 1;
+}
+
+.agent-temaer {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0;
+  /* Temaene står i figurens område, og samles mot midten av det */
+  align-self: start;
+  min-height: calc(2.5rem + clamp(10rem, 42vw, 13rem));
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 0.5rem;
+  /* Samles mot midten av Roar: kortets padding (1,25rem) + halve Roar */
+  transform-origin: 50% 50%;
+  animation: temaer-samles 500ms cubic-bezier(0.6, 0, 0.8, 0.4) 2950ms forwards;
+}
+
+.agent-temaer li {
+  padding: 0.375rem 0.875rem;
+  border-radius: 999px;
+  background: var(--flate);
+  border: 1px solid var(--granskog);
+  color: var(--granskog);
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px -6px rgba(22, 58, 48, 0.3);
+  opacity: 0;
+  translate: 0 10px;
+  scale: 0.8;
+  animation: tema-inn 400ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(1600ms + var(--n) * 150ms) forwards;
+}
+
+@keyframes tema-inn {
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes temaer-samles {
+  to {
+    opacity: 0;
+    scale: 0.15;
+    rotate: -8deg;
+  }
+}
+
+.agent-resultat {
+  align-self: center;
+  padding: 1.25rem;
+  border-radius: 20px;
+  /* Hvitt også i mørk modus, så illustrasjonene alltid står på hvit bunn */
+  background: #FFFFFF;
+  color: #1B2A2A;
+  border: 1px solid rgba(27, 42, 42, 0.14);
+  box-shadow: var(--skygge);
+  opacity: 0;
+  scale: 0.85;
+  transform-origin: 50% calc(1.25rem + clamp(10rem, 42vw, 13rem) / 2);
+  animation: resultat-inn 450ms cubic-bezier(0.34, 1.4, 0.64, 1) 3450ms forwards;
+}
+
+@keyframes resultat-inn {
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.agent-resultat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.agent-hode-tekst {
+  min-width: 0;
+}
+
+/* Figuren spretter frem, og vipper litt som en hilsen */
+.figur {
+  position: relative;
+  flex: none;
+  height: clamp(10rem, 42vw, 13rem);
+  transform-origin: 50% 80%;
+  opacity: 0;
+  scale: 0.3;
+  animation:
+    figur-inn 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 3450ms forwards,
+    figur-hils 700ms ease-in-out 4100ms 1;
+}
+
+.figur img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+}
+
+@keyframes figur-inn {
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes figur-hils {
+  30% {
+    rotate: -4deg;
+  }
+  70% {
+    rotate: 3deg;
+  }
+}
+
+.agent-boble {
+  position: relative;
+  margin-top: 0.5rem;
+  /* Plass til to linjer, så kortene blir like høye */
+  min-height: calc(2 * 1.35em + 1rem);
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px 12px 12px 4px;
+  background: #E5F0EA;
+  color: #1B2A2A;
+  font-size: 1rem;
+  line-height: 1.35;
+  opacity: 0;
+  translate: 0 8px;
+  animation: merke-inn 400ms ease-out 3850ms forwards;
+}
+
+.agent-navn {
+  font-size: clamp(1.375rem, 5vw, 1.625rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+
+@keyframes merke-inn {
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* ─── Eksempelvelger under animasjonen ─── */
+.eksempler {
+  max-width: 26rem;
+  margin-inline: auto;
+}
+
+.agent-innhold {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+.eksempler-styring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.eksempler-pil {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--kant);
+  background: var(--flate);
+  color: var(--blekk);
+  font: inherit;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.eksempler-pil:hover {
+  border-color: var(--granskog);
+  color: var(--granskog);
+}
+
+.eksempler-teller {
+  min-width: 4.5rem;
+  text-align: center;
+  color: var(--dempet);
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Starter først når motivet er synlig (Avslor setter .synlig) */
+.avslor-aktiv .agent:not(.synlig) * {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-temaer {
+    animation: none;
+    visibility: hidden;
+  }
+
+  .agent-tegn,
+  .agent-resultat,
+  .figur,
+  .agent-boble {
+    animation: none;
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+
+  .agent-merke {
+    animation: none;
+    background-size: 100% 100%;
+  }
+
+}
+
+
+
+
+/* ─── Inntoning ved scrolling ─── */
+[data-avslor] {
+  transition:
+    opacity 700ms ease,
+    translate 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.avslor-aktiv [data-avslor]:not(.synlig) {
+  opacity: 0;
+  translate: 0 32px;
+}
+
+/* Tidslinjen tegnes opp steg for steg */
+.steg li::before,
+.steg li::after {
+  transition:
+    opacity 500ms ease,
+    scale 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.steg li::after {
+  transform-origin: left center;
+}
+
+.steg li:nth-child(2)::before,
+.steg li:nth-child(1)::after {
+  transition-delay: 150ms;
+}
+
+.steg li:nth-child(3)::before,
+.steg li:nth-child(2)::after {
+  transition-delay: 300ms;
+}
+
+.steg li:nth-child(4)::before,
+.steg li:nth-child(3)::after {
+  transition-delay: 450ms;
+}
+
+.steg li:nth-child(5)::before,
+.steg li:nth-child(4)::after {
+  transition-delay: 600ms;
+}
+
+.avslor-aktiv .steg:not(.synlig) li::before {
+  opacity: 0;
+  scale: 0.5;
+}
+
+.avslor-aktiv .steg:not(.synlig) li::after {
+  scale: 0 1;
+}
+
+/* ─── Hover på rutene ─── */
+.typer li,
+.prisliste div,
+.panel {
+  transition:
+    translate 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+@media (hover: hover) {
+  .typer li:hover,
+  .prisliste div:hover {
+    translate: 0 -4px;
+    box-shadow: var(--skygge);
+    border-color: var(--granskog);
+  }
+}
+
+.typer-ikon {
+  transition:
+    background 200ms ease,
+    color 200ms ease;
+}
+
+.typer li:hover .typer-ikon {
+  background: var(--granskog);
+  color: var(--pa-granskog);
+}
+
+.nettleser {
+  transition: translate 300ms ease;
+}
+
+@media (hover: hover) {
+  .prosjekt:hover .nettleser {
+    translate: 0 -6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-avslor],
+  .steg li::before,
+  .steg li::after,
+  .typer li,
+  .prisliste div,
+  .panel,
+  .nettleser {
+    transition: none;
+  }
+}
+
+/* ─── Avslutning med bakgrunnsbilde ───
+   Teksten står sentrert over det mørke midtpartiet, med en glød i samme farge
+   som bildet bak. Kontrast: tekst 10,7:1, undertekst 7,2:1. */
+.avslutning {
+  --bilde-mork: #143F33;
+  text-align: center;
+  padding: clamp(6rem, 14vw, 10rem) 0;
+  background:
+    radial-gradient(ellipse 55% 65% at 50% 50%, var(--bilde-mork) 35%, transparent 80%),
+    url('/images/avslutning-bakgrunn.webp') center / cover no-repeat,
+    var(--bilde-mork);
+}
+
+.avslutning h2,
+.avslutning p {
+  margin-left: auto;
+  margin-right: auto;
 }
