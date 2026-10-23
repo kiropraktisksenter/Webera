@@ -16,11 +16,11 @@ const nextConfig = {
       '/nettside-sjekk',
     ];
     return [
-      ...tilForsiden.map((source) => ({ source, destination: '/', permanent: true })),
-      { source: '/priser', destination: '/#pris', permanent: true },
-      { source: '/kontakt', destination: '/send-ide', permanent: true },
-      { source: '/om-oss', destination: '/#om-lars', permanent: true },
-      { source: '/hvordan-det-fungerer', destination: '/#slik-fungerer-det', permanent: true },
+      ...tilForsiden.map((source) => ({ source, destination: '/', statusCode: 301 })),
+      { source: '/priser', destination: '/#pris', statusCode: 301 },
+      { source: '/kontakt', destination: '/send-ide', statusCode: 301 },
+      { source: '/om-oss', destination: '/#om-lars', statusCode: 301 },
+      { source: '/hvordan-det-fungerer', destination: '/#slik-fungerer-det', statusCode: 301 },
     ];
   },
 };

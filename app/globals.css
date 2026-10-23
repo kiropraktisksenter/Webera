@@ -321,21 +321,28 @@ img {
 }
 
 .hero-rutenett {
-  display: grid;
-  gap: 3.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.5rem 4rem;
+  align-items: flex-start;
+}
+
+/* Flex med wrap i stedet for media query, så oppsettet også bryter
+   riktig når bare teksten forstørres (rem i media queries skalerer ikke). */
+.hero-hoved {
+  flex: 1 1 32rem;
+  max-width: var(--tekstbredde);
+  min-width: 0;
+}
+
+.hero-aside {
+  flex: 1 1 18rem;
+  min-width: 0;
 }
 
 @media (min-width: 64rem) {
-  .hero-rutenett {
-    grid-template-columns: minmax(0, var(--tekstbredde)) minmax(0, 1fr);
-    gap: 4rem;
-    align-items: start;
-  }
-
   .hero-aside {
     padding-top: 0.5rem;
-    border-left: 1px solid var(--linje);
-    padding-left: 2.5rem;
   }
 }
 
@@ -583,7 +590,7 @@ fieldset.felt {
 
 @media (min-width: 40rem) {
   .felt-par {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
 
@@ -659,7 +666,7 @@ fieldset.felt {
 .steg li {
   counter-increment: steg;
   display: grid;
-  grid-template-columns: 3rem 1fr;
+  grid-template-columns: 3rem minmax(0, 1fr);
   gap: 0 1rem;
 }
 
@@ -689,7 +696,7 @@ fieldset.felt {
 
 @media (min-width: 48rem) {
   .to-deler {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 3rem;
   }
 }
@@ -709,7 +716,12 @@ fieldset.felt {
 
 .prosjekt {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.25rem;
+}
+
+.prosjekt a {
+  overflow-wrap: anywhere;
 }
 
 @media (min-width: 56rem) {
@@ -728,6 +740,7 @@ fieldset.felt {
 
 .om-lars {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
 }
 
@@ -996,4 +1009,13 @@ fieldset.felt {
     border-radius: 0;
     border: 0;
   }
+}
+
+/* Smal tekstkolonne, men venstrejustert sammen med resten av siden */
+.ramme.tekstkolonne {
+  max-width: var(--sidebredde);
+}
+
+.ramme.tekstkolonne > * {
+  max-width: var(--tekstbredde);
 }

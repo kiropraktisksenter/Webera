@@ -51,7 +51,7 @@ export default function Forside() {
       <main id="innhold">
         <section className="hero" id="ide" aria-labelledby="hero-tittel">
           <div className="ramme hero-rutenett">
-            <div>
+            <div className="hero-hoved">
               <h1 id="hero-tittel">Har du en idé til noe digitalt? Fortell meg om den.</h1>
               <div data-ikke-dekk>
                 <IdeSkjema />
