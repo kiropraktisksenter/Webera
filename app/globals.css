@@ -1632,3 +1632,22 @@ fieldset.felt {
     transition: none;
   }
 }
+
+/* ─── Avslutning med bakgrunnsbilde ───
+   Teksten står sentrert over det mørke midtpartiet, med en glød i samme farge
+   som bildet bak. Kontrast: tekst 10,7:1, undertekst 7,2:1. */
+.avslutning {
+  --bilde-mork: #143F33;
+  text-align: center;
+  padding: clamp(6rem, 14vw, 10rem) 0;
+  background:
+    radial-gradient(ellipse 55% 65% at 50% 50%, var(--bilde-mork) 35%, transparent 80%),
+    url('/images/avslutning-bakgrunn.webp') center / cover no-repeat,
+    var(--bilde-mork);
+}
+
+.avslutning h2,
+.avslutning p {
+  margin-left: auto;
+  margin-right: auto;
+}
