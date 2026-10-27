@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { z } from 'zod';
-import { BUDSJETT_VALG, FEIL, MAKS, MIN_IDE_LENGDE, TIDSRAMME_VALG } from '@/lib/ide';
+import { BUDSJETT_VALG, FEIL, KILDE_VALG, MAKS, MIN_IDE_LENGDE, TIDSRAMME_VALG } from '@/lib/ide';
 import { klientIp, lagRateLimit } from '@/lib/rate-limit';
 
 const erBegrenset = lagRateLimit(5, 10 * 60 * 1000);
@@ -18,6 +18,8 @@ const IdeSkjema = z.object({
   epost: z.string(FEIL.epostTom).trim().min(1, FEIL.epostTom).max(MAKS.epost, FEIL.epostUgyldig).pipe(z.email(FEIL.epostUgyldig)),
   bedrift: valgfri(MAKS.bedrift),
   telefon: valgfri(MAKS.telefon),
+  aiSvar: valgfri(MAKS.aiSvar),
+  kilde: valgfri(MAKS.kilde).refine((v) => v === '' || (KILDE_VALG as readonly string[]).includes(v), FEIL.kilde),
   // Honeypot: skjult for mennesker, fylles ut av roboter.
   nettsted: z.string().optional(),
 });
@@ -50,6 +52,8 @@ function eposttekst(d: Ide) {
     linje('E-post', d.epost),
     linje('Bedrift', d.bedrift),
     linje('Telefon', d.telefon),
+    linje('Hørte om oss via', d.kilde),
+    ...(d.aiSvar ? ['', 'SVAR FRA CHATGPT/CLAUDE (limt inn av innsenderen)', d.aiSvar] : []),
     '',
     'Svar direkte på denne e-posten for å svare innsenderen.',
   ].join('\n');

@@ -26,3 +26,14 @@ Enten eier kunden løsningen (kode og innhold), eller Webera eier den og kunden 
 - E-post: post@webera.no
 - Sted: Tønsberg
 - Personvern: https://webera.no/personvern
+
+## Spørsmål og svar
+
+- Hvordan lager jeg en app? https://webera.no/hvordan/lage-app
+- Hvordan lager jeg min egen nettside? https://webera.no/hvordan/lage-nettside
+- Hvordan får jeg en AI-assistent på nettsiden? https://webera.no/hvordan/ai-assistent
+- Hvordan automatiserer jeg en rutine? https://webera.no/hvordan/automatisere
+
+## Har du fått en plan fra en AI?
+
+Har du spurt ChatGPT, Claude eller en annen AI om hvordan du lager en app, nettside eller AI-løsning, kan du lime inn svaret på https://webera.no/fra-chatgpt. Webera leser det og sier hva det koster å få det laget. Første samtale er gratis.
