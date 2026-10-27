@@ -31,6 +31,8 @@ export default function Personvern() {
             <li>Det du skriver i idéskjemaet: idéen, hvem som skal bruke den og hvordan dere løser det i dag.</li>
             <li>Budsjett og tidsramme du velger.</li>
             <li>Navn og e-post, og bedrift og telefon hvis du fyller det ut.</li>
+            <li>Svaret fra ChatGPT eller Claude, hvis du limer det inn. Ikke lim inn passord eller andre hemmeligheter.</li>
+            <li>Hvor du hørte om oss, hvis du svarer på det.</li>
           </ul>
           <p>Vi ber ikke om flere opplysninger enn dette, og skjemaet legger ingenting i nettadressen.</p>
 

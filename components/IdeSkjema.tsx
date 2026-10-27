@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import {
   BUDSJETT_VALG,
+  KILDE_VALG,
   TIDSRAMME_VALG,
   TOMT_SKJEMA,
   validerAlle,
@@ -17,7 +18,7 @@ const UTKAST_NOKKEL = 'webera-ide-utkast';
 const PLASSHOLDER =
   'For eksempel: Vi bruker en time hver dag på å svare på de samme spørsmålene fra kunder …';
 
-const REKKEFOLGE: Feltnavn[] = ['ide', 'brukere', 'idag', 'budsjett', 'tidsramme', 'navn', 'epost', 'bedrift', 'telefon'];
+const REKKEFOLGE: Feltnavn[] = ['ide', 'aiSvar', 'brukere', 'idag', 'budsjett', 'tidsramme', 'navn', 'epost', 'bedrift', 'telefon', 'kilde'];
 
 const STATUS = {
   nettverk: 'Idéen ble ikke sendt. Sjekk nettet og prøv igjen.',
@@ -53,7 +54,14 @@ function slettUtkast() {
   }
 }
 
-export default function IdeSkjema({ visAlt = false }: { visAlt?: boolean }) {
+export default function IdeSkjema({
+  visAlt = false,
+  medAiSvar = false,
+}: {
+  visAlt?: boolean;
+  // Viser feltet for å lime inn svaret fra ChatGPT eller Claude (/fra-chatgpt)
+  medAiSvar?: boolean;
+}) {
   const router = useRouter();
   const [felter, setFelter] = useState<IdeFelter>(TOMT_SKJEMA);
   const [feil, setFeil] = useState<Partial<Record<Feltnavn, string>>>({});
@@ -219,12 +227,19 @@ export default function IdeSkjema({ visAlt = false }: { visAlt?: boolean }) {
     </div>
   );
 
-  const radiogruppe = (navn: 'budsjett' | 'tidsramme', legend: string, valg: readonly string[]) => (
+  const radiogruppe = (
+    navn: 'budsjett' | 'tidsramme' | 'kilde',
+    legend: string,
+    valg: readonly string[],
+    valgfritt = false,
+  ) => (
     <fieldset
       className="felt"
       aria-describedby={feil[navn] ? `ide-${navn}-feil` : undefined}
     >
-      <legend>{legend}</legend>
+      <legend>
+        {legend} {valgfritt && <span className="valgfri">(valgfritt)</span>}
+      </legend>
       <div className="valg">
         {valg.map((v) => (
           <label key={v}>
@@ -276,6 +291,29 @@ export default function IdeSkjema({ visAlt = false }: { visAlt?: boolean }) {
         {feilmelding('ide')}
       </div>
 
+      {medAiSvar && (
+        <div className="felt">
+          <label className="etikett" htmlFor="ide-aiSvar">
+            Lim inn svaret fra ChatGPT eller Claude <span className="valgfri">(valgfritt)</span>
+          </label>
+          <p className="hint" id="ide-aiSvar-hint">
+            Planen, kodeforslaget eller hele samtalen. Vi leser den og sier hva det vil koste å få det laget.
+          </p>
+          <textarea
+            className="inndata"
+            id="ide-aiSvar"
+            name="aiSvar"
+            rows={8}
+            value={felter.aiSvar}
+            onChange={(e) => oppdater('aiSvar', e.target.value)}
+            onBlur={() => vedBlur('aiSvar')}
+            aria-invalid={feil.aiSvar ? true : undefined}
+            aria-describedby={beskrevet('aiSvar', true)}
+          />
+          {feilmelding('aiSvar')}
+        </div>
+      )}
+
       {!apen && (
         <div className="skjema-handling">
           <button type="button" className="knapp" onClick={fortsett}>
@@ -322,6 +360,8 @@ export default function IdeSkjema({ visAlt = false }: { visAlt?: boolean }) {
               {tekstfelt('bedrift', 'Bedrift', { autoComplete: 'organization' })}
               {tekstfelt('telefon', 'Telefon', { type: 'tel', autoComplete: 'tel' })}
             </div>
+
+            {radiogruppe('kilde', 'Hvor hørte du om oss?', KILDE_VALG, true)}
 
             <div className="honningkrukke" aria-hidden="true">
               <label htmlFor="ide-nettsted">La dette feltet stå tomt</label>

@@ -77,6 +77,10 @@ export default function Forside() {
               <div data-ikke-dekk>
                 <IdeSkjema />
               </div>
+              <p className="fra-ai-lenke">
+                Har du allerede spurt ChatGPT eller Claude?{' '}
+                <Link href="/fra-chatgpt">Lim inn svaret du fikk</Link>
+              </p>
             </div>
             <div className="hero-aside">
               <Eksempler />

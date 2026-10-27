@@ -17,8 +17,18 @@ export const TIDSRAMME_VALG = [
   'Jeg utforsker bare',
 ] as const;
 
+export const KILDE_VALG = [
+  'Google eller annet søk',
+  'ChatGPT, Claude eller annen AI',
+  'Anbefalt av noen',
+  'Sosiale medier',
+  'Annet',
+] as const;
+
 export const MAKS = {
   ide: 5000,
+  aiSvar: 12000,
+  kilde: 60,
   brukere: 300,
   idag: 2000,
   navn: 120,
@@ -37,6 +47,8 @@ export type IdeFelter = {
   epost: string;
   bedrift: string;
   telefon: string;
+  aiSvar: string;
+  kilde: string;
 };
 
 export type Feltnavn = keyof IdeFelter;
@@ -51,6 +63,8 @@ export const TOMT_SKJEMA: IdeFelter = {
   epost: '',
   bedrift: '',
   telefon: '',
+  aiSvar: '',
+  kilde: '',
 };
 
 export const FEIL = {
@@ -62,6 +76,7 @@ export const FEIL = {
   epostTom: 'Skriv e-postadressen din, så vi kan svare deg.',
   epostUgyldig: 'Sjekk e-postadressen. Den skal se omtrent slik ut: navn@firma.no.',
   forLang: 'Teksten er for lang. Kort den litt ned.',
+  kilde: 'Velg ett av alternativene, eller la feltet stå tomt.',
 } as const;
 
 const EPOST_MONSTER = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -84,6 +99,8 @@ export function validerFelt(navn: Feltnavn, verdi: string): string | undefined {
       if (!v) return FEIL.epostTom;
       if (v.length > MAKS.epost || !EPOST_MONSTER.test(v)) return FEIL.epostUgyldig;
       return;
+    case 'kilde':
+      return !v || (KILDE_VALG as readonly string[]).includes(v) ? undefined : FEIL.kilde;
     default:
       return v.length > MAKS[navn] ? FEIL.forLang : undefined;
   }
