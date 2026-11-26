@@ -3,7 +3,7 @@ import { GUIDER } from '@/lib/guide-tekster';
 import { ARTIKLER } from '@/lib/artikler';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://webera.no';
+  const base = 'https://www.webera.no';
   return [
     { url: base, changeFrequency: 'monthly', priority: 1 },
     { url: `${base}/send-ide`, changeFrequency: 'yearly', priority: 0.8 },

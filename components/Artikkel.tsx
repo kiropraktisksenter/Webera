@@ -20,7 +20,7 @@ export type ArtikkelInnhold = {
   cta: { tittel: string; tekst: string };
 };
 
-const BASE = 'https://webera.no';
+const BASE = 'https://www.webera.no';
 const PUBLISERT = '2026-11-26';
 const OPPDATERT = '2026-11-26';
 const OPPDATERT_TEKST = '26. november 2026';
