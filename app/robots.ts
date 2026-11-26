@@ -20,6 +20,6 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: '*', allow: '/', disallow: stengt },
       { userAgent: AI_ROBOTER, allow: '/', disallow: stengt },
     ],
-    sitemap: 'https://webera.no/sitemap.xml',
+    sitemap: 'https://www.webera.no/sitemap.xml',
   };
 }

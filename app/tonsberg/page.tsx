@@ -6,9 +6,9 @@ export const metadata = artikkelMetadata(innhold);
 // Lokal bedriftsinformasjon, så Google og AI-søk knytter Webera til Tønsberg og Vestfold
 const bedrift = {
   '@type': 'ProfessionalService',
-  '@id': 'https://webera.no/#org',
+  '@id': 'https://www.webera.no/#org',
   name: 'Webera AS',
-  url: 'https://webera.no',
+  url: 'https://www.webera.no',
   email: 'post@webera.no',
   description:
     'Lite studio i Tønsberg som lager nettsider, nettbutikker, apper, AI-assistenter, AI-agenter, interne verktøy, automatisering og integrasjoner for bedrifter.',

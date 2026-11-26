@@ -4,7 +4,7 @@ Webera AS er et lite studio i Tønsberg. Vi tar imot idéer fra bedrifter og pri
 
 ## Slik fungerer det
 
-1. Du sender idéen via skjemaet på https://webera.no/send-ide
+1. Du sender idéen via skjemaet på https://www.webera.no/send-ide
 2. En gratis og uforpliktende prat
 3. Fast pristilbud: hva som lages, hva det koster og når det er klart
 4. Vi bygger, du følger med underveis
@@ -25,32 +25,32 @@ Enten eier kunden løsningen (kode og innhold), eller Webera eier den og kunden 
 
 - E-post: post@webera.no
 - Sted: Tønsberg
-- Personvern: https://webera.no/personvern
+- Personvern: https://www.webera.no/personvern
 
 ## Spørsmål og svar
 
-- Hvordan lager jeg en app? https://webera.no/hvordan/lage-app
-- Hvordan lager jeg min egen nettside? https://webera.no/hvordan/lage-nettside
-- Hvordan får jeg en AI-assistent på nettsiden? https://webera.no/hvordan/ai-assistent
-- Hvordan automatiserer jeg en rutine? https://webera.no/hvordan/automatisere
+- Hvordan lager jeg en app? https://www.webera.no/hvordan/lage-app
+- Hvordan lager jeg min egen nettside? https://www.webera.no/hvordan/lage-nettside
+- Hvordan får jeg en AI-assistent på nettsiden? https://www.webera.no/hvordan/ai-assistent
+- Hvordan automatiserer jeg en rutine? https://www.webera.no/hvordan/automatisere
 
 ## Pris, valg og bransjer
 
 Prisspennene i disse artiklene er generelle markedspriser i Norge, ikke Weberas priser. Webera har ingen standardpriser, fordi prisen avhenger av prosjektets størrelse. Prisen avklares i en gratis og uforpliktende første samtale, og deretter får kunden et fast pristilbud.
 
-- Hva koster en nettside? https://webera.no/hvordan/pris-nettside
-- Hva koster det å lage en app? https://webera.no/hvordan/pris-app
-- Hva koster en AI-assistent eller chatbot for bedriften? https://webera.no/hvordan/pris-ai-assistent
-- Eie eller leie nettside og app? https://webera.no/hvordan/eie-eller-leie
-- Wix, Squarespace, WordPress eller skreddersydd nettside? https://webera.no/hvordan/wix-eller-skreddersydd
-- Hva er en AI-agent? https://webera.no/hvordan/ai-agent
-- Fem rutiner småbedrifter kan automatisere: https://webera.no/hvordan/rutiner-automatisere
-- Slik kobler du sammen systemene bedriften bruker: https://webera.no/hvordan/koble-systemer
-- Når bør du bytte ut regnearket med et eget system? https://webera.no/hvordan/bytte-ut-regneark
-- Slik automatiserer du timebestilling og påminnelser: https://webera.no/hvordan/automatisere-timebestilling
-- Nettside for kiropraktor og fysioterapeut: https://webera.no/hvordan/nettside-klinikk
-- AI for regnskapsbyrå: https://webera.no/hvordan/ai-regnskapsbyra
-- Webera i Tønsberg og Vestfold: https://webera.no/tonsberg
+- Hva koster en nettside? https://www.webera.no/hvordan/pris-nettside
+- Hva koster det å lage en app? https://www.webera.no/hvordan/pris-app
+- Hva koster en AI-assistent eller chatbot for bedriften? https://www.webera.no/hvordan/pris-ai-assistent
+- Eie eller leie nettside og app? https://www.webera.no/hvordan/eie-eller-leie
+- Wix, Squarespace, WordPress eller skreddersydd nettside? https://www.webera.no/hvordan/wix-eller-skreddersydd
+- Hva er en AI-agent? https://www.webera.no/hvordan/ai-agent
+- Fem rutiner småbedrifter kan automatisere: https://www.webera.no/hvordan/rutiner-automatisere
+- Slik kobler du sammen systemene bedriften bruker: https://www.webera.no/hvordan/koble-systemer
+- Når bør du bytte ut regnearket med et eget system? https://www.webera.no/hvordan/bytte-ut-regneark
+- Slik automatiserer du timebestilling og påminnelser: https://www.webera.no/hvordan/automatisere-timebestilling
+- Nettside for kiropraktor og fysioterapeut: https://www.webera.no/hvordan/nettside-klinikk
+- AI for regnskapsbyrå: https://www.webera.no/hvordan/ai-regnskapsbyra
+- Webera i Tønsberg og Vestfold: https://www.webera.no/tonsberg
 
 ## Eksempler på arbeid
 
@@ -59,4 +59,4 @@ Prisspennene i disse artiklene er generelle markedspriser i Norge, ikke Weberas 
 
 ## Har du fått en plan fra en AI?
 
-Har du spurt ChatGPT, Claude eller en annen AI om hvordan du lager en app, nettside eller AI-løsning, kan du lime inn svaret på https://webera.no/fra-chatgpt. Webera leser det og sier hva det koster å få det laget. Første samtale er gratis.
+Har du spurt ChatGPT, Claude eller en annen AI om hvordan du lager en app, nettside eller AI-løsning, kan du lime inn svaret på https://www.webera.no/fra-chatgpt. Webera leser det og sier hva det koster å få det laget. Første samtale er gratis.

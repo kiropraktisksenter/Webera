@@ -16,7 +16,7 @@ const BESKRIVELSE =
   'Har du en idé til en app, et verktøy eller en AI-løsning? Fortell oss om den. Gratis første samtale, fast pris og løsninger laget for måten du jobber på.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://webera.no'),
+  metadataBase: new URL('https://www.webera.no'),
   title: { default: TITTEL, template: '%s | Webera' },
   description: BESKRIVELSE,
   creator: 'Webera AS',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: TITTEL,
     description: BESKRIVELSE,
-    url: 'https://webera.no',
+    url: 'https://www.webera.no',
     siteName: 'Webera',
     locale: 'nb_NO',
     type: 'website',

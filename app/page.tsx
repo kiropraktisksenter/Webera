@@ -15,7 +15,7 @@ const strukturertData = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   name: 'Webera AS',
-  url: 'https://webera.no',
+  url: 'https://www.webera.no',
   email: 'post@webera.no',
   description:
     'Webera tar imot idéer fra bedrifter og privatpersoner og bygger digitale løsninger: apper, interne verktøy, AI-assistenter, automatisering og nettsider.',
