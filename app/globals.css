@@ -1838,6 +1838,62 @@ fieldset.felt {
   color: var(--dempet);
 }
 
+/* Lengre artikler (pris, valg, bransjer) */
+.artikkel-meta {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--dempet);
+}
+
+.artikkel-tekst h3 {
+  font-size: 1.25rem;
+  margin: 1.75rem 0 0.5rem;
+}
+
+.artikkel-tekst ol {
+  padding-left: 1.5rem;
+  max-width: 68ch;
+}
+
+.artikkel-tekst ol li {
+  margin-bottom: 0.5rem;
+}
+
+.tabell {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.25rem 0;
+}
+
+.tabell table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabell th,
+.tabell td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--linje);
+}
+
+.tabell thead th {
+  background: var(--mynte);
+  font-weight: 700;
+}
+
+.tabell caption {
+  caption-side: bottom;
+  text-align: left;
+  padding-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--dempet);
+}
+
 .fra-ai-punkter {
   margin: 1.5rem 0 2.5rem;
 }
