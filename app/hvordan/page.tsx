@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import { GUIDER } from '@/lib/guide-tekster';
+import { ARTIKLER } from '@/lib/artikler';
 import Header from '@/components/Header';
 
 export const metadata: Metadata = {
@@ -30,6 +31,17 @@ export default function Hvordan() {
               </li>
             ))}
           </ul>
+          <h2>Pris, valg og bransjer</h2>
+          <ul className="guide-oversikt">
+            {ARTIKLER.filter((a) => a.sti.startsWith('/hvordan/')).map((a) => (
+              <li key={a.sti}>
+                <Link href={a.sti}>{a.tittel}</Link>
+              </li>
+            ))}
+          </ul>
+          <p>
+            Holder du til i Vestfold? Se <Link href="/tonsberg">Webera i Tønsberg og Vestfold</Link>.
+          </p>
           <p>
             Har du allerede fått et svar fra en AI? <Link href="/fra-chatgpt">Lim det inn her</Link>, så sier vi hva det
             koster å få det laget.

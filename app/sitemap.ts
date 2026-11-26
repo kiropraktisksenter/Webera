@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { GUIDER } from '@/lib/guide-tekster';
+import { ARTIKLER } from '@/lib/artikler';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://webera.no';
@@ -9,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/fra-chatgpt`, changeFrequency: 'yearly', priority: 0.8 },
     { url: `${base}/hvordan`, changeFrequency: 'monthly', priority: 0.7 },
     ...GUIDER.map((g) => ({ url: `${base}${g.sti}`, changeFrequency: 'monthly' as const, priority: 0.7 })),
+    ...ARTIKLER.map((a) => ({ url: `${base}${a.sti}`, changeFrequency: 'monthly' as const, priority: 0.7 })),
     { url: `${base}/personvern`, changeFrequency: 'yearly', priority: 0.3 },
   ];
 }
